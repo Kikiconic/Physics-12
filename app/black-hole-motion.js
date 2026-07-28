@@ -72,15 +72,19 @@ export default function BlackHoleMotion() {
         ctx.stroke();
       });
 
-      if (shootingStars.length < 2 && Math.random() < .0022) {
-        shootingStars.push({
-          x: -100,
-          y: height * (.1 + Math.random() * .52),
-          speed: 3.2 + Math.random() * 2.1,
-          drift: .12 + Math.random() * .32,
-          length: 42 + Math.random() * 48,
-          alpha: .1 + Math.random() * .13
-        });
+      if (shootingStars.length === 0 && Math.random() < .0032) {
+        const groupSize = Math.random() < .55 ? 2 : 3;
+        const groupY = height * (.1 + Math.random() * .45);
+
+        shootingStars = Array.from({ length: groupSize }, (_, index) => ({
+          x: -90 - index * (50 + Math.random() * 45),
+          y: groupY + index * (22 + Math.random() * 22),
+          speed: 3.8 + Math.random() * 1.7,
+          drift: .14 + Math.random() * .28,
+          length: 64 + Math.random() * 54,
+          alpha: .25 + Math.random() * .17,
+          thickness: .9 + Math.random() * .45
+        }));
       }
 
       shootingStars.forEach(star => {
@@ -90,7 +94,7 @@ export default function BlackHoleMotion() {
         gradient.addColorStop(0, "rgba(255,255,255,0)");
         gradient.addColorStop(1, `rgba(255,255,255,${star.alpha})`);
         ctx.strokeStyle = gradient;
-        ctx.lineWidth = .7;
+        ctx.lineWidth = star.thickness;
         ctx.beginPath();
         ctx.moveTo(star.x - star.length, star.y - star.drift * 5);
         ctx.lineTo(star.x, star.y);
