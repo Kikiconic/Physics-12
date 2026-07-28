@@ -2,6 +2,7 @@ import Link from "next/link";
 import { SiteNav } from "./site-chrome";
 import blackHoleHero from "../public/black-hole-hero.jpg";
 import BlackHoleMotion from "./black-hole-motion";
+import ElectricFieldBackground from "./electric-field-background";
 
 const resources = [
   {
@@ -49,6 +50,7 @@ export default function Home() {
 
       {resources.map(resource => (
         <section className={`space-resource-panel ${resource.className}`} key={resource.title}>
+          {resource.title === "Lessons" && <ElectricFieldBackground />}
           <div>
             <p>{resource.label}</p>
             <h2>{resource.title}</h2>

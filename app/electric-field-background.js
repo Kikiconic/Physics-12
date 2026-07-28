@@ -15,8 +15,9 @@ export default function ElectricFieldBackground() {
 
     const resize = () => {
       const ratio = Math.min(window.devicePixelRatio || 1, 2);
-      width = window.innerWidth;
-      height = window.innerHeight;
+      const bounds = canvas.parentElement.getBoundingClientRect();
+      width = bounds.width;
+      height = bounds.height;
       canvas.width = width * ratio;
       canvas.height = height * ratio;
       canvas.style.width = `${width}px`;

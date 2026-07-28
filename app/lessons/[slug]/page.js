@@ -1,6 +1,5 @@
 import Link from "next/link";
 import katex from "katex";
-import ElectricFieldBackground from "../../electric-field-background";
 import { ArrowIcon, SiteFooter, SiteNav } from "../../site-chrome";
 
 const lessons = {
@@ -63,8 +62,7 @@ export function generateStaticParams(){return Object.keys(lessons).map(slug=>({s
 export default async function LessonDetail({params}) {
   const {slug}=await params,lesson=lessons[slug];
   return (
-    <main className="lesson-space">
-      <ElectricFieldBackground />
+    <main>
       <SiteNav/>
       <header className="lesson-detail-hero"><div><Link href="/lessons">← All lessons</Link><span>Lesson {lesson.number} · {lesson.time}</span></div><h1>{lesson.title}</h1><p>{lesson.subtitle}</p></header>
       <section className="lesson-objectives"><span>By the end, you can:</span>{lesson.goals.map((g,i)=><p key={g}><b>0{i+1}</b>{g}</p>)}</section>
