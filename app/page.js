@@ -7,7 +7,7 @@ export default function Home() {
       <SiteNav />
       <section className="platform-hero">
         <div className="platform-copy">
-          <div className="unit-tag">Physics 12 <span /> Course materials</div>
+          <div className="unit-tag">Henry&apos;s Physics 12 <span /> Course materials</div>
           <h1>Physics 12<br/><em>course resources.</em></h1>
           <p>Lessons, interactive simulations, and formula sheets organized by course unit. Unit 04: Electrostatics is currently available.</p>
           <div className="hero-actions">
