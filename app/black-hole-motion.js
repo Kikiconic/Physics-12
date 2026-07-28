@@ -39,9 +39,12 @@ export default function BlackHoleMotion() {
       const lensLift = particle.lift && backHalf
         ? -Math.sin(angle) * radiusY * particle.lift
         : 0;
+      const tilt = -.12;
+      const orbitX = Math.cos(angle) * radiusX * particle.orbit;
+      const orbitY = Math.sin(angle) * radiusY * particle.orbit - lensLift;
       return {
-        x: cx + Math.cos(angle) * radiusX * particle.orbit,
-        y: cy + Math.sin(angle) * radiusY * particle.orbit - lensLift
+        x: cx + orbitX * Math.cos(tilt) - orbitY * Math.sin(tilt),
+        y: cy + orbitX * Math.sin(tilt) + orbitY * Math.cos(tilt)
       };
     };
 
@@ -56,7 +59,7 @@ export default function BlackHoleMotion() {
       particles.forEach(particle => {
         particle.phase = (particle.phase - particle.speed + Math.PI * 2) % (Math.PI * 2);
         const head = pointOnOrbit(particle, particle.phase, cx, cy, radiusX, radiusY);
-        const tail = pointOnOrbit(particle, particle.phase - particle.trail, cx, cy, radiusX, radiusY);
+        const tail = pointOnOrbit(particle, particle.phase + particle.trail, cx, cy, radiusX, radiusY);
         const gradient = ctx.createLinearGradient(tail.x, tail.y, head.x, head.y);
         gradient.addColorStop(0, "rgba(255,255,255,0)");
         gradient.addColorStop(1, `rgba(255,255,255,${particle.alpha})`);
