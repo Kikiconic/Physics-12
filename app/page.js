@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SiteNav } from "./site-chrome";
+import blackHoleHero from "../public/black-hole-hero.jpg";
 
 const resources = [
   {
@@ -30,7 +31,12 @@ export default function Home() {
     <main className="space-home">
       <SiteNav />
       <section className="space-hero">
-        <div className="image-stage" aria-label="Reserved space for a future Physics 12 cover image" />
+        <div
+          className="image-stage"
+          style={{ "--hero-image": `url(${blackHoleHero.src})` }}
+          role="img"
+          aria-label="A black hole with a luminous accretion disk in deep space"
+        />
         <div className="space-hero-content">
           <p>Physics 12 course platform</p>
           <h1>Henry&apos;s Physics 12<br/>Classroom</h1>
