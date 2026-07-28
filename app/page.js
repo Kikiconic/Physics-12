@@ -4,6 +4,7 @@ import blackHoleHero from "../public/black-hole-hero.jpg";
 import BlackHoleMotion from "./black-hole-motion";
 import ElectricFieldBackground from "./electric-field-background";
 import SimulatorPreview from "./simulator-preview";
+import FormulaPreview from "./formula-preview";
 
 const resources = [
   {
@@ -53,6 +54,7 @@ export default function Home() {
         <section className={`space-resource-panel ${resource.className}`} key={resource.title}>
           {resource.title === "Lessons" && <ElectricFieldBackground />}
           {resource.title === "Simulators" && <SimulatorPreview />}
+          {resource.title === "Formula sheets" && <FormulaPreview />}
           <div>
             <p>{resource.label}</p>
             <h2>{resource.title}</h2>
