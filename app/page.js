@@ -1,8 +1,24 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import katex from "katex";
 
 const K = 8.99e9;
+
+function MathFormula({ children, block = false, className = "" }) {
+  return (
+    <span
+      className={`math-formula ${block ? "math-block" : ""} ${className}`}
+      dangerouslySetInnerHTML={{
+        __html: katex.renderToString(children, {
+          displayMode: block,
+          throwOnError: false,
+          strict: false
+        })
+      }}
+    />
+  );
+}
 
 function BoltIcon() {
   return <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 2 5 13h6l-.5 9L19 10h-6l.5-8Z" /></svg>;
@@ -239,14 +255,14 @@ export default function Home() {
         <div className="section-heading"><div><span className="eyebrow">Your learning path</span><h2>Electrostatics, piece by piece.</h2></div><p>Each lesson takes about five minutes.<br/>No filler—just the ideas that matter.</p></div>
         <div className="lesson-grid">
           <article className="lesson-card featured"><span className="lesson-num">01</span><div className="lesson-icon charge-pair"><ChargeOrb sign="+"/><ChargeOrb sign="−"/></div><span className="duration">5 MIN</span><h3>Electric charge</h3><p>Positive, negative, and the rules that determine how charges interact.</p><a href="#charge-lesson">Start here <ArrowIcon /></a></article>
-          <article className="lesson-card"><span className="lesson-num">02</span><div className="lesson-icon equation">F ∝ <span>q₁q₂</span><i>r²</i></div><span className="duration">6 MIN</span><h3>Coulomb's law</h3><p>Calculate the force between any two point charges.</p><a href="#simulator">Explore lesson <ArrowIcon /></a></article>
+          <article className="lesson-card"><span className="lesson-num">02</span><div className="lesson-icon equation"><MathFormula block>{String.raw`F \propto \frac{q_1q_2}{r^2}`}</MathFormula></div><span className="duration">6 MIN</span><h3>Coulomb's law</h3><p>Calculate the force between any two point charges.</p><a href="#simulator">Explore lesson <ArrowIcon /></a></article>
           <article className="lesson-card"><span className="lesson-num">03</span><div className="lesson-icon field-lines"><span>+</span><i/><i/><i/><i/></div><span className="duration">7 MIN</span><h3>Electric fields</h3><p>Map the force that a charge would feel at every point in space.</p><a href="#field-lesson">Explore lesson <ArrowIcon /></a></article>
           <article className="lesson-card"><span className="lesson-num">04</span><div className="lesson-icon plates"><i/><span>+ + +</span><span>− − −</span><i/></div><span className="duration">7 MIN</span><h3>Electric potential</h3><p>Connect energy, voltage, and the motion of charges.</p><a href="#formula">Explore lesson <ArrowIcon /></a></article>
         </div>
       </section>
 
       <section className="concept-section" id="charge-lesson">
-        <div className="concept-copy"><span className="eyebrow">Quick lesson · Charge</span><h2>Three ideas unlock the chapter.</h2><div className="concept-list"><div><b>01</b><p><strong>Charge is conserved.</strong><span>It can move between objects, but the total amount never changes.</span></p></div><div><b>02</b><p><strong>Charge is quantized.</strong><span>Every charge is a multiple of e = 1.60 × 10⁻¹⁹ C.</span></p></div><div><b>03</b><p><strong>Forces come in pairs.</strong><span>Each charge pushes or pulls the other with equal magnitude.</span></p></div></div></div>
+        <div className="concept-copy"><span className="eyebrow">Quick lesson · Charge</span><h2>Three ideas unlock the chapter.</h2><div className="concept-list"><div><b>01</b><p><strong>Charge is conserved.</strong><span>It can move between objects, but the total amount never changes.</span></p></div><div><b>02</b><p><strong>Charge is quantized.</strong><span>Every charge is a multiple of <MathFormula>{String.raw`e = 1.60 \times 10^{-19}\ \mathrm{C}`}</MathFormula>.</span></p></div><div><b>03</b><p><strong>Forces come in pairs.</strong><span>Each charge pushes or pulls the other with equal magnitude.</span></p></div></div></div>
         <MiniQuiz />
       </section>
 
@@ -255,9 +271,9 @@ export default function Home() {
       <section className="formula-section" id="formula">
         <div><span className="eyebrow">Keep this close</span><h2>Your electrostatics toolkit.</h2></div>
         <div className="formula-grid">
-          <article><span>01 · FORCE</span><b>F = k <em>|q₁q₂|</em><i>r²</i></b><p>k = 8.99 × 10⁹ N·m²/C²</p></article>
-          <article><span>02 · FIELD</span><b>E = <em>F</em><i>q</i> = k <em>|Q|</em><i>r²</i></b><p>Direction: force on a positive test charge</p></article>
-          <article><span>03 · POTENTIAL</span><b>V = k <em>Q</em><i>r</i></b><p>Potential is a scalar measured in volts</p></article>
+          <article><span>01 · FORCE</span><MathFormula block className="toolkit-equation">{String.raw`F = k\frac{\lvert q_1q_2\rvert}{r^2}`}</MathFormula><p><MathFormula>{String.raw`k = 8.99 \times 10^9\ \mathrm{N\,m^2/C^2}`}</MathFormula></p></article>
+          <article><span>02 · FIELD</span><MathFormula block className="toolkit-equation">{String.raw`E = \frac{F}{q} = k\frac{\lvert Q\rvert}{r^2}`}</MathFormula><p>Direction: force on a positive test charge</p></article>
+          <article><span>03 · POTENTIAL</span><MathFormula block className="toolkit-equation">{String.raw`V = k\frac{Q}{r}`}</MathFormula><p>Potential is a scalar measured in volts</p></article>
         </div>
       </section>
 
