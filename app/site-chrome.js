@@ -47,7 +47,6 @@ export function SiteFooter() {
   return (
     <footer>
       <Link className="brand" href="/"><span><BoltIcon /></span> PHYSICS 12 <small>CLASSROOM</small></Link>
-      <p>Built for curious Physics 12 students.</p>
       <Link href="/">Home ↑</Link>
     </footer>
   );

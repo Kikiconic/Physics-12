@@ -288,7 +288,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer><a className="brand" href="#"><span><BoltIcon /></span> PHYSICS 12 <small>CLASSROOM</small></a><p>Built for curious Physics 12 students.</p><a href="#">Back to top ↑</a></footer>
+      <footer><a className="brand" href="#"><span><BoltIcon /></span> PHYSICS 12 <small>CLASSROOM</small></a><a href="#">Back to top ↑</a></footer>
     </main>
   );
 }
