@@ -12,10 +12,10 @@ npm run dev
 
 ## Deployment
 
-Every push to `main` builds and deploys the site through GitHub Actions.
-The expected Pages URL is:
+The generated static site is committed in `/docs` for branch-based GitHub
+Pages. The expected Pages URL is:
 
 https://kikiconic.github.io/Physics-12/
 
-In the GitHub repository, open **Settings → Pages** and make sure **Source** is
-set to **GitHub Actions**.
+In the GitHub repository, open **Settings → Pages**, select **Deploy from a
+branch**, then choose the `main` branch and `/docs` folder.
