@@ -103,49 +103,92 @@ function ForceSimulator() {
 
 function FieldSimulator() {
   const canvasRef = useRef(null);
-  const [source, setSource] = useState(4);
-  const [probe, setProbe] = useState({ x: .73, y: .43 });
-  const [dragging, setDragging] = useState(false);
-  const magnitude = K * Math.abs(source * 1e-6) / Math.pow(0.2 + probe.x * .65, 2);
+  const [charges, setCharges] = useState([
+    { id: 1, q: 1, x: .34, y: .5 },
+    { id: 2, q: -1, x: .66, y: .5 }
+  ]);
+  const [sensor, setSensor] = useState({ x: .5, y: .24 });
+  const [dragTarget, setDragTarget] = useState(null);
+  const [showVectors, setShowVectors] = useState(true);
+
+  const fieldAt = (x, y, width = 1, height = 1) => charges.reduce((sum, charge) => {
+    const dx = (x - charge.x) * width;
+    const dy = (y - charge.y) * height;
+    const r2 = Math.max(dx * dx + dy * dy, 900);
+    const scale = charge.q / Math.pow(r2, 1.5);
+    return { x: sum.x + dx * scale, y: sum.y + dy * scale };
+  }, { x: 0, y: 0 });
+
+  const sensorField = fieldAt(sensor.x, sensor.y, 800, 420);
+  const sensorMagnitude = Math.hypot(sensorField.x, sensorField.y) * 1.8e10;
+  const sensorAngle = Math.atan2(-sensorField.y, sensorField.x) * 180 / Math.PI;
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d"), ratio = window.devicePixelRatio || 1, rect = canvas.getBoundingClientRect();
     canvas.width = rect.width * ratio; canvas.height = rect.height * ratio; ctx.scale(ratio, ratio);
-    const w = rect.width, h = rect.height, sx = w * .25, sy = h * .5;
+    const w = rect.width, h = rect.height;
     ctx.fillStyle = "#102736"; ctx.fillRect(0, 0, w, h);
-    const outward = source > 0;
-    for (let a = 0; a < Math.PI * 2; a += Math.PI / 10) {
-      const r1 = 38, r2 = Math.max(w, h) * .78, ex = sx + Math.cos(a) * r2, ey = sy + Math.sin(a) * r2;
-      ctx.strokeStyle = "rgba(96, 190, 255, .28)"; ctx.lineWidth = 1.3;
-      ctx.beginPath(); ctx.moveTo(sx + Math.cos(a) * r1, sy + Math.sin(a) * r1); ctx.lineTo(ex, ey); ctx.stroke();
-      const ar = r1 + (r2-r1) * .52, dir = outward ? 1 : -1, ax = sx + Math.cos(a)*ar, ay = sy + Math.sin(a)*ar;
-      ctx.fillStyle = "rgba(96,190,255,.72)"; ctx.save(); ctx.translate(ax,ay); ctx.rotate(a + (dir < 0 ? Math.PI : 0));
-      ctx.beginPath(); ctx.moveTo(7,0); ctx.lineTo(-5,-4); ctx.lineTo(-5,4); ctx.closePath(); ctx.fill(); ctx.restore();
-    }
-    ctx.fillStyle = source > 0 ? "#ff674d" : "#2e7ef6"; ctx.beginPath(); ctx.arc(sx,sy,28,0,Math.PI*2); ctx.fill();
-    ctx.fillStyle="#fff"; ctx.font="700 25px Arial"; ctx.textAlign="center"; ctx.textBaseline="middle"; ctx.fillText(source>0?"+":"−",sx,sy);
-    const px = probe.x*w, py=probe.y*h, dx=px-sx, dy=py-sy, len=Math.hypot(dx,dy), ux=dx/len*(outward?1:-1), uy=dy/len*(outward?1:-1);
-    ctx.strokeStyle="#f8d15e"; ctx.lineWidth=3; ctx.beginPath(); ctx.moveTo(px,py); ctx.lineTo(px+ux*54,py+uy*54); ctx.stroke();
-    ctx.fillStyle="#f8d15e"; ctx.beginPath(); ctx.arc(px,py,9,0,Math.PI*2); ctx.fill();
-    ctx.fillStyle="#f8d15e"; ctx.font="700 11px Arial"; ctx.fillText("TEST CHARGE",px,py-20);
-  }, [source, probe]);
+    ctx.strokeStyle = "rgba(255,255,255,.055)";
+    for (let x = 0; x < w; x += 28) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,h); ctx.stroke(); }
+    for (let y = 0; y < h; y += 28) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(w,y); ctx.stroke(); }
 
-  const move = e => {
-    if (!dragging) return;
-    const r = e.currentTarget.getBoundingClientRect();
-    setProbe({x: Math.max(.4, Math.min(.92,(e.clientX-r.left)/r.width)), y: Math.max(.15,Math.min(.85,(e.clientY-r.top)/r.height))});
+    if (showVectors) for (let x = 24; x < w; x += 42) for (let y = 24; y < h; y += 42) {
+      if (charges.some(c => Math.hypot(x-c.x*w,y-c.y*h) < 35)) continue;
+      const f = fieldAt(x/w,y/h,w,h), mag = Math.hypot(f.x,f.y);
+      if (!mag) continue;
+      const ux=f.x/mag, uy=f.y/mag, length=8+Math.min(11,Math.log10(mag*1e8+1)*3);
+      ctx.strokeStyle="rgba(105,183,255,.66)"; ctx.fillStyle="rgba(105,183,255,.8)"; ctx.lineWidth=1.4;
+      ctx.beginPath(); ctx.moveTo(x-ux*length/2,y-uy*length/2); ctx.lineTo(x+ux*length/2,y+uy*length/2); ctx.stroke();
+      ctx.save(); ctx.translate(x+ux*length/2,y+uy*length/2); ctx.rotate(Math.atan2(uy,ux));
+      ctx.beginPath(); ctx.moveTo(4,0); ctx.lineTo(-3,-3); ctx.lineTo(-3,3); ctx.closePath(); ctx.fill(); ctx.restore();
+    }
+
+    charges.forEach(charge => {
+      const x=charge.x*w,y=charge.y*h;
+      ctx.shadowColor=charge.q>0?"rgba(255,103,77,.5)":"rgba(46,126,246,.5)";ctx.shadowBlur=18;
+      ctx.fillStyle=charge.q>0?"#ff674d":"#2e7ef6";ctx.beginPath();ctx.arc(x,y,25,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;
+      ctx.fillStyle="#fff";ctx.font="700 24px Arial";ctx.textAlign="center";ctx.textBaseline="middle";ctx.fillText(charge.q>0?"+":"−",x,y-1);
+    });
+
+    const px=sensor.x*w,py=sensor.y*h,f=fieldAt(sensor.x,sensor.y,w,h),mag=Math.hypot(f.x,f.y),ux=mag?f.x/mag:0,uy=mag?f.y/mag:0;
+    ctx.strokeStyle="#f8d15e";ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(px,py);ctx.lineTo(px+ux*50,py+uy*50);ctx.stroke();
+    ctx.fillStyle="#f8d15e";ctx.beginPath();ctx.arc(px,py,10,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle="#f8d15e";ctx.font="700 10px Arial";ctx.textAlign="center";ctx.fillText("SENSOR",px,py-20);
+  }, [charges, sensor, showVectors]);
+
+  const pointerPosition = e => {
+    const r=e.currentTarget.getBoundingClientRect();
+    return {x:Math.max(.04,Math.min(.96,(e.clientX-r.left)/r.width)),y:Math.max(.08,Math.min(.92,(e.clientY-r.top)/r.height)),w:r.width,h:r.height};
   };
+  const startDrag = e => {
+    const p=pointerPosition(e);
+    const charge=charges.find(c=>Math.hypot((c.x-p.x)*p.w,(c.y-p.y)*p.h)<32);
+    const sensorHit=Math.hypot((sensor.x-p.x)*p.w,(sensor.y-p.y)*p.h)<25;
+    setDragTarget(charge?{type:"charge",id:charge.id}:sensorHit?{type:"sensor"}:null);
+    e.currentTarget.setPointerCapture(e.pointerId);
+  };
+  const move = e => {
+    if(!dragTarget)return;
+    const p=pointerPosition(e);
+    if(dragTarget.type==="sensor") setSensor({x:p.x,y:p.y});
+    else setCharges(items=>items.map(c=>c.id===dragTarget.id?{...c,x:p.x,y:p.y}:c));
+  };
+  const addCharge = q => setCharges(items=>items.length>=8?items:[...items,{id:Date.now(),q,x:.5+(Math.random()-.5)*.14,y:.5+(Math.random()-.5)*.14}]);
 
   return (
     <div className="sim-card field-card">
-      <div className="sim-top"><div><span className="eyebrow">Simulator 02</span><h2>Electric field explorer</h2></div><div className="status-pill live"><i /> Live field</div></div>
-      <canvas ref={canvasRef} className="field-canvas" onPointerDown={e=>{setDragging(true); e.currentTarget.setPointerCapture(e.pointerId)}} onPointerUp={()=>setDragging(false)} onPointerMove={move} />
-      <div className="field-controls">
-        <label>Source charge <strong>{source > 0 ? "+" : ""}{source} μC</strong><input type="range" min="-8" max="8" step="1" value={source} onChange={e=>setSource(+e.target.value || 1)} /></label>
-        <div className="field-readout"><span>Field at probe</span><b>{magnitude > 1e6 ? `${(magnitude/1e6).toFixed(2)} MN/C` : `${(magnitude/1000).toFixed(1)} kN/C`}</b></div>
-        <p>Drag the yellow test charge to map the field.</p>
+      <div className="sim-top"><div><span className="eyebrow">Simulator 02 · Sandbox</span><h2>Charges &amp; fields lab</h2></div><div className="status-pill live"><i /> Live field</div></div>
+      <div className="field-toolbar">
+        <div className="charge-tools"><button onClick={()=>addCharge(1)}><i className="tool-charge positive">+</i> Add positive</button><button onClick={()=>addCharge(-1)}><i className="tool-charge negative">−</i> Add negative</button></div>
+        <div className="view-tools"><button className={showVectors?"active":""} onClick={()=>setShowVectors(v=>!v)}>↗ Field vectors</button><button onClick={()=>setCharges([])}>Clear all</button><button onClick={()=>setCharges([{id:1,q:1,x:.34,y:.5},{id:2,q:-1,x:.66,y:.5}])}>Reset</button></div>
+      </div>
+      <canvas ref={canvasRef} className="field-canvas" aria-label="Interactive electric field sandbox. Drag charges and the yellow sensor." onPointerDown={startDrag} onPointerUp={()=>setDragTarget(null)} onPointerCancel={()=>setDragTarget(null)} onPointerMove={move} />
+      <div className="field-controls sandbox-readout">
+        <div><span>Charges placed</span><b>{charges.length}</b><small>Drag any charge to reposition it</small></div>
+        <div><span>Field at sensor</span><b>{sensorMagnitude>1e6?`${(sensorMagnitude/1e6).toFixed(2)} MN/C`:`${(sensorMagnitude/1000).toFixed(1)} kN/C`}</b><small>Yellow arrow shows the field direction</small></div>
+        <div><span>Direction</span><b>{Number.isFinite(sensorAngle)?`${sensorAngle.toFixed(0)}°`:"—"}</b><small>Measured counterclockwise from +x</small></div>
       </div>
     </div>
   );
