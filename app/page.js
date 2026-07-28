@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { SiteNav } from "./site-chrome";
 import blackHoleHero from "../public/black-hole-hero.jpg";
+import BlackHoleMotion from "./black-hole-motion";
 
 const resources = [
   {
@@ -37,6 +38,7 @@ export default function Home() {
           role="img"
           aria-label="A black hole with a luminous accretion disk in deep space"
         />
+        <BlackHoleMotion />
         <div className="space-hero-content">
           <p>Physics 12 course platform</p>
           <h1>Henry&apos;s Physics 12<br/>Classroom</h1>
