@@ -65,7 +65,9 @@ function ForceSimulator() {
     for (let x = 20; x < w; x += 26) for (let y = 20; y < h; y += 26) {
       ctx.beginPath(); ctx.arc(x, y, 1.2, 0, Math.PI * 2); ctx.stroke();
     }
-    const spread = 80 + ((distance - .1) / .9) * Math.min(160, w / 3);
+    const minSpread = Math.min(190, w * .55);
+    const maxSpread = Math.min(380, w * .8);
+    const spread = minSpread + ((distance - .1) / .9) * (maxSpread - minSpread);
     const left = w / 2 - spread / 2, right = w / 2 + spread / 2, cy = h / 2 - 8;
     const drawCharge = (x, value) => {
       const pos = value >= 0;
