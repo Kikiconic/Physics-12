@@ -72,9 +72,9 @@ export function ForceSimulator() {
     const left = w / 2 - spread / 2, right = w / 2 + spread / 2, cy = h / 2 - 8;
     const drawCharge = (x, value) => {
       const pos = value >= 0;
-      ctx.shadowColor = pos ? "rgba(255,103,77,.28)" : "rgba(46,126,246,.28)";
+      ctx.shadowColor = pos ? "rgba(143,201,255,.28)" : "rgba(46,126,246,.28)";
       ctx.shadowBlur = 18;
-      ctx.fillStyle = pos ? "#ff674d" : "#2e7ef6";
+      ctx.fillStyle = pos ? "#8fc9ff" : "#2e7ef6";
       ctx.beginPath(); ctx.arc(x, cy, 27, 0, Math.PI * 2); ctx.fill();
       ctx.shadowBlur = 0;
       ctx.fillStyle = "#fff"; ctx.font = "700 25px Arial"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
@@ -172,8 +172,8 @@ export function FieldSimulator() {
 
     charges.forEach(charge => {
       const x=charge.x*w,y=charge.y*h;
-      ctx.shadowColor=charge.q>0?"rgba(255,103,77,.5)":"rgba(46,126,246,.5)";ctx.shadowBlur=18;
-      ctx.fillStyle=charge.q>0?"#ff674d":"#2e7ef6";ctx.beginPath();ctx.arc(x,y,25,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;
+      ctx.shadowColor=charge.q>0?"rgba(143,201,255,.5)":"rgba(46,126,246,.5)";ctx.shadowBlur=18;
+      ctx.fillStyle=charge.q>0?"#8fc9ff":"#2e7ef6";ctx.beginPath();ctx.arc(x,y,25,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;
       ctx.fillStyle="#fff";ctx.font="700 24px Arial";ctx.textAlign="center";ctx.textBaseline="middle";ctx.fillText(charge.q>0?"+":"−",x,y-1);
     });
 
