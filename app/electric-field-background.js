@@ -1,17 +1,21 @@
 export default function ElectricFieldBackground() {
   return (
     <div className="electric-field-background chalkboard-background" aria-hidden="true">
-      <svg viewBox="0 0 900 540" preserveAspectRatio="xMidYMid meet">
+      <svg className="chalk-grid-layer" viewBox="0 0 900 540" preserveAspectRatio="none">
         <defs>
           <pattern id="chalk-grid" width="42" height="42" patternUnits="userSpaceOnUse">
             <path d="M 42 0 L 0 0 0 42" fill="none" stroke="rgba(174,213,238,.12)" strokeWidth="1" />
           </pattern>
+        </defs>
+        <rect width="900" height="540" fill="url(#chalk-grid)" />
+      </svg>
+
+      <svg className="chalk-material-layer" viewBox="0 0 900 540" preserveAspectRatio="xMidYMid meet">
+        <defs>
           <marker id="chalk-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
             <path d="M 0 0 L 10 5 L 0 10" fill="none" stroke="currentColor" strokeWidth="1.5" />
           </marker>
         </defs>
-
-        <rect width="900" height="540" fill="url(#chalk-grid)" />
 
         <g className="chalk-writing">
           <text x="88" y="92" className="chalk-equation">F = ma</text>
