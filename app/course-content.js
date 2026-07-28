@@ -239,7 +239,7 @@ export default function Home() {
   return (
     <main>
       <nav>
-        <a className="brand" href="#"><span><BoltIcon /></span> PHYSICS 12 <small>CLASSROOM</small></a>
+        <a className="brand" href="#"><span><BoltIcon /></span> HENRY&apos;S PHYSICS 12 <small>CLASSROOM</small></a>
         <div className="nav-links"><a href="#lessons">Lessons</a><a href="#simulator">Simulators</a><a href="#formula">Formula sheet</a></div>
         <a className="nav-cta" href="#lessons">Start learning <ArrowIcon /></a>
       </nav>
@@ -288,7 +288,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer><a className="brand" href="#"><span><BoltIcon /></span> PHYSICS 12 <small>CLASSROOM</small></a><a href="#">Back to top ↑</a></footer>
+      <footer><a className="brand" href="#"><span><BoltIcon /></span> HENRY&apos;S PHYSICS 12 <small>CLASSROOM</small></a><a href="#">Back to top ↑</a></footer>
     </main>
   );
 }
