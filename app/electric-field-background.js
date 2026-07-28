@@ -22,6 +22,9 @@ export default function ElectricFieldBackground() {
           <text x="530" y="80" className="chalk-equation small">E = F/q</text>
           <text x="640" y="445" className="chalk-equation">v = Δx/Δt</text>
           <text x="120" y="462" className="chalk-equation small">Fₑ = kq₁q₂/r²</text>
+          <text x="352" y="505" className="chalk-equation small">Eₖ = ½mv²</text>
+          <text x="650" y="510" className="chalk-equation small">p⃗ = mv⃗</text>
+          <text x="350" y="118" className="chalk-equation small">W = Fd cos θ</text>
 
           <g className="chalk-axis">
             <path d="M 520 330 L 520 140 M 520 330 L 760 330" />
@@ -51,6 +54,33 @@ export default function ElectricFieldBackground() {
             <text x="683" y="248">+</text>
             <text x="791" y="248">−</text>
             <path d="M 716 240 L 770 240" markerEnd="url(#chalk-arrow)" />
+          </g>
+
+          <g className="chalk-projectile">
+            <path d="M 390 410 L 390 288 M 390 410 L 515 410" />
+            <path d="M 398 401 C 432 322 472 315 510 397" strokeDasharray="6 8" />
+            <path d="M 398 401 L 432 339" markerEnd="url(#chalk-arrow)" />
+            <text x="440" y="350">v⃗₀</text>
+          </g>
+
+          <g className="chalk-circuit">
+            <path d="M 72 330 L 105 330 M 105 310 L 105 350 M 116 318 L 116 342 M 116 330 L 154 330 L 164 318 L 180 342 L 196 318 L 212 342 L 228 318 L 240 330 L 270 330" />
+            <text x="73" y="303">V</text>
+            <text x="183" y="303">R</text>
+          </g>
+
+          <g className="chalk-pendulum">
+            <path d="M 825 92 L 792 178" />
+            <circle cx="790" cy="184" r="13" />
+            <path d="M 825 92 L 825 191" strokeDasharray="5 8" />
+            <path d="M 825 128 A 38 38 0 0 0 811 125" />
+            <text x="796" y="120">θ</text>
+          </g>
+
+          <g className="chalk-notes">
+            <text x="72" y="510">ΣF⃗ = 0</text>
+            <text x="745" y="388">ΔU = qΔV</text>
+            <text x="570" y="392">a = Δv/Δt</text>
           </g>
         </g>
       </svg>
