@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { MiniQuiz } from "../course-content";
+import ElectricFieldBackground from "../electric-field-background";
 import { ArrowIcon, SiteFooter, SiteNav, UnitCatalogue } from "../site-chrome";
 
 const lessons = [
@@ -11,7 +12,8 @@ const lessons = [
 
 export default function LessonsPage() {
   return (
-    <main>
+    <main className="lesson-space">
+      <ElectricFieldBackground />
       <SiteNav />
       <header className="inner-hero"><span className="eyebrow">Physics 12 · Lessons</span><h1>Electrostatics,<br/><em>piece by piece.</em></h1><p>Four focused lessons. No filler—just the ideas, equations, and intuition you need.</p></header>
       <UnitCatalogue section="Lessons" />
