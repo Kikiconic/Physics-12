@@ -82,8 +82,8 @@ export default function BlackHoleMotion() {
           speed: 3.8 + Math.random() * 1.7,
           drift: .14 + Math.random() * .28,
           length: 64 + Math.random() * 54,
-          alpha: .96 + Math.random() * .04,
-          thickness: 1.35 + Math.random() * .55
+          alpha: .84 + Math.random() * .08,
+          thickness: 1.25 + Math.random() * .5
         }));
       }
 
@@ -96,9 +96,9 @@ export default function BlackHoleMotion() {
         gradient.addColorStop(0, "rgba(255,255,255,0)");
         gradient.addColorStop(1, `rgba(255,255,255,${visibleAlpha})`);
         ctx.strokeStyle = gradient;
-        ctx.lineWidth = star.thickness + 2.5 * (1 - crossingProgress);
+        ctx.lineWidth = star.thickness + 2 * (1 - crossingProgress);
         ctx.shadowColor = `rgba(255,255,255,${visibleAlpha})`;
-        ctx.shadowBlur = 14 * (1 - crossingProgress);
+        ctx.shadowBlur = 10 * (1 - crossingProgress);
         ctx.beginPath();
         ctx.moveTo(star.x - star.length, star.y - star.drift * 5);
         ctx.lineTo(star.x, star.y);
