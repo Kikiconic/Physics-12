@@ -17,8 +17,30 @@ export function SiteNav() {
         <Link href="/simulators">Simulators</Link>
         <Link href="/formulas">Formula sheet</Link>
       </div>
-      <Link className="nav-cta" href="/lessons">Start learning <ArrowIcon /></Link>
+      <span className="nav-course">Physics 12</span>
     </nav>
+  );
+}
+
+export function UnitCatalogue({ section }) {
+  return (
+    <section className="unit-catalogue">
+      <div className="unit-catalogue-heading">
+        <span className="eyebrow">{section} by unit</span>
+        <h2>Physics 12 course units</h2>
+      </div>
+      <div className="unit-slots">
+        {[1,2,3,4,5,6].map(unit => unit === 4 ? (
+          <div className="unit-slot active-unit" key={unit}>
+            <span>Unit 04</span><b>Electrostatics</b><small>Current unit</small>
+          </div>
+        ) : (
+          <div className="unit-slot empty-unit" key={unit}>
+            <span>Unit {String(unit).padStart(2,"0")}</span><b>Future unit</b><small>Coming soon</small>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 }
 

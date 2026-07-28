@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { MiniQuiz } from "../course-content";
-import { ArrowIcon, SiteFooter, SiteNav } from "../site-chrome";
+import { ArrowIcon, SiteFooter, SiteNav, UnitCatalogue } from "../site-chrome";
 
 const lessons = [
   {n:"01",time:"5 MIN",title:"Electric charge",text:"Positive, negative, conservation, and the rules that determine how charges interact.",symbol:"+ −",slug:"electric-charge"},
@@ -14,6 +14,8 @@ export default function LessonsPage() {
     <main>
       <SiteNav />
       <header className="inner-hero"><span className="eyebrow">Physics 12 · Lessons</span><h1>Electrostatics,<br/><em>piece by piece.</em></h1><p>Four focused lessons. No filler—just the ideas, equations, and intuition you need.</p></header>
+      <UnitCatalogue section="Lessons" />
+      <div className="active-unit-heading"><span>Unit 04</span><h2>Electrostatics lessons</h2><p>4 lessons · approximately 27 minutes</p></div>
       <section className="lessons-page-grid">
         {lessons.map(x=><article key={x.n}><div className="lesson-page-top"><span>{x.n}</span><b>{x.symbol}</b></div><small>{x.time}</small><h2>{x.title}</h2><p>{x.text}</p><Link href={`/lessons/${x.slug}`}>Open lesson <ArrowIcon /></Link></article>)}
       </section>

@@ -1,5 +1,5 @@
 import katex from "katex";
-import { SiteFooter, SiteNav } from "../site-chrome";
+import { SiteFooter, SiteNav, UnitCatalogue } from "../site-chrome";
 
 function Formula({children}) {
   return <span className="standalone-formula" dangerouslySetInnerHTML={{__html:katex.renderToString(children,{displayMode:true,throwOnError:false})}} />;
@@ -15,5 +15,5 @@ const formulas=[
 ];
 
 export default function FormulasPage(){
-  return <main><SiteNav/><header className="inner-hero"><span className="eyebrow">Quick reference</span><h1>Your electrostatics<br/><em>formula sheet.</em></h1><p>Equations, units, and direction rules for solving Physics 12 problems.</p></header><section className="standalone-formula-grid">{formulas.map(f=><article key={f.label}><span>{f.label}</span><Formula>{f.math}</Formula><ul>{f.notes.map(n=><li key={n}>{n}</li>)}</ul></article>)}</section><SiteFooter/></main>
+  return <main><SiteNav/><header className="inner-hero"><span className="eyebrow">Quick reference</span><h1>Your Physics 12<br/><em>formula sheets.</em></h1><p>Equations, units, and direction rules organized by course unit.</p></header><UnitCatalogue section="Formula sheets"/><div className="active-unit-heading"><span>Unit 04</span><h2>Electrostatics formula sheet</h2><p>6 essential relationships and constants</p></div><section className="standalone-formula-grid">{formulas.map(f=><article key={f.label}><span>{f.label}</span><Formula>{f.math}</Formula><ul>{f.notes.map(n=><li key={n}>{n}</li>)}</ul></article>)}</section><SiteFooter/></main>
 }
