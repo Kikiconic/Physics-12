@@ -11,7 +11,7 @@ export function ArrowIcon() {
 export function SiteNav() {
   return (
     <nav>
-      <Link className="brand" href="/"><span><BoltIcon /></span> ELECTROSTATICS <small>LAB 12</small></Link>
+      <Link className="brand" href="/"><span><BoltIcon /></span> PHYSICS 12 <small>CLASSROOM</small></Link>
       <div className="nav-links">
         <Link href="/lessons">Lessons</Link>
         <Link href="/simulators">Simulators</Link>
@@ -47,7 +47,7 @@ export function UnitCatalogue({ section }) {
 export function SiteFooter() {
   return (
     <footer>
-      <Link className="brand" href="/"><span><BoltIcon /></span> ELECTROSTATICS <small>LAB 12</small></Link>
+      <Link className="brand" href="/"><span><BoltIcon /></span> PHYSICS 12 <small>CLASSROOM</small></Link>
       <p>Built for curious Physics 12 students.</p>
       <Link href="/">Home ↑</Link>
     </footer>

@@ -1,4 +1,4 @@
-# Electrostatics Lab 12
+# Physics 12 Classroom
 
 Quick Physics 12 electrostatics lessons with interactive Coulomb-force and
 electric-field simulators.

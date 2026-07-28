@@ -2,7 +2,7 @@ import "./globals.css";
 import "katex/dist/katex.min.css";
 
 export const metadata = {
-  title: "Electrostatics Lab 12",
+  title: "Physics 12 Classroom",
   description: "Quick lessons and interactive electrostatics simulations for Physics 12."
 };
 
