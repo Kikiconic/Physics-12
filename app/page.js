@@ -7,9 +7,9 @@ export default function Home() {
       <SiteNav />
       <section className="platform-hero">
         <div className="platform-copy">
-          <div className="unit-tag">Physics 12 <span /> Electrostatics</div>
+          <div className="unit-tag">Physics 12 <span /> Complete course platform</div>
           <h1>Learn the concept.<br/><em>See</em> the physics.</h1>
-          <p>A focused study platform for mastering electric charge, Coulomb’s law, fields, and potential—one clear idea at a time.</p>
+          <p>A focused study platform for exploring every Physics 12 unit through clear lessons, interactive experiments, and useful formula sheets.</p>
           <div className="hero-actions">
             <Link href="/lessons" className="primary-btn">Start learning <ArrowIcon /></Link>
             <Link href="/simulators" className="text-btn"><span>▶</span> Try a simulator</Link>
@@ -20,7 +20,7 @@ export default function Home() {
           <div className="summary-orbit orbit-b" />
           <div className="summary-charge plus">+</div>
           <div className="summary-charge minus">−</div>
-          <div className="summary-center"><BoltIcon /><span>Electrostatics<br/>made visible</span></div>
+          <div className="summary-center"><BoltIcon /><span>Physics 12<br/>made visible</span></div>
         </div>
       </section>
 
