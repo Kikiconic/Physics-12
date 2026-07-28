@@ -82,8 +82,8 @@ export default function BlackHoleMotion() {
           speed: 3.8 + Math.random() * 1.7,
           drift: .14 + Math.random() * .28,
           length: 64 + Math.random() * 54,
-          alpha: .78 + Math.random() * .18,
-          thickness: .9 + Math.random() * .45
+          alpha: .96 + Math.random() * .04,
+          thickness: 1.35 + Math.random() * .55
         }));
       }
 
@@ -91,16 +91,24 @@ export default function BlackHoleMotion() {
         star.x += star.speed;
         star.y += star.drift;
         const crossingProgress = Math.max(0, Math.min(1, (star.x + 90) / (width + 180)));
-        const visibleAlpha = star.alpha * (.14 + .86 * Math.pow(1 - crossingProgress, 1.35));
+        const visibleAlpha = star.alpha * (.1 + .9 * Math.pow(1 - crossingProgress, 1.65));
         const gradient = ctx.createLinearGradient(star.x - star.length, star.y, star.x, star.y);
         gradient.addColorStop(0, "rgba(255,255,255,0)");
         gradient.addColorStop(1, `rgba(255,255,255,${visibleAlpha})`);
         ctx.strokeStyle = gradient;
-        ctx.lineWidth = star.thickness;
-        ctx.shadowColor = `rgba(255,255,255,${visibleAlpha * .65})`;
-        ctx.shadowBlur = 5 * (1 - crossingProgress);
+        ctx.lineWidth = star.thickness + 2.5 * (1 - crossingProgress);
+        ctx.shadowColor = `rgba(255,255,255,${visibleAlpha})`;
+        ctx.shadowBlur = 14 * (1 - crossingProgress);
         ctx.beginPath();
         ctx.moveTo(star.x - star.length, star.y - star.drift * 5);
+        ctx.lineTo(star.x, star.y);
+        ctx.stroke();
+
+        ctx.lineWidth = star.thickness;
+        ctx.shadowBlur = 3 * (1 - crossingProgress);
+        ctx.strokeStyle = `rgba(255,255,255,${visibleAlpha})`;
+        ctx.beginPath();
+        ctx.moveTo(star.x - star.length * .42, star.y - star.drift * 2);
         ctx.lineTo(star.x, star.y);
         ctx.stroke();
         ctx.shadowBlur = 0;
