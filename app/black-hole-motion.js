@@ -12,6 +12,7 @@ export default function BlackHoleMotion() {
     let width = 0;
     let height = 0;
     let particles = [];
+    let shootingStars = [];
 
     const createParticles = () => Array.from({ length: 360 }, (_, index) => ({
       phase: Math.random() * Math.PI * 2,
@@ -70,6 +71,33 @@ export default function BlackHoleMotion() {
         ctx.quadraticCurveTo((tail.x + head.x) / 2, (tail.y + head.y) / 2, head.x, head.y);
         ctx.stroke();
       });
+
+      if (shootingStars.length < 2 && Math.random() < .0022) {
+        shootingStars.push({
+          x: -100,
+          y: height * (.1 + Math.random() * .52),
+          speed: 3.2 + Math.random() * 2.1,
+          drift: .12 + Math.random() * .32,
+          length: 42 + Math.random() * 48,
+          alpha: .1 + Math.random() * .13
+        });
+      }
+
+      shootingStars.forEach(star => {
+        star.x += star.speed;
+        star.y += star.drift;
+        const gradient = ctx.createLinearGradient(star.x - star.length, star.y, star.x, star.y);
+        gradient.addColorStop(0, "rgba(255,255,255,0)");
+        gradient.addColorStop(1, `rgba(255,255,255,${star.alpha})`);
+        ctx.strokeStyle = gradient;
+        ctx.lineWidth = .7;
+        ctx.beginPath();
+        ctx.moveTo(star.x - star.length, star.y - star.drift * 5);
+        ctx.lineTo(star.x, star.y);
+        ctx.stroke();
+      });
+      shootingStars = shootingStars.filter(star => star.x < width + star.length);
+
       ctx.globalCompositeOperation = "source-over";
       frame = requestAnimationFrame(draw);
     };
