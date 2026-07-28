@@ -126,9 +126,6 @@ function FieldSimulator() {
   const [sensor, setSensor] = useState({ x: .5, y: .24 });
   const [dragTarget, setDragTarget] = useState(null);
   const [showVectors, setShowVectors] = useState(true);
-  const [showVoltage, setShowVoltage] = useState(true);
-  const [equipotentials, setEquipotentials] = useState([]);
-  const [referenceVoltage, setReferenceVoltage] = useState(0);
 
   const fieldAt = (x, y, width = 1, height = 1) => charges.reduce((sum, charge) => {
     const dx = (x - charge.x) * width;
@@ -155,13 +152,6 @@ function FieldSimulator() {
     canvas.width = rect.width * ratio; canvas.height = rect.height * ratio; ctx.scale(ratio, ratio);
     const w = rect.width, h = rect.height;
     ctx.fillStyle = "#102736"; ctx.fillRect(0, 0, w, h);
-
-    if(showVoltage) for(let x=0;x<w;x+=10) for(let y=0;y<h;y+=10){
-      const v=potentialAt((x+5)/w,(y+5)/h),intensity=Math.min(.72,Math.abs(v)/45000);
-      ctx.fillStyle=v>=0?`rgba(255,103,77,${intensity})`:`rgba(46,126,246,${intensity})`;
-      ctx.fillRect(x,y,10,10);
-    }
-
     ctx.strokeStyle = "rgba(255,255,255,.055)";
     for (let x = 0; x < w; x += 28) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,h); ctx.stroke(); }
     for (let y = 0; y < h; y += 28) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(w,y); ctx.stroke(); }
@@ -177,23 +167,6 @@ function FieldSimulator() {
       ctx.beginPath(); ctx.moveTo(4,0); ctx.lineTo(-3,-3); ctx.lineTo(-3,3); ctx.closePath(); ctx.fill(); ctx.restore();
     }
 
-    const drawEquipotential=level=>{
-      const step=12,points=[];
-      for(let x=0;x<w-step;x+=step)for(let y=0;y<h-step;y+=step){
-        const corners=[
-          {x,y,v:potentialAt(x/w,y/h)},{x:x+step,y,v:potentialAt((x+step)/w,y/h)},
-          {x:x+step,y:y+step,v:potentialAt((x+step)/w,(y+step)/h)},{x,y:y+step,v:potentialAt(x/w,(y+step)/h)}
-        ];
-        const edges=[[0,1],[1,2],[2,3],[3,0]],hits=[];
-        edges.forEach(([a,b])=>{const A=corners[a],B=corners[b];if((A.v-level)*(B.v-level)<=0&&A.v!==B.v){const t=(level-A.v)/(B.v-A.v);hits.push({x:A.x+t*(B.x-A.x),y:A.y+t*(B.y-A.y)});}});
-        if(hits.length>=2)points.push([hits[0],hits[1]]);
-      }
-      ctx.strokeStyle="#fff";ctx.lineWidth=1.8;ctx.setLineDash([4,3]);
-      points.forEach(([a,b])=>{ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();});
-      ctx.setLineDash([]);
-    };
-    equipotentials.forEach(drawEquipotential);
-
     charges.forEach(charge => {
       const x=charge.x*w,y=charge.y*h;
       ctx.shadowColor=charge.q>0?"rgba(255,103,77,.5)":"rgba(46,126,246,.5)";ctx.shadowBlur=18;
@@ -204,9 +177,9 @@ function FieldSimulator() {
     const px=sensor.x*w,py=sensor.y*h,f=fieldAt(sensor.x,sensor.y,w,h),mag=Math.hypot(f.x,f.y),ux=mag?f.x/mag:0,uy=mag?f.y/mag:0;
     ctx.strokeStyle="#f8d15e";ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(px,py);ctx.lineTo(px+ux*50,py+uy*50);ctx.stroke();
     ctx.fillStyle="#f8d15e";ctx.beginPath();ctx.arc(px,py,10,0,Math.PI*2);ctx.fill();
-    ctx.fillStyle="#f8d15e";ctx.font="700 10px Arial";ctx.textAlign="center";ctx.fillText("SENSOR",px,py-20);
+    ctx.fillStyle="#f8d15e";ctx.font="700 10px Arial";ctx.textAlign="center";ctx.fillText("VOLTAGE PROBE",px,py-20);
     ctx.font="700 11px Arial";ctx.fillText(formatVoltage(potentialAt(sensor.x,sensor.y)),px,py+25);
-  }, [charges, sensor, showVectors, showVoltage, equipotentials]);
+  }, [charges, sensor, showVectors]);
 
   const pointerPosition = e => {
     const r=e.currentTarget.getBoundingClientRect();
@@ -226,23 +199,20 @@ function FieldSimulator() {
     else setCharges(items=>items.map(c=>c.id===dragTarget.id?{...c,x:p.x,y:p.y}:c));
   };
   const addCharge = q => setCharges(items=>items.length>=8?items:[...items,{id:Date.now(),q,x:.5+(Math.random()-.5)*.14,y:.5+(Math.random()-.5)*.14}]);
-  const resetLab=()=>{setCharges([{id:1,q:1,x:.34,y:.5},{id:2,q:-1,x:.66,y:.5}]);setSensor({x:.5,y:.24});setEquipotentials([]);setReferenceVoltage(0);};
-  const plotEquipotential=()=>setEquipotentials(levels=>levels.length>=6?levels:[...levels,sensorVoltage]);
+  const resetLab=()=>{setCharges([{id:1,q:1,x:.34,y:.5},{id:2,q:-1,x:.66,y:.5}]);setSensor({x:.5,y:.24});};
 
   return (
     <div className="sim-card field-card">
       <div className="sim-top"><div><span className="eyebrow">Simulator 02 · Sandbox</span><h2>Charges &amp; fields lab</h2></div><div className="status-pill live"><i /> Live field</div></div>
       <div className="field-toolbar">
         <div className="charge-tools"><button onClick={()=>addCharge(1)}><i className="tool-charge positive">+</i> Add positive</button><button onClick={()=>addCharge(-1)}><i className="tool-charge negative">−</i> Add negative</button></div>
-        <div className="view-tools"><button className={showVectors?"active":""} onClick={()=>setShowVectors(v=>!v)}>↗ Field vectors</button><button className={showVoltage?"active":""} onClick={()=>setShowVoltage(v=>!v)}>◐ Voltage map</button><button onClick={plotEquipotential}>⌁ Plot equipotential</button><button onClick={()=>setReferenceVoltage(sensorVoltage)}>Δ Set reference</button><button onClick={()=>{setCharges([]);setEquipotentials([])}}>Clear all</button><button onClick={resetLab}>Reset</button></div>
+        <div className="view-tools"><button className={showVectors?"active":""} onClick={()=>setShowVectors(v=>!v)}>↗ Field vectors</button><button onClick={()=>setCharges([])}>Clear all</button><button onClick={resetLab}>Reset</button></div>
       </div>
-      <canvas ref={canvasRef} className="field-canvas" aria-label="Interactive electric field sandbox. Drag charges and the yellow sensor." onPointerDown={startDrag} onPointerUp={()=>setDragTarget(null)} onPointerCancel={()=>setDragTarget(null)} onPointerMove={move} />
-      <div className="voltage-key"><span><i className="positive-voltage"/> Positive voltage</span><b>White dashed lines are equipotentials</b><span>Negative voltage <i className="negative-voltage"/></span></div>
+      <canvas ref={canvasRef} className="field-canvas" aria-label="Interactive electric field sandbox. Drag charges and the yellow voltage probe." onPointerDown={startDrag} onPointerUp={()=>setDragTarget(null)} onPointerCancel={()=>setDragTarget(null)} onPointerMove={move} />
       <div className="field-controls sandbox-readout">
         <div><span>Charges placed</span><b>{charges.length}</b><small>Drag any charge to reposition it</small></div>
         <div><span>Field at sensor</span><b>{sensorMagnitude>1e6?`${(sensorMagnitude/1e6).toFixed(2)} MN/C`:`${(sensorMagnitude/1000).toFixed(1)} kN/C`}</b><small>Yellow arrow shows the field direction</small></div>
-        <div><span>Electric potential</span><b>{formatVoltage(sensorVoltage)}</b><small>Potential at the yellow sensor</small></div>
-        <div><span>Voltage change, ΔV</span><b>{formatVoltage(sensorVoltage-referenceVoltage)}</b><small>Set a reference, then move the sensor</small></div>
+        <div className="voltage-readout"><span>Voltage at probe</span><b>{formatVoltage(sensorVoltage)}</b><small>Drag the yellow probe to measure a new point</small></div>
       </div>
     </div>
   );
