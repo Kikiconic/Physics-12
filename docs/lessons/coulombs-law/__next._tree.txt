@@ -1,3 +1,3 @@
-:HL["/Physics-12/_next/static/chunks/1w_um5zmld47i.css","style"]
+:HL["/Physics-12/_next/static/chunks/1tiouqz06nfr1.css","style"]
 :HC["/",""]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"lessons","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"coulombs-law","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"TpFFxUxncQoIiPog8J3oN"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"lessons","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"coulombs-law","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"PgB5HLRBs8iAGjIByTn2c"}
