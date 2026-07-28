@@ -54,7 +54,7 @@ export default function BlackHoleMotion() {
 
       ctx.globalCompositeOperation = "screen";
       particles.forEach(particle => {
-        particle.phase = (particle.phase + particle.speed) % (Math.PI * 2);
+        particle.phase = (particle.phase - particle.speed + Math.PI * 2) % (Math.PI * 2);
         const head = pointOnOrbit(particle, particle.phase, cx, cy, radiusX, radiusY);
         const tail = pointOnOrbit(particle, particle.phase - particle.trail, cx, cy, radiusX, radiusY);
         const gradient = ctx.createLinearGradient(tail.x, tail.y, head.x, head.y);
