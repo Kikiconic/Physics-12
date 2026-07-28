@@ -1,5 +1,4 @@
 import Link from "next/link";
-import LanguageSelector from "./language-selector";
 
 export function BoltIcon() {
   return <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 2 5 13h6l-.5 9L19 10h-6l.5-8Z" /></svg>;
@@ -18,7 +17,6 @@ export function SiteNav() {
         <Link href="/simulators">Simulators</Link>
         <Link href="/formulas">Formula sheet</Link>
       </div>
-      <LanguageSelector />
     </nav>
   );
 }
