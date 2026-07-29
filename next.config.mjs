@@ -3,6 +3,7 @@ const isGitHubPages = process.env.GITHUB_ACTIONS === "true";
 
 const nextConfig = {
   output: "export",
+  distDir: process.env.NODE_ENV === "development" ? ".next" : ".next-build",
   images: {
     unoptimized: true
   },
