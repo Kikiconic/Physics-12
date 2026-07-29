@@ -92,11 +92,11 @@ const lessons = {
         ],
         formula: String.raw`F_e=k\frac{\left|q_1q_2\right|}{r^2}`,
         variables: [
-          { symbol: String.raw`F_e`, name: "Electric force", meaning: "The size of the force between the two charges.", example: String.raw`2.5\ \mathrm{N}` },
+          { symbol: String.raw`F_e`, name: "Electric force", meaning: "The size of the force between the two charges." },
           { symbol: String.raw`k`, name: "Coulomb’s constant", meaning: "A constant used for electric force in empty space or air.", example: String.raw`8.99\times10^9\ \mathrm{N\,m^2/C^2}` },
-          { symbol: String.raw`q_1`, name: "First charge", meaning: "The electric charge of the first object, measured in coulombs.", example: String.raw`+3.0\ \mu\mathrm{C}=+3.0\times10^{-6}\ \mathrm{C}` },
-          { symbol: String.raw`q_2`, name: "Second charge", meaning: "The electric charge of the second object, measured in coulombs.", example: String.raw`-2.0\ \mu\mathrm{C}=-2.0\times10^{-6}\ \mathrm{C}` },
-          { symbol: String.raw`r`, name: "Separation distance", meaning: "The distance from the centre of one charge to the centre of the other.", example: String.raw`0.40\ \mathrm{m}` }
+          { symbol: String.raw`q_1`, name: "First charge", meaning: "The electric charge of the first object, measured in coulombs." },
+          { symbol: String.raw`q_2`, name: "Second charge", meaning: "The electric charge of the second object, measured in coulombs." },
+          { symbol: String.raw`r`, name: "Separation distance", meaning: "The distance from the centre of one charge to the centre of the other, measured in metres." }
         ]
       },
       {
@@ -227,7 +227,7 @@ export default async function LessonDetail({ params }) {
                       <div>
                         <h3>{variable.name}</h3>
                         <p>{variable.meaning}</p>
-                        <Formula>{variable.example}</Formula>
+                        {variable.example && <Formula>{variable.example}</Formula>}
                       </div>
                     </div>
                   ))}
