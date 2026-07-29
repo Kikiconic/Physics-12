@@ -10,25 +10,53 @@ const lessons = {
       {
         title: "What is static electric charge?",
         paragraphs: [
-          "Electric charge is a property of matter that causes electric forces. Protons carry positive charge, electrons carry negative charge, and neutrons are electrically neutral. An object is neutral when it contains equal amounts of positive and negative charge.",
-          "Static electricity is a buildup of charge that remains in one place for a period of time. In most everyday situations, electrons transfer from one object to another while the protons remain bound inside atomic nuclei. An object that gains electrons becomes negatively charged; an object that loses electrons becomes positively charged.",
-          "Like charges repel each other, while opposite charges attract. The attraction or repulsion between charged objects is called the electrostatic force."
+          "All matter is made of atoms. Inside each atom, protons have positive charge and electrons have negative charge. Neutrons have no electric charge. An object is neutral when it has the same amount of positive and negative charge.",
+          "Static electric charge is a buildup of charge on an object. This happens when electrons move from one object to another. Protons stay inside the nuclei of atoms and usually do not move between objects.",
+          "An object becomes negative when it gains electrons. It becomes positive when it loses electrons. The word static means that the extra charge stays in one place for some time.",
+          "Charged objects can push or pull each other without touching. Two charges with the same sign repel. This means they push apart. Charges with opposite signs attract. This means they pull together. This push or pull is called the electrostatic force."
         ]
       },
       {
         title: "Positive and negative parallel plates",
         paragraphs: [
-          "Two flat conducting plates can be given equal and opposite charges. The positive plate has an electron deficiency, and the negative plate has an excess of electrons.",
-          "Between large, closely spaced parallel plates, the electric field is approximately uniform. Its direction is defined as the direction a positive test charge would move, so the field points from the positive plate toward the negative plate."
+          "Parallel plates are two flat metal plates that face each other. One plate can be made positive, and the other plate can be made negative.",
+          "The positive plate has fewer electrons than normal. The negative plate has more electrons than normal.",
+          "The space between the plates has an electric field. The field points from the positive plate to the negative plate. Between large plates that are close together, the field is almost the same strength everywhere."
         ],
         diagram: true
       },
       {
         title: "How charges move between the plates",
         paragraphs: [
-          "A proton is positively charged, so the electric force on it acts in the same direction as the electric field. A free proton therefore accelerates from the positive plate toward the negative plate.",
-          "An electron is negatively charged, so the electric force on it acts opposite to the electric field. An electron therefore accelerates from the negative plate toward the positive plate.",
-          "This proton motion is a useful model for a free positive charge. Inside an ordinary solid, protons are locked inside nuclei and do not travel through the material; the mobile particles are usually electrons."
+          "A positive charge moves in the same direction as the electric field. A free proton is positive, so it moves toward the negative plate.",
+          "A negative charge moves in the opposite direction to the electric field. An electron is negative, so it moves toward the positive plate.",
+          "A free proton can move between the plates, but protons inside a solid cannot move through the material. They are held inside atomic nuclei. In most solid materials, electrons are the charges that can move."
+        ]
+      },
+      {
+        title: "Conductors and insulators",
+        paragraphs: [
+          "A conductor is a material that lets electric charge move easily. Some electrons in a conductor are free to move from one atom to another. Metals such as copper and aluminum are good conductors.",
+          "When charge is placed on a conductor, the electrons spread through the material. They move because charges with the same sign repel each other.",
+          "An insulator is a material that does not let charge move easily. Its electrons are held tightly by their atoms. Rubber, glass, and dry plastic are common insulators.",
+          "When charge is placed on an insulator, it usually stays close to the place where it was added. This is why static charge can remain on a plastic object."
+        ]
+      },
+      {
+        title: "Conservation of charge",
+        paragraphs: [
+          "Electric charge cannot be created or destroyed. It can only move from one object to another. This rule is called conservation of charge.",
+          "Imagine that two neutral objects are rubbed together. If one object gains electrons, the other object must lose the same number of electrons. One object becomes negative, and the other becomes positive.",
+          "In an isolated system, no charge can enter or leave. The total amount of charge in that system stays the same before and after any transfer."
+        ]
+      },
+      {
+        title: "Ways objects become charged",
+        paragraphs: [
+          "Charging by friction happens when two different materials are rubbed together. Electrons move from one material to the other. The object that gains electrons becomes negative, and the object that loses electrons becomes positive.",
+          "Charging by contact happens when a charged object touches another object. Electrons move through the contact point. Some charge is transferred to the second object.",
+          "Charging by induction happens without direct contact. A charged object is brought close to a conductor. Its electric force makes the electrons inside the conductor move to one side. If the conductor is also connected to the ground, electrons can enter or leave it. The conductor can then keep a net charge after the ground and nearby charged object are removed.",
+          "In every charging method, only electrons are transferred. The total charge is still conserved."
         ]
       }
     ]
