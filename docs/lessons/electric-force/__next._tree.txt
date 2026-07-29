@@ -1,3 +1,3 @@
-:HL["/Physics-12/_next/static/chunks/39kxqr13oci3-.css","style"]
+:HL["/Physics-12/_next/static/chunks/41jnl-fhm256m.css","style"]
 :HC["/",""]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"lessons","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"electric-force","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"n1BVLeiWRuhEjqI9Z1XGR"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"lessons","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"electric-force","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"DwM0G-qbfkWg_kePkd3Hd"}
