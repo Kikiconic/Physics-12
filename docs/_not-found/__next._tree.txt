@@ -1,2 +1,2 @@
-:HL["/Physics-12/_next/static/chunks/3ve28mufk1ke4.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"849Y90isHMX99TH6HVtGw"}
+:HL["/Physics-12/_next/static/chunks/1ahmobxzzzasw.css","style"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"8jv_2FkyvI6tZShdv3p0R"}
