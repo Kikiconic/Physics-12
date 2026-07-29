@@ -104,7 +104,8 @@ const lessons = {
         paragraphs: [
           "First, write down the two charges and the distance between their centres. Convert every charge to coulombs and every distance to metres.",
           "Second, substitute the charge magnitudes and distance into Coulomb’s law. Square the distance, multiply the charge values, and then multiply by Coulomb’s constant.",
-          "A negative electric force means attraction, while a positive electric force means repulsion."
+          "A negative electric force means attraction, while a positive electric force means repulsion.",
+          "Charges with the same sign repel, while charges with opposite signs attract."
         ]
       },
       {
