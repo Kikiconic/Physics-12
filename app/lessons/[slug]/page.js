@@ -1,4 +1,5 @@
 import Link from "next/link";
+import katex from "katex";
 import { SiteFooter, SiteNav } from "../../site-chrome";
 
 const lessons = {
@@ -64,7 +65,57 @@ const lessons = {
   "electric-force": {
     number: "02",
     title: "The electric force",
-    introduction: "Introduction to Coulomb’s law and how to use it."
+    introduction: "Introduction to Coulomb’s law and how to use it.",
+    sections: [
+      {
+        title: "What is electric force?",
+        paragraphs: [
+          "Electric force is the push or pull between charged objects. The objects do not need to touch. Each charge creates an electric effect in the space around it, so it can exert a force on another charge from a distance.",
+          "Charges with the same sign repel. Two positive charges push apart, and two negative charges also push apart. Charges with opposite signs attract, so a positive charge and a negative charge pull toward each other.",
+          "Electric force has both a size and a direction. The force acts along the straight line that joins the two charges. Each charge feels a force of the same size, but the two forces point in opposite directions."
+        ]
+      },
+      {
+        title: "Introduction to Coulomb’s law",
+        paragraphs: [
+          "Coulomb’s law tells us the size of the electric force between two point charges. A point charge is a charged object that is small compared with the distance between the objects.",
+          "The force becomes stronger when either charge becomes larger. The force becomes weaker when the distance between the charges becomes larger.",
+          "Distance has a very strong effect because it is squared in the formula. For example, if the distance doubles, the force becomes one quarter as large."
+        ]
+      },
+      {
+        title: "The Coulomb’s law formula",
+        paragraphs: [
+          "Use the following formula to calculate the magnitude, or size, of the electric force. The absolute-value signs mean that we use the charge sizes in the calculation. After calculating the magnitude, use the charge signs to decide whether the force is attractive or repulsive."
+        ],
+        formula: String.raw`F_e=k\frac{\left|q_1q_2\right|}{r^2}`,
+        variables: [
+          { symbol: String.raw`F_e`, name: "Electric force", meaning: "The size of the force between the two charges.", example: String.raw`2.5\ \mathrm{N}` },
+          { symbol: String.raw`k`, name: "Coulomb’s constant", meaning: "A constant used for electric force in empty space or air.", example: String.raw`8.99\times10^9\ \mathrm{N\,m^2/C^2}` },
+          { symbol: String.raw`q_1`, name: "First charge", meaning: "The electric charge of the first object, measured in coulombs.", example: String.raw`+3.0\ \mu\mathrm{C}=+3.0\times10^{-6}\ \mathrm{C}` },
+          { symbol: String.raw`q_2`, name: "Second charge", meaning: "The electric charge of the second object, measured in coulombs.", example: String.raw`-2.0\ \mu\mathrm{C}=-2.0\times10^{-6}\ \mathrm{C}` },
+          { symbol: String.raw`r`, name: "Separation distance", meaning: "The distance from the centre of one charge to the centre of the other.", example: String.raw`0.40\ \mathrm{m}` }
+        ]
+      },
+      {
+        title: "How to use the formula",
+        paragraphs: [
+          "First, write down the two charges and the distance between their centres. Convert every charge to coulombs and every distance to metres.",
+          "Second, substitute the charge magnitudes and distance into Coulomb’s law. Square the distance, multiply the charge values, and then multiply by Coulomb’s constant.",
+          "Finally, decide the direction. If the charge signs are the same, the force is repulsive. If the signs are different, the force is attractive."
+        ]
+      },
+      {
+        title: "Simple relationship examples",
+        paragraphs: [
+          "Charge example: If q₁ doubles while q₂ and r stay unchanged, the electric force doubles.",
+          "Second-charge example: If q₂ becomes three times larger while q₁ and r stay unchanged, the electric force becomes three times larger.",
+          "Distance example: If r doubles, r² becomes four times larger. The force therefore becomes one quarter as large.",
+          "Direction example: +3.0 μC and −2.0 μC attract because their signs are different. +3.0 μC and +2.0 μC repel because their signs are the same.",
+          "Force example: A result of 2.5 N describes the force magnitude. The final answer must also state a direction, such as 2.5 N toward the other charge."
+        ]
+      }
+    ]
   },
   "electric-field-strength": {
     number: "03",
@@ -125,6 +176,20 @@ function ParallelPlateDiagram() {
   );
 }
 
+function Formula({ children, inline = false }) {
+  return (
+    <span
+      className={inline ? "lesson-inline-formula" : "lesson-equation"}
+      dangerouslySetInnerHTML={{
+        __html: katex.renderToString(children, {
+          displayMode: !inline,
+          throwOnError: false
+        })
+      }}
+    />
+  );
+}
+
 export function generateStaticParams() {
   return Object.keys(lessons).map(slug => ({ slug }));
 }
@@ -151,6 +216,21 @@ export default async function LessonDetail({ params }) {
             <div>
               <h2>{section.title}</h2>
               {section.paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}
+              {section.formula && <Formula>{section.formula}</Formula>}
+              {section.variables && (
+                <div className="variable-grid">
+                  {section.variables.map(variable => (
+                    <div className="variable-card" key={variable.name}>
+                      <Formula inline>{variable.symbol}</Formula>
+                      <div>
+                        <h3>{variable.name}</h3>
+                        <p>{variable.meaning}</p>
+                        <Formula>{variable.example}</Formula>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
               {section.diagram && <ParallelPlateDiagram />}
             </div>
           </section>
