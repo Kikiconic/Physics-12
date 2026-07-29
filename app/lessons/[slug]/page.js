@@ -81,6 +81,7 @@ const lessons = {
         paragraphs: [
           "Coulomb’s law tells us the size of the electric force between two point charges. A point charge is a charged object that is small compared with the distance between the objects.",
           "The force becomes stronger when either charge becomes larger. The force becomes weaker when the distance between the charges becomes larger.",
+          "Electric force is inversely proportional to the square of the distance between the charges.",
           "Distance has a very strong effect because it is squared in the formula. For example, if the distance doubles, the force becomes one quarter as large."
         ]
       },
