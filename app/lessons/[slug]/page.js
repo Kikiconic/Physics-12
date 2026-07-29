@@ -1,6 +1,6 @@
 import Link from "next/link";
 import katex from "katex";
-import { SiteFooter, SiteNav } from "../../site-chrome";
+import { ArrowIcon, SiteFooter, SiteNav } from "../../site-chrome";
 
 const lessons = {
   "static-electric-charges": {
@@ -244,6 +244,16 @@ export default async function LessonDetail({ params }) {
               <h2>Introduction</h2>
               <p>{lesson.introduction}</p>
             </div>
+          </section>
+        )}
+        {slug === "electric-force" && (
+          <section className="lesson-resource-link">
+            <span>Practice and review</span>
+            <h2>Electric force resources</h2>
+            <p>Open the resource page for additional worksheets and video solutions.</p>
+            <Link href="/lessons/electric-force/resources">
+              Open resources <ArrowIcon />
+            </Link>
           </section>
         )}
       </article>
