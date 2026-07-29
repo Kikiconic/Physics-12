@@ -16,6 +16,7 @@ export function SiteNav() {
         <Link href="/lessons">Lessons</Link>
         <Link href="/simulators">Simulators</Link>
         <Link href="/formulas">Formula sheet</Link>
+        <Link href="/resources">Worksheets</Link>
       </div>
     </nav>
   );
