@@ -73,7 +73,7 @@ const lessons = {
           "Electric force is the push or pull between charged objects. The objects do not need to touch. Each charge creates an electric effect in the space around it, so it can exert a force on another charge from a distance.",
           "Charges with the same sign repel. Two positive charges push apart, and two negative charges also push apart. Charges with opposite signs attract, so a positive charge and a negative charge pull toward each other.",
           "Electric force has both a size and a direction. The force acts along the straight line that joins the two charges. Each charge feels a force of the same size, but the two forces point in opposite directions.",
-          "If the signs of q₁ and q₂ are kept when using Coulomb’s law, a negative force result means attraction because the charges have opposite signs. A positive force result means repulsion because the charges have the same sign. This positive or negative sign describes the type of interaction; it does not automatically mean right or left."
+          "A negative electric force means attraction, while a positive electric force means repulsion."
         ]
       },
       {
