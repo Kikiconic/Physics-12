@@ -79,7 +79,7 @@ export default function ElectricFieldBackground() {
 
           <g className="chalk-notes">
             <text x="72" y="510">ΣF⃗ = 0</text>
-            <text x="745" y="388">ΔU = qΔV</text>
+            <text x="745" y="388">ΔEₚ = qΔV</text>
             <text x="570" y="392">a = Δv/Δt</text>
           </g>
         </g>

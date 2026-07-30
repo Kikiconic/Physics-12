@@ -246,7 +246,7 @@ export default function Home() {
 
       <section className="hero">
         <div className="hero-copy">
-          <div className="unit-tag">Physics 12 <span /> Unit 04</div>
+          <div className="unit-tag">Physics 12 <span /> Unit 06</div>
           <h1>Make the invisible<br/><em>electric</em> world visible.</h1>
           <p>Master charges, forces, and fields through quick lessons and interactive experiments built for your course.</p>
           <div className="hero-actions"><a href="#lessons" className="primary-btn">Begin lesson <ArrowIcon /></a><a href="#simulator" className="text-btn"><span>▶</span> Open simulator</a></div>

@@ -1,24 +1,8 @@
 import Link from "next/link";
 import { ArrowIcon, SiteFooter, SiteNav } from "../../../site-chrome";
-
-const worksheets = [
-  {
-    title: "Coulomb's law worksheet 1",
-    file: "/worksheets/coulombs-law-worksheet-1.pdf"
-  },
-  {
-    title: "Coulomb's law worksheet 2",
-    file: "/worksheets/coulombs-law-worksheet-2.pdf"
-  },
-  {
-    title: "Coulomb's law worksheet 3",
-    file: "/worksheets/coulombs-law-worksheet-3.pdf"
-  }
-];
+import { worksheetResources } from "./resource-data";
 
 export default function ElectricForceResources() {
-  const mediaBasePath = process.env.GITHUB_ACTIONS === "true" ? "/Physics-12" : "";
-
   return (
     <main>
       <SiteNav />
@@ -31,7 +15,7 @@ export default function ElectricForceResources() {
         <p>Worksheets for additional practice and videos that explain selected questions.</p>
       </header>
 
-      <section className="lesson-resource-sections">
+      <section className="lesson-resource-sections resource-index-sections">
         <article className="resource-library-section">
           <div className="resource-section-heading">
             <span>01 · WORKSHEETS</span>
@@ -40,43 +24,20 @@ export default function ElectricForceResources() {
             <p>The overall difficulty is ranked by worksheet number. You should start with No. 1.</p>
           </div>
           <div className="worksheet-resource-grid">
-            {worksheets.map((worksheet) => (
-              <div className="worksheet-resource-card" key={worksheet.file}>
+            {worksheetResources.map((worksheet) => (
+              <div className="worksheet-resource-card" key={worksheet.slug}>
                 <div>
-                  <span>PDF DOCUMENT</span>
+                  <span>WORKSHEET NO. {worksheet.number}</span>
                   <h3>{worksheet.title}</h3>
-                  <p>Practice questions about electric force and electric fields.</p>
+                  <p>{worksheet.videos.length} video solution{worksheet.videos.length === 1 ? "" : "s"} available</p>
                 </div>
                 <Link
-                  href={worksheet.file}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href={`/lessons/electric-force/resources/${worksheet.slug}`}
                 >
-                  Open PDF <ArrowIcon />
+                  Open worksheet <ArrowIcon />
                 </Link>
               </div>
             ))}
-          </div>
-        </article>
-
-        <article className="resource-library-section">
-          <div className="resource-section-heading">
-            <span>02 · VIDEOS</span>
-            <h2>Video Solutions</h2>
-            <p>Recorded explanations will focus on challenging types of electric-force questions.</p>
-          </div>
-          <div className="video-solution-card">
-            <video controls playsInline preload="metadata">
-              <source
-                src={`${mediaBasePath}/videos/coulombs-law-worksheet-1.mp4`}
-                type="video/mp4"
-              />
-              Your browser does not support the video player.
-            </video>
-            <div>
-              <span>VIDEO SOLUTION</span>
-              <h3>Coulomb&apos;s law worksheet 1</h3>
-            </div>
           </div>
         </article>
       </section>

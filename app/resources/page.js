@@ -14,7 +14,7 @@ export default function ResourcesPage() {
       <UnitCatalogue section="Worksheets" />
 
       <div className="active-unit-heading">
-        <span>Unit 04</span>
+        <span>Unit 06</span>
         <h2>Electrostatics worksheets</h2>
         <p>Additional practice materials</p>
       </div>
@@ -29,6 +29,30 @@ export default function ResourcesPage() {
           <h2>The electric force</h2>
           <p>Additional practice and recorded solutions for Coulomb&apos;s law and electric-force questions.</p>
           <Link href="/lessons/electric-force/resources">
+            Open worksheets <ArrowIcon />
+          </Link>
+        </article>
+        <article>
+          <div className="lesson-page-top">
+            <span>SECTION 03</span>
+            <b>E</b>
+          </div>
+          <small>PRACTICE + VIDEOS</small>
+          <h2>Electric field strength</h2>
+          <p>Additional practice and recorded solutions for electric fields, field direction, and field strength.</p>
+          <Link href="/lessons/electric-field-strength/resources">
+            Open worksheets <ArrowIcon />
+          </Link>
+        </article>
+        <article>
+          <div className="lesson-page-top">
+            <span>SECTION 04</span>
+            <b>V</b>
+          </div>
+          <small>PRACTICE + VIDEOS</small>
+          <h2>Electric potentials</h2>
+          <p>Additional practice and recorded solutions for electric potential, potential energy, voltage, and parallel plates.</p>
+          <Link href="/lessons/electric-potentials/resources">
             Open worksheets <ArrowIcon />
           </Link>
         </article>
