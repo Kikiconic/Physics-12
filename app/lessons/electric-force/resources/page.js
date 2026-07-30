@@ -13,10 +13,6 @@ const worksheets = [
   {
     title: "Coulomb's law worksheet 3",
     file: "/worksheets/coulombs-law-worksheet-3.pdf"
-  },
-  {
-    title: "Coulomb's law worksheet 4",
-    file: "/worksheets/coulombs-law-worksheet-4.pdf"
   }
 ];
 
