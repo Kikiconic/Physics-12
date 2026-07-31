@@ -27,6 +27,11 @@ export function SiteNav() {
 
 export function UnitCatalogue({ section, currentUnit }) {
   const units = [1,2,3,4,5,6,7,8];
+  const unitRoutes = section === "Lessons"
+    ? { 6: "/lessons/unit-6", 7: "/lessons/unit-7" }
+    : section === "Simulators"
+      ? { 6: "/simulators/unit-6", 7: "/simulators/unit-7" }
+      : {};
 
   return (
     <section className="unit-catalogue">
@@ -43,8 +48,8 @@ export function UnitCatalogue({ section, currentUnit }) {
               </>
             );
 
-            return section === "Lessons" ? (
-              <Link className={`unit-slot active-unit${currentUnit === 6 ? " selected-unit" : ""}`} href="/lessons/unit-6" key={unit}>
+            return unitRoutes[6] ? (
+              <Link className={`unit-slot active-unit${currentUnit === 6 ? " selected-unit" : ""}`} href={unitRoutes[6]} key={unit}>
                 {content}
               </Link>
             ) : (
@@ -52,10 +57,10 @@ export function UnitCatalogue({ section, currentUnit }) {
             );
           }
 
-          if (unit === 7 && section === "Lessons") {
+          if (unit === 7 && unitRoutes[7]) {
             return (
-              <Link className={`unit-slot active-unit${currentUnit === 7 ? " selected-unit" : ""}`} href="/lessons/unit-7" key={unit}>
-                <span>Unit 07</span><b>Magnetic force</b><small>Sections added</small>
+              <Link className={`unit-slot active-unit${currentUnit === 7 ? " selected-unit" : ""}`} href={unitRoutes[7]} key={unit}>
+                <span>Unit 07</span><b>Magnetic force</b><small>{section === "Simulators" ? "Simulator available" : "Sections added"}</small>
               </Link>
             );
           }
