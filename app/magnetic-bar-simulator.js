@@ -4,21 +4,21 @@ import { useEffect, useMemo, useRef, useState } from "react";
 
 const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
 
-function fieldAt(point, strength, earth, magnet = { x: .5, y: .5 }) {
+function fieldAt(point, strength, earth, magnet = { x: .5, y: .5 }, solenoid = false) {
   const angle = earth ? -Math.PI / 2 : 0;
   const dx = point.x - magnet.x, dy = point.y - magnet.y;
   const x = dx * Math.cos(angle) + dy * Math.sin(angle);
   const y = -dx * Math.sin(angle) + dy * Math.cos(angle);
   let bx, by;
   if (Math.abs(x) < .17 && Math.abs(y) < .065) {
-    bx = -82 * strength; by = 0;
+    bx = -(solenoid ? 150 : 82) * strength; by = 0;
   } else {
     const r2 = Math.max(x * x + y * y, .0064), r = Math.sqrt(r2), dot = -x / r;
     const scale = 1.05 * strength / (r2 * r);
     bx = scale * (3 * dot * x / r + 1);
     by = scale * (3 * dot * y / r);
-    const magnitude = Math.hypot(bx, by);
-    if (magnitude > 180) { bx *= 180 / magnitude; by *= 180 / magnitude; }
+    const magnitude = Math.hypot(bx, by), maximum = solenoid ? 70 * strength : 180;
+    if (magnitude > maximum) { bx *= maximum / magnitude; by *= maximum / magnitude; }
   }
   return { x: bx * Math.cos(angle) - by * Math.sin(angle), y: bx * Math.sin(angle) + by * Math.cos(angle) };
 }
@@ -39,9 +39,9 @@ export default function MagneticBarSimulator({ variant = "bar" }) {
   const [meterPos, setMeterPos] = useState({ x: .76, y: .72 });
   const [magnetPos, setMagnetPos] = useState({ x: .5, y: .5 });
   const reading = useMemo(() => {
-    const f = fieldAt(meterPos, strength, earth, magnetPos);
+    const f = fieldAt(meterPos, strength, earth, magnetPos, isSolenoid);
     return { bx: f.x, by: -f.y, b: Math.hypot(f.x, f.y), theta: Math.atan2(-f.y, f.x) * 180 / Math.PI };
-  }, [meterPos, strength, earth, magnetPos]);
+  }, [meterPos, strength, earth, magnetPos, isSolenoid]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -64,7 +64,7 @@ export default function MagneticBarSimulator({ variant = "bar" }) {
       if(showField){[.1,.15,.21,.28,.36,.45].forEach((bend,index)=>[-1,1].forEach(side=>{const start=-w*.17,end=w*.17,lift=h*bend*side,a={x:start,y:0},b={x:start-w*.11,y:lift},c={x:end+w*.11,y:lift},d={x:end,y:0};ctx.strokeStyle=`rgba(143,201,255,${.62-index*.055})`;ctx.lineWidth=1.4;ctx.beginPath();ctx.moveTo(start,0);ctx.bezierCurveTo(b.x,b.y,c.x,c.y,end,0);ctx.stroke();const arrowT=.56,am=1-arrowT,ax=am**3*a.x+3*am**2*arrowT*b.x+3*am*arrowT**2*c.x+arrowT**3*d.x,ay=am**3*a.y+3*am**2*arrowT*b.y+3*am*arrowT**2*c.y+arrowT**3*d.y,adx=3*am**2*(b.x-a.x)+6*am*arrowT*(c.x-b.x)+3*arrowT**2*(d.x-c.x),ady=3*am**2*(b.y-a.y)+6*am*arrowT*(c.y-b.y)+3*arrowT**2*(d.y-c.y);ctx.save();ctx.translate(ax,ay);ctx.rotate(Math.atan2(ady,adx));ctx.fillStyle="#8fc9ff";ctx.beginPath();ctx.moveTo(7,0);ctx.lineTo(-4,-4);ctx.lineTo(-4,4);ctx.closePath();ctx.fill();ctx.restore();const t=live?Math.min(flow/.72,1):.35,mt=1-t,px=mt**3*a.x+3*mt**2*t*b.x+3*mt*t*t*c.x+t**3*d.x,py=mt**3*a.y+3*mt**2*t*b.y+3*mt*t*t*c.y+t**3*d.y;if(!live||flow<.72){ctx.fillStyle="#e7f6ff";ctx.shadowColor="#8fc9ff";ctx.shadowBlur=10;ctx.beginPath();ctx.arc(px,py,3,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;}}));}
       const mw=Math.min(w*.34,330),mh=Math.min(h*.16,86);
       if(isSolenoid){
-        ctx.shadowColor="rgba(143,201,255,.35)";ctx.shadowBlur=16;ctx.fillStyle="rgba(5,26,41,.9)";ctx.fillRect(-mw/2,-mh*.29,mw,mh*.58);ctx.shadowBlur=0;
+        const coreGlow=ctx.createLinearGradient(-mw/2,0,mw/2,0);coreGlow.addColorStop(0,"rgba(143,201,255,.08)");coreGlow.addColorStop(.5,"rgba(143,201,255,.32)");coreGlow.addColorStop(1,"rgba(143,201,255,.08)");ctx.shadowColor="rgba(143,201,255,.55)";ctx.shadowBlur=22;ctx.fillStyle=coreGlow;ctx.fillRect(-mw/2,-mh*.29,mw,mh*.58);ctx.shadowBlur=0;
         ctx.strokeStyle="#8fc9ff";ctx.lineWidth=4;
         for(let i=0;i<11;i++){const x=-mw/2+i*mw/10;ctx.beginPath();ctx.ellipse(x,0,mw*.035,mh*.5,0,0,Math.PI*2);ctx.stroke();}
         ctx.strokeStyle="rgba(255,255,255,.55)";ctx.lineWidth=1.5;ctx.strokeRect(-mw/2,-mh*.29,mw,mh*.58);
@@ -74,16 +74,17 @@ export default function MagneticBarSimulator({ variant = "bar" }) {
         ctx.shadowColor="rgba(0,0,0,.45)";ctx.shadowBlur=18;ctx.fillStyle="#287fc4";ctx.fillRect(-mw/2,-mh/2,mw/2,mh);ctx.fillStyle="#d64f59";ctx.fillRect(0,-mh/2,mw/2,mh);ctx.shadowBlur=0;ctx.strokeStyle="rgba(255,255,255,.72)";ctx.lineWidth=2;ctx.strokeRect(-mw/2,-mh/2,mw,mh);ctx.fillStyle="#fff";ctx.font=`800 ${Math.max(24,mh*.43)}px Manrope`;ctx.textAlign="center";ctx.textBaseline="middle";ctx.fillText("N",-mw/4,0);ctx.fillText("S",mw/4,0);
       }
       if(showInside){
-        ctx.strokeStyle="#f7dc72";ctx.fillStyle="#f7dc72";ctx.lineWidth=2;
+        ctx.strokeStyle="#f7dc72";ctx.fillStyle="#f7dc72";ctx.lineWidth=isSolenoid?3:2;
         const insideProgress=live?clamp((flow-.72)/.28,0,1):.35;
-        [-mh*.31,mh*.31].forEach(y=>{
-          ctx.beginPath();ctx.moveTo(mw*.13,y);ctx.lineTo(-mw*.13,y);ctx.stroke();
-          ctx.beginPath();ctx.moveTo(-mw*.13,y);ctx.lineTo(-mw*.09,y-3.5);ctx.lineTo(-mw*.09,y+3.5);ctx.closePath();ctx.fill();
-          if(!live||flow>=.72){const dotX=mw*.42-insideProgress*mw*.84;ctx.fillStyle="#fff";ctx.shadowColor="#f7dc72";ctx.shadowBlur=9;ctx.beginPath();ctx.arc(dotX,y,3,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;ctx.fillStyle="#f7dc72";}
+        const insideRows=isSolenoid?[-mh*.3,-mh*.1,mh*.1,mh*.3]:[-mh*.31,mh*.31],insideReach=isSolenoid?.35:.13;
+        insideRows.forEach(y=>{
+          ctx.beginPath();ctx.moveTo(mw*insideReach,y);ctx.lineTo(-mw*insideReach,y);ctx.stroke();
+          ctx.beginPath();ctx.moveTo(-mw*insideReach,y);ctx.lineTo(-mw*(insideReach-.04),y-3.5);ctx.lineTo(-mw*(insideReach-.04),y+3.5);ctx.closePath();ctx.fill();
+          if(!live||flow>=.72){const dotX=mw*.42-insideProgress*mw*.84;ctx.fillStyle="#fff";ctx.shadowColor="#f7dc72";ctx.shadowBlur=isSolenoid?14:9;ctx.beginPath();ctx.arc(dotX,y,isSolenoid?3.7:3,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;ctx.fillStyle="#f7dc72";}
         });
       }ctx.restore();
-      if(showField){for(let y=.08;y<.95;y+=.09)for(let x=.05;x<.97;x+=.075){if(Math.abs(x-magnetPos.x)<.2&&Math.abs(y-magnetPos.y)<.1)continue;const f=fieldAt({x,y},strength,earth,magnetPos),m=Math.hypot(f.x,f.y),len=clamp(7+Math.log(m+1)*2,8,17),ang=Math.atan2(f.y,f.x),px=x*w,py=y*h;ctx.save();ctx.translate(px,py);ctx.rotate(ang);ctx.strokeStyle="rgba(143,201,255,.48)";ctx.fillStyle="rgba(143,201,255,.65)";ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(-len/2,0);ctx.lineTo(len/2,0);ctx.stroke();ctx.beginPath();ctx.moveTo(len/2,0);ctx.lineTo(len/2-4,-3);ctx.lineTo(len/2-4,3);ctx.closePath();ctx.fill();ctx.restore();}}
-      const drawCompass=(p,label)=>{const px=p.x*w,py=p.y*h,f=fieldAt(p,strength,earth,magnetPos),ang=Math.atan2(f.y,f.x);ctx.save();ctx.translate(px,py);ctx.fillStyle="rgba(3,16,26,.9)";ctx.strokeStyle="#fff";ctx.lineWidth=2;ctx.beginPath();ctx.arc(0,0,27,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.rotate(ang);ctx.fillStyle="#ef5b68";ctx.beginPath();ctx.moveTo(22,0);ctx.lineTo(-4,-6);ctx.lineTo(-4,6);ctx.closePath();ctx.fill();ctx.fillStyle="#dbe8ef";ctx.beginPath();ctx.moveTo(-22,0);ctx.lineTo(4,-6);ctx.lineTo(4,6);ctx.closePath();ctx.fill();ctx.restore();ctx.fillStyle="#fff";ctx.font="700 9px DM Mono";ctx.textAlign="center";ctx.fillText(label,px,py+42);};
+      if(showField){for(let y=.08;y<.95;y+=.09)for(let x=.05;x<.97;x+=.075){if(Math.abs(x-magnetPos.x)<.2&&Math.abs(y-magnetPos.y)<.1)continue;const f=fieldAt({x,y},strength,earth,magnetPos,isSolenoid),m=Math.hypot(f.x,f.y),len=clamp(7+Math.log(m+1)*2,8,17),ang=Math.atan2(f.y,f.x),px=x*w,py=y*h;ctx.save();ctx.translate(px,py);ctx.rotate(ang);ctx.strokeStyle="rgba(143,201,255,.48)";ctx.fillStyle="rgba(143,201,255,.65)";ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(-len/2,0);ctx.lineTo(len/2,0);ctx.stroke();ctx.beginPath();ctx.moveTo(len/2,0);ctx.lineTo(len/2-4,-3);ctx.lineTo(len/2-4,3);ctx.closePath();ctx.fill();ctx.restore();}}
+      const drawCompass=(p,label)=>{const px=p.x*w,py=p.y*h,f=fieldAt(p,strength,earth,magnetPos,isSolenoid),ang=Math.atan2(f.y,f.x);ctx.save();ctx.translate(px,py);ctx.fillStyle="rgba(3,16,26,.9)";ctx.strokeStyle="#fff";ctx.lineWidth=2;ctx.beginPath();ctx.arc(0,0,27,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.rotate(ang);ctx.fillStyle="#ef5b68";ctx.beginPath();ctx.moveTo(22,0);ctx.lineTo(-4,-6);ctx.lineTo(-4,6);ctx.closePath();ctx.fill();ctx.fillStyle="#dbe8ef";ctx.beginPath();ctx.moveTo(-22,0);ctx.lineTo(4,-6);ctx.lineTo(4,6);ctx.closePath();ctx.fill();ctx.restore();ctx.fillStyle="#fff";ctx.font="700 9px DM Mono";ctx.textAlign="center";ctx.fillText(label,px,py+42);};
       if(compass)drawCompass(compassPos,"DRAG COMPASS");if(meter){const px=meterPos.x*w,py=meterPos.y*h;ctx.strokeStyle="#f7dc72";ctx.lineWidth=2;ctx.beginPath();ctx.arc(px,py,14,0,Math.PI*2);ctx.moveTo(px-20,py);ctx.lineTo(px+20,py);ctx.moveTo(px,py-20);ctx.lineTo(px,py+20);ctx.stroke();ctx.fillStyle="#f7dc72";ctx.font="700 9px DM Mono";ctx.textAlign="center";ctx.fillText("FIELD METER",px,py+35);}if(live)frame=requestAnimationFrame(draw);
     };
     draw(performance.now());return()=>{cancelAnimationFrame(frame);lastFrameRef.current=null;};
