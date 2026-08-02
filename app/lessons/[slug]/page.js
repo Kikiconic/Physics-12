@@ -1088,6 +1088,7 @@ export default async function LessonDetail({ params }) {
         )}
         {slug === "introduction-to-magnets" && <section className="lesson-resource-link"><span>Interactive review</span><h2>Magnetic field simulators</h2><p>Use the bar magnet, solenoid, straight-wire, and current-loop simulators to see these field directions.</p><Link href="/simulators/unit-7">Open Unit 7 simulators <ArrowIcon /></Link></section>}
         {slug === "magnetic-field-strength" && <section className="lesson-resource-link"><span>Practice and review</span><h2>Magnetic field resources</h2><p>Open the resource page for magnetic force and field-strength worksheets.</p><Link href="/lessons/magnetic-field-strength/resources">Open resources <ArrowIcon /></Link></section>}
+        {slug === "magnetic-field-and-the-electron" && <section className="lesson-resource-link"><span>Practice and review</span><h2>Magnetic field and electron resources</h2><p>Open the resource page for electron motion, CRT, and mass-spectrometer worksheets.</p><Link href="/lessons/magnetic-field-and-the-electron/resources">Open resources <ArrowIcon /></Link></section>}
         {slug === "electric-field-strength" && (
           <section className="lesson-resource-link">
             <span>Practice and review</span>

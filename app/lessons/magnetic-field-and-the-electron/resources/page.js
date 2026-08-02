@@ -1,0 +1,7 @@
+import Link from "next/link";
+import { ArrowIcon, SiteFooter, SiteNav } from "../../../site-chrome";
+import { magneticElectronWorksheets } from "./resource-data";
+
+export default function MagneticElectronResources(){
+  return <main><SiteNav/><header className="lesson-detail-hero resource-page-hero"><div><Link href="/lessons/magnetic-field-and-the-electron">← Magnetic field and the electron</Link><span>Unit 07 · Section 03 · Resources</span></div><h1>Magnetic field and the electron</h1><p>Worksheets about electron motion, CRT deflection, velocity selectors, and mass spectrometers.</p></header><section className="lesson-resource-sections resource-index-sections"><article className="resource-library-section"><div className="resource-section-heading"><span>01 · WORKSHEETS</span><h2>Additional Challenging Questions</h2><p>Make sure you have fully practised and understood the previous worksheets before continuing.</p></div><div className="worksheet-resource-grid">{magneticElectronWorksheets.map(worksheet=><div className="worksheet-resource-card" key={worksheet.slug}><div><span>WORKSHEET NO. {worksheet.number} · {worksheet.difficulty.toUpperCase()}</span><h3>{worksheet.title}</h3><p>{worksheet.videos.length} video solutions available</p></div><Link href={`/lessons/magnetic-field-and-the-electron/resources/${worksheet.slug}`}>Open worksheet <ArrowIcon/></Link></div>)}</div></article></section><div className="resource-back-link"><Link href="/lessons/magnetic-field-and-the-electron">Return to the lesson <ArrowIcon/></Link></div><SiteFooter/></main>;
+}
