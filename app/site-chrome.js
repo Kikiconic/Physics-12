@@ -31,6 +31,10 @@ export function UnitCatalogue({ section, currentUnit }) {
     ? { 6: "/lessons/unit-6", 7: "/lessons/unit-7" }
     : section === "Simulators"
       ? { 6: "/simulators/unit-6", 7: "/simulators/unit-7" }
+      : section === "Formula sheets"
+        ? { 6: "/formulas/unit-6", 7: "/formulas/unit-7" }
+        : section === "Worksheets"
+          ? { 6: "/resources/unit-6", 7: "/resources/unit-7" }
       : {};
 
   return (

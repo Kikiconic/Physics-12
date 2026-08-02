@@ -40,7 +40,7 @@ export default function RightHandRuleSimulator() {
     draw(performance.now());return()=>{cancelAnimationFrame(frame);lastFrameRef.current=null;};
   },[currentUp,live,current]);
 
-  return <div className="sim-card ampere-card">
+  return <div className="sim-card ampere-card" id="ampere-rule">
     <div className="sim-top"><div><span className="eyebrow">Simulator 03</span><h2>Ampère&apos;s right-hand rule</h2></div><div className="status-pill live"><i/>Right-hand grip rule</div></div>
     <div className="ampere-layout">
       <div className="ampere-canvas-wrap"><canvas ref={canvasRef} className="ampere-canvas" aria-label="Ampere right-hand rule around a straight current-carrying wire"/></div>

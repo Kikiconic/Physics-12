@@ -1,0 +1,13 @@
+import FormulaGrid from "../formula-grid";
+import { SiteFooter, SiteNav, UnitCatalogue } from "../../site-chrome";
+
+const formulas=[
+  {label:"01 · COULOMB FORCE",math:String.raw`F = k\frac{\lvert q_1q_2\rvert}{r^2}`,notes:["F in newtons (N)","q₁, q₂ in coulombs (C)","r in metres (m)"]},
+  {label:"02 · ELECTRIC FIELD",math:String.raw`E = \frac{F}{q} = k\frac{\lvert Q\rvert}{r^2}`,notes:["E in N/C","Direction follows a positive test charge","Fields add as vectors"]},
+  {label:"03 · ELECTRIC POTENTIAL",math:String.raw`V = k\frac{Q}{r}`,notes:["V in volts (V)","Potential is a scalar","Include the sign of Q"]},
+  {label:"04 · POTENTIAL ENERGY",math:String.raw`\Delta E_p = q\Delta V`,notes:["Energy in joules (J)","Positive q follows ΔV","Work by field = −ΔEp"]},
+  {label:"05 · CONSTANT",math:String.raw`k = 8.99\times10^9\ \mathrm{N\,m^2/C^2}`,notes:["Coulomb’s constant","Use SI units before calculating"]},
+  {label:"06 · ELEMENTARY CHARGE",math:String.raw`e = 1.60\times10^{-19}\ \mathrm{C}`,notes:["Proton: +e","Electron: −e","Charge is quantized"]}
+];
+
+export default function Unit6FormulaPage(){return <main><SiteNav/><UnitCatalogue section="Formula sheets" currentUnit={6}/><div className="active-unit-heading"><span>Unit 06</span><h1>Electrostatics formula sheet</h1><p>6 essential relationships and constants</p></div><FormulaGrid formulas={formulas}/><SiteFooter/></main>;}

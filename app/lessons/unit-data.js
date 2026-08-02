@@ -6,9 +6,10 @@ export const electrostaticsLessons = [
 ];
 
 export const magneticLessons = [
-  {n:"01",title:"Introduction to magnets",text:"Learning materials will be added later.",symbol:"N S",slug:"introduction-to-magnets"},
-  {n:"02",title:"Magnetic field strength",text:"Learning materials will be added later.",symbol:"B",slug:"magnetic-field-strength"},
-  {n:"03",title:"Magnetic field and the electron",text:"Learning materials will be added later.",symbol:"e⁻",slug:"magnetic-field-and-the-electron"}
+  {n:"01",title:"Introduction to magnets",text:"Magnets, magnetic fields, current, solenoids, and electromagnets.",symbol:"N S",slug:"introduction-to-magnets"},
+  {n:"02",title:"Magnetic field strength",text:"Magnetic force on particles and wires, plus the magnetic field inside a solenoid.",symbol:"B",slug:"magnetic-field-strength"},
+  {n:"03",title:"Magnetic field and the electron",text:"Circular motion, velocity selectors, mass spectrometers, and charge-to-mass ratio.",symbol:"e⁻",slug:"magnetic-field-and-the-electron"},
+  {n:"04",title:"The right-hand rules",text:"Ampère's rule, the solenoid rule, the motor rule, and conventional-current direction.",symbol:"RHR",slug:"right-hand-rules"}
 ];
 
 export const electrostaticsFormulas = [

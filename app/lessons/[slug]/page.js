@@ -295,22 +295,541 @@ const lessons = {
     number: "01",
     unit: "07",
     title: "Introduction to magnets",
-    introduction: "Unit 07 · Magnetic Force",
-    placeholder: true
+    introduction: "Learn how magnets, electric current, coils, and electromagnets produce magnetic fields.",
+    sections: [
+      {
+        title: "The main idea",
+        paragraphs: [
+          "Moving electric charges create a magnetic field. Electric current is moving charge, so a wire carrying current creates a magnetic field around itself.",
+          "When a wire is bent into loops, the field from each loop adds together. Many loops can produce a strong electromagnet."
+        ],
+        formulaSet: [
+          { label: "Main principle", math: String.raw`\boxed{\text{Moving charge creates a magnetic field}}` },
+          { label: "Current in a wire", math: String.raw`\boxed{\text{Current in a wire creates a field around the wire}}` }
+        ]
+      },
+      {
+        title: "Permanent magnets and their poles",
+        paragraphs: [
+          "A bar magnet has a north pole, N, and a south pole, S. Like poles repel, and opposite poles attract.",
+          "This is similar to electric charge, but there is one important difference. Positive and negative charges can exist separately. An ordinary magnet always has both poles.",
+          "If you cut a magnet in half, you do not separate its poles. You get two smaller magnets, and each new magnet has its own north and south pole."
+        ],
+        points: ["N and N repel.", "S and S repel.", "N and S attract."],
+        formula: String.raw`\boxed{\text{Like poles repel; opposite poles attract}}`
+      },
+      {
+        title: "Magnetic fields and field direction",
+        paragraphs: [
+          "A magnetic field is the region around a magnet where magnetic forces can act. We draw magnetic field lines to show the field.",
+          "Outside a magnet, the field points from north to south. Inside the magnet, it returns from south to north. The lines form complete closed loops.",
+          "A compass can find the field direction. The north end of its needle points in the direction of the magnetic field at that location."
+        ],
+        formulaSet: [
+          { label: "Outside a magnet", math: String.raw`N\longrightarrow S` },
+          { label: "Inside a magnet", math: String.raw`S\longrightarrow N` }
+        ]
+      },
+      {
+        title: "Reading magnetic field lines",
+        paragraphs: [
+          "The arrow on a field line shows the field direction. The spacing between field lines gives information about field strength.",
+          "Lines close together show a stronger field. Lines far apart show a weaker field. A bar magnet is strongest near its poles because the field lines are crowded there.",
+          "Magnetic field lines never cross. At one point, the magnetic field can only point in one direction."
+        ]
+      },
+      {
+        title: "Iron filings and compasses",
+        paragraphs: [
+          "Iron filings become tiny temporary magnets near a magnet. They turn and line up with the field, so they show the field's shape and where it is strong.",
+          "Iron filings do not clearly show which way the field points. Use a compass to find the direction."
+        ]
+      },
+      {
+        title: "Current creates a magnetic field",
+        paragraphs: [
+          "Oersted placed a compass near a wire. The compass needle moved when current flowed, and returned to normal when the current stopped.",
+          "This showed that electric current produces a magnetic field. It was an important connection between electricity and magnetism."
+        ],
+        formula: String.raw`\boxed{\text{Electric current produces a magnetic field}}`
+      },
+      {
+        title: "Field around a straight wire",
+        paragraphs: [
+          "The magnetic field around a straight current-carrying wire forms circles centred on the wire. It does not point toward or away from the wire.",
+          "The field is stronger close to the wire and weaker farther away. A larger current also produces a stronger field."
+        ],
+        points: ["Increase current I: the field becomes stronger.", "Increase distance r: the field becomes weaker."],
+        formula: String.raw`B\propto\frac{I}{r}`
+      },
+      {
+        title: "Ampère's right-hand rule",
+        paragraphs: [
+          "Use your right hand to find the field direction around a straight wire. Point your thumb in the direction of conventional current. Your curled fingers show the magnetic field direction.",
+          "Conventional current moves from positive to negative through the external circuit. Electrons move in the opposite direction."
+        ],
+        formulaSet: [
+          { label: "Thumb", math: String.raw`\text{Thumb}=\text{current }I` },
+          { label: "Curled fingers", math: String.raw`\text{Curled fingers}=\text{magnetic field }B` }
+        ]
+      },
+      {
+        title: "Current into and out of the page",
+        paragraphs: [
+          "A dot means current comes out of the page toward you. Think of it as the pointed tip of an arrow. The magnetic field is counterclockwise.",
+          "A cross means current goes into the page away from you. Think of it as the feathers at the back of an arrow. The magnetic field is clockwise."
+        ],
+        formulaSet: [
+          { label: "Out of the page", math: String.raw`\odot\ I\Rightarrow B\text{ counterclockwise}` },
+          { label: "Into the page", math: String.raw`\otimes\ I\Rightarrow B\text{ clockwise}` }
+        ]
+      },
+      {
+        title: "Why a compass changes direction around a wire",
+        paragraphs: [
+          "The field circles around the wire. Because of this, the field points in opposite directions on opposite sides of the wire.",
+          "The compass's north end always follows the field at its own location. The current has not changed direction; only the direction of the circular field is different at each position."
+        ]
+      },
+      {
+        title: "A single loop of wire",
+        paragraphs: [
+          "Bending a wire into a loop brings the fields from different parts of the wire together. At the centre, many of these fields point in the same direction and add together.",
+          "The loop has a north side and a south side, so it acts like a small bar magnet."
+        ]
+      },
+      {
+        title: "Right-hand rule for a current loop",
+        paragraphs: [
+          "Curl the fingers of your right hand in the direction of current around the loop. Your thumb shows the field direction through the centre and points toward the north side.",
+          "When you look directly at one side, counterclockwise current makes that side north. Clockwise current makes that side south."
+        ],
+        formulaSet: [
+          { label: "Counterclockwise current", math: String.raw`\text{Counterclockwise}\Rightarrow N` },
+          { label: "Clockwise current", math: String.raw`\text{Clockwise}\Rightarrow S` }
+        ]
+      },
+      {
+        title: "Solenoids",
+        paragraphs: [
+          "A solenoid is a long wire wrapped into many loops. Each loop makes a magnetic field.",
+          "Inside the solenoid, the fields point mainly in the same direction and add together. The field is strong, almost parallel, and nearly uniform. Uniform means the field has almost the same strength and direction throughout the region.",
+          "Outside the solenoid, parts of the fields point in different directions and partly cancel. The outside field is usually weaker. A solenoid behaves like a bar magnet with north and south ends."
+        ],
+        formula: String.raw`B_{\text{inside}}=B_1+B_2+B_3+\cdots`
+      },
+      {
+        title: "Right-hand rule for a solenoid",
+        paragraphs: [
+          "Wrap your right-hand fingers in the direction of conventional current around the coils. Your thumb points toward the north end and in the direction of the field inside.",
+          "Inside the solenoid, the field goes from south to north. Outside, it returns from north to south.",
+          "Looking directly at one end, counterclockwise current means that end is north. Clockwise current means that end is south."
+        ],
+        formula: String.raw`\boxed{\text{Fingers follow current; thumb points north}}`
+      },
+      {
+        title: "Electromagnets and iron cores",
+        paragraphs: [
+          "A current-carrying solenoid already acts like a magnet. Adding an iron core inside makes the field much stronger. This combination is called an electromagnet.",
+          "The current creates the original field. The field then makes many tiny magnetic regions inside the iron line up. Their fields add to the solenoid's field.",
+          "Iron, nickel, and cobalt can become strongly magnetized. These materials are called ferromagnetic materials."
+        ],
+        formulaSet: [
+          { label: "Electromagnet", math: String.raw`\text{Electromagnet}=\text{coil with current}+\text{iron core}` },
+          { label: "Stronger total field", math: String.raw`B_{\text{total}}=B_{\text{solenoid}}+B_{\text{iron}}` }
+        ]
+      },
+      {
+        title: "Permanent magnets and electromagnets",
+        paragraphs: [
+          "A permanent magnet stays magnetized and does not need electricity. Its strength and poles are not easy to change.",
+          "An electromagnet is mainly magnetic while current flows. Its strength can be changed, and reversing the current switches its north and south poles."
+        ],
+        points: ["Increase the current.", "Add more turns to the coil.", "Place an iron core inside.", "Wrap the turns closer together."],
+        pointLead: "Four ways to make an electromagnet stronger:"
+      },
+      {
+        title: "What happens when current is reversed?",
+        paragraphs: [
+          "Reversing current reverses the magnetic field. Around a straight wire, the circular field changes direction.",
+          "In a loop or solenoid, the north and south poles switch places. This follows from the right-hand rule because the current now points the other way."
+        ]
+      },
+      {
+        title: "The complete connection",
+        derivation: true,
+        paragraphs: [
+          "Moving charge creates a magnetic field. Current in a straight wire creates a circular field. Bending the wire into loops makes the fields add.",
+          "Many loops form a solenoid with north and south poles. Adding an iron core makes a strong electromagnet."
+        ],
+        formulaSet: [
+          { label: "Step 1", math: String.raw`\text{Moving charge}\Rightarrow\text{magnetic field}` },
+          { label: "Step 2", math: String.raw`\text{Straight wire}\Rightarrow\text{circular field}` },
+          { label: "Step 3", math: String.raw`\text{Many loops}\Rightarrow\text{solenoid}` },
+          { label: "Step 4", math: String.raw`\text{Solenoid+iron}\Rightarrow\text{electromagnet}` }
+        ]
+      }
+    ]
   },
   "magnetic-field-strength": {
     number: "02",
     unit: "07",
     title: "Magnetic field strength B",
-    introduction: "Unit 07 · Magnetic Force",
-    placeholder: true
+    introduction: "Choose and use the three main magnetic force and magnetic field formula families.",
+    sections: [
+      {
+        title: "Choose the formula from the situation",
+        paragraphs: [
+          "Start by asking what the question describes. A single moving particle, a wire carrying current, and a solenoid use different formulas.",
+          "The moving-charge and current-carrying-wire formulas calculate magnetic force. The solenoid formula calculates the magnetic field made by the coil."
+        ],
+        formulaSet: [
+          { label: "One moving charge", math: String.raw`F_B=|q|vB\sin\theta` },
+          { label: "Wire carrying current", math: String.raw`F_B=BIL\sin\theta` },
+          { label: "Air-core solenoid · μ₀ (mu zero)", math: String.raw`B=\mu_0nI` }
+        ]
+      },
+      {
+        title: "Magnetic force on one moving charge",
+        paragraphs: [
+          "Use this formula for one moving charged particle, such as an electron, proton, or ion.",
+          "The angle θ is measured between the velocity v and the magnetic field B. Lowercase v means speed, not voltage.",
+          "The formula gives the size of the force. Use a right-hand rule to find its direction. For a negative charge such as an electron, reverse the direction found for a positive charge."
+        ],
+        formula: String.raw`\boxed{F_B=|q|vB\sin\theta}`,
+        variables: [
+          { symbol: String.raw`F_B`, name: "Magnetic force", meaning: "Measured in newtons, N." },
+          { symbol: String.raw`|q|`, name: "Charge magnitude", meaning: "Measured in coulombs, C. Use the positive size of the charge in the calculation." },
+          { symbol: String.raw`v`, name: "Particle speed", meaning: "Measured in metres per second, m/s." },
+          { symbol: String.raw`B`, name: "Magnetic field strength", meaning: "Measured in teslas, T." },
+          { symbol: String.raw`\theta`, name: "Angle", meaning: "The angle between v and B." }
+        ]
+      },
+      {
+        title: "Perpendicular and parallel motion",
+        paragraphs: [
+          "The magnetic force is largest when the particle moves perpendicular to the field. Perpendicular means θ = 90°, so sin 90° = 1.",
+          "There is no magnetic force when the particle moves parallel to the field. Parallel means θ = 0°, so sin 0° = 0.",
+          "For every other angle, keep sin θ in the formula and evaluate it with a calculator in degree mode."
+        ],
+        formulaSet: [
+          { label: "Perpendicular: maximum force", math: String.raw`v\perp B\Rightarrow F_B=|q|vB` },
+          { label: "Parallel: no force", math: String.raw`v\parallel B\Rightarrow F_B=0` },
+          { label: "Any other angle", math: String.raw`F_B=|q|vB\sin\theta` }
+        ]
+      },
+      {
+        title: "Rearranging the moving-charge formula",
+        paragraphs: [
+          "These rearranged forms assume the particle moves perpendicular to the field. If the question gives another angle, include sin θ in the denominator when rearranging."
+        ],
+        formulaSet: [
+          { label: "Find field strength", math: String.raw`B=\frac{F_B}{|q|v}` },
+          { label: "Find speed", math: String.raw`v=\frac{F_B}{|q|B}` },
+          { label: "Find charge magnitude", math: String.raw`|q|=\frac{F_B}{vB}` },
+          { label: "Find B with an angle", math: String.raw`B=\frac{F_B}{|q|v\sin\theta}` }
+        ]
+      },
+      {
+        title: "Example: force on a proton",
+        derivation: true,
+        paragraphs: [
+          "A proton moves at 2.0 × 10⁶ m/s through a 0.30 T field. Its charge magnitude is 1.60 × 10⁻¹⁹ C, and it moves perpendicular to the field.",
+          "Because v is perpendicular to B, use the shorter form. Multiply the charge, speed, and field strength."
+        ],
+        formulaSet: [
+          { label: "Select the formula", math: String.raw`F_B=|q|vB` },
+          { label: "Substitute", math: String.raw`F_B=(1.60\times10^{-19})(2.0\times10^6)(0.30)` },
+          { label: "Answer", math: String.raw`\boxed{F_B=9.6\times10^{-14}\ \mathrm{N}}` }
+        ]
+      },
+      {
+        title: "Magnetic force on a current-carrying wire",
+        paragraphs: [
+          "Use this formula for a whole wire carrying current inside an external magnetic field.",
+          "The length L is only the part of the wire inside the magnetic field. The angle θ is measured between the conventional-current direction and the magnetic field.",
+          "This formula gives the size of the force. Use the right-hand motor rule to find the direction."
+        ],
+        formula: String.raw`\boxed{F_B=BIL\sin\theta}`,
+        variables: [
+          { symbol: String.raw`F_B`, name: "Magnetic force", meaning: "Measured in newtons, N." },
+          { symbol: String.raw`B`, name: "Magnetic field strength", meaning: "Measured in teslas, T." },
+          { symbol: String.raw`I`, name: "Conventional current", meaning: "Measured in amperes, A." },
+          { symbol: String.raw`L`, name: "Wire length in the field", meaning: "Measured in metres, m." },
+          { symbol: String.raw`\theta`, name: "Angle", meaning: "The angle between I and B." }
+        ]
+      },
+      {
+        title: "Wire perpendicular or parallel to the field",
+        paragraphs: [
+          "The force is largest when the wire and field are perpendicular. In this case, θ = 90° and the sine factor becomes 1.",
+          "The force is zero when the wire and field are parallel. In this case, θ = 0° and the sine factor becomes 0."
+        ],
+        formulaSet: [
+          { label: "Perpendicular: maximum force", math: String.raw`I\perp B\Rightarrow F_B=BIL` },
+          { label: "Parallel: no force", math: String.raw`I\parallel B\Rightarrow F_B=0` },
+          { label: "Any other angle", math: String.raw`F_B=BIL\sin\theta` }
+        ]
+      },
+      {
+        title: "Rearranging the wire-force formula",
+        paragraphs: [
+          "These shorter rearrangements are for a wire perpendicular to the field. Include sin θ in the denominator if the wire is at another angle."
+        ],
+        formulaSet: [
+          { label: "Find field strength", math: String.raw`B=\frac{F_B}{IL}` },
+          { label: "Find current", math: String.raw`I=\frac{F_B}{BL}` },
+          { label: "Find wire length", math: String.raw`L=\frac{F_B}{BI}` },
+          { label: "Find B with an angle", math: String.raw`B=\frac{F_B}{IL\sin\theta}` }
+        ]
+      },
+      {
+        title: "Example: force on a wire",
+        derivation: true,
+        paragraphs: [
+          "A 0.50 m section of wire carries 2.0 A through a 0.40 T magnetic field. The wire is perpendicular to the field.",
+          "Because I is perpendicular to B, use F_B = BIL."
+        ],
+        formulaSet: [
+          { label: "Select the formula", math: String.raw`F_B=BIL` },
+          { label: "Substitute", math: String.raw`F_B=(0.40)(2.0)(0.50)` },
+          { label: "Answer", math: String.raw`\boxed{F_B=0.40\ \mathrm{N}}` }
+        ]
+      },
+      {
+        title: "Magnetic field inside an air-core solenoid",
+        paragraphs: [
+          "This formula does not calculate force. It calculates the magnetic field made inside a long solenoid.",
+          "An air-core solenoid has no magnetic material inside. The field becomes stronger when the current increases or when there are more turns in each metre."
+        ],
+        formula: String.raw`\boxed{B=\mu_0nI}`,
+        variables: [
+          { symbol: String.raw`B`, name: "Magnetic field strength", meaning: "Measured in teslas, T." },
+          { symbol: String.raw`\mu_0`, name: "Permeability of free space", meaning: "A constant used for an air-core solenoid." },
+          { symbol: String.raw`n`, name: "Turns per metre", meaning: "The number of coil turns in each metre, measured in turns/m." },
+          { symbol: String.raw`I`, name: "Current", meaning: "Measured in amperes, A." }
+        ],
+        formulaSet: [
+          { label: "Constant", math: String.raw`\mu_0=4\pi\times10^{-7}\ \mathrm{T\cdot m/A}` },
+          { label: "Turns per metre", math: String.raw`n=\frac{N}{L}` }
+        ]
+      },
+      {
+        title: "All air-core solenoid forms",
+        paragraphs: [
+          "Use B = μ₀nI when the question gives turns per metre. If it gives the total number of turns N and solenoid length L, first calculate n = N/L or use the combined form.",
+          "In the solenoid formulas, uppercase N means total number of turns. Lowercase n means turns per metre."
+        ],
+        formulaSet: [
+          { label: "Using turns per metre", math: String.raw`B=\mu_0nI` },
+          { label: "Find turns per metre", math: String.raw`n=\frac{N}{L}` },
+          { label: "Using total turns and length", math: String.raw`B=\frac{\mu_0NI}{L}` },
+          { label: "Find current", math: String.raw`I=\frac{B}{\mu_0n}` }
+        ]
+      },
+      {
+        title: "Example: air-core solenoid",
+        derivation: true,
+        paragraphs: [
+          "A solenoid has 500 turns, a length of 0.25 m, and a current of 2.0 A. Find the field inside.",
+          "The question gives N and L, so use the combined form."
+        ],
+        formulaSet: [
+          { label: "Select the formula", math: String.raw`B=\frac{\mu_0NI}{L}` },
+          { label: "Substitute", math: String.raw`B=\frac{(4\pi\times10^{-7})(500)(2.0)}{0.25}` },
+          { label: "Answer", math: String.raw`\boxed{B\approx5.0\times10^{-3}\ \mathrm{T}}` }
+        ]
+      },
+      {
+        title: "Solenoid with a magnetic core",
+        paragraphs: [
+          "A magnetic material such as iron makes the field much stronger. Replace μ₀ with the permeability μ of the material.",
+          "Relative permeability μᵣ tells you how strongly the material increases the field compared with empty space."
+        ],
+        formulaSet: [
+          { label: "Material permeability", math: String.raw`\mu=\mu_0\mu_r` },
+          { label: "Using turns per metre", math: String.raw`B=\mu nI=\mu_0\mu_rnI` },
+          { label: "Using total turns", math: String.raw`B=\frac{\mu_0\mu_rNI}{L}` },
+          { label: "Main idea", math: String.raw`\boxed{\text{Iron core}\Rightarrow\text{much stronger }B}` }
+        ]
+      },
+      {
+        title: "Final formula check",
+        paragraphs: [
+          "Look for the object described in the question. Then check whether the object and magnetic field are perpendicular or at another angle.",
+          "Keep every value in SI units: charge in coulombs, speed in m/s, field in teslas, current in amperes, length in metres, and force in newtons."
+        ],
+        points: [
+          "One electron, proton, or ion: use F_B = |q|vB sin θ.",
+          "A wire carrying current: use F_B = BIL sin θ.",
+          "The field made by a solenoid: use B = μ₀nI.",
+          "qvB and BIL calculate force. μ₀nI calculates magnetic field."
+        ]
+      }
+    ]
   },
   "magnetic-field-and-the-electron": {
     number: "03",
     unit: "07",
     title: "Magnetic field and the electron",
-    introduction: "Unit 07 · Magnetic Force",
-    placeholder: true
+    introduction: "Learn how magnetic fields bend moving charges and how a mass spectrometer measures particle mass.",
+    sections: [
+      {
+        title: "Magnetic force on a moving electron",
+        paragraphs: [
+          "A magnetic field can push a charge only when the charge is moving. The force depends on the charge, speed, field strength, and angle between the velocity and field.",
+          "The magnetic force is largest when the electron moves perpendicular to the field. It is zero when the electron moves parallel to the field.",
+          "Use the right-hand rule as if the moving charge were positive. Because an electron is negative, its actual force points in the opposite direction."
+        ],
+        formulaSet: [
+          { label: "General form", math: String.raw`F_B=|q|vB\sin\theta` },
+          { label: "Perpendicular motion", math: String.raw`F_B=|q|vB` },
+          { label: "Parallel motion", math: String.raw`F_B=0` }
+        ]
+      },
+      {
+        title: "Why the path becomes circular",
+        derivation: true,
+        paragraphs: [
+          "When a charge enters a magnetic field at 90°, the force is always perpendicular to its velocity. The force changes the direction of motion but does not change the speed.",
+          "A force that always points sideways acts as a centripetal force. The particle follows a circular path.",
+          "A stronger field makes the circle smaller. A faster or more massive particle makes the circle larger. Positive and negative charges curve in opposite directions."
+        ],
+        formulaSet: [
+          { label: "Magnetic force", math: String.raw`F_B=|q|vB` },
+          { label: "Centripetal force", math: String.raw`F_c=\frac{mv^2}{R}` },
+          { label: "For circular motion", math: String.raw`|q|vB=\frac{mv^2}{R}` },
+          { label: "Radius", math: String.raw`R=\frac{mv}{|q|B}` }
+        ]
+      },
+      {
+        title: "The velocity selector",
+        derivation: true,
+        paragraphs: [
+          "A velocity selector uses an electric field and a magnetic field at the same time. The fields are arranged so the electric force and magnetic force point in opposite directions.",
+          "Only particles with one exact speed travel straight through. For those particles, the electric and magnetic forces have the same size and cancel.",
+          "Particles that are too fast or too slow bend away and do not pass through the selector."
+        ],
+        formulaSet: [
+          { label: "Balanced forces", math: String.raw`F_E=F_B` },
+          { label: "Substitute the force formulas", math: String.raw`|q|E=|q|vB_1` },
+          { label: "Selected speed", math: String.raw`\boxed{v=\frac{E}{B_1}}` }
+        ],
+        points: [
+          "E is the electric field strength in N/C.",
+          "B₁ is the magnetic field in the velocity selector, in T.",
+          "The charge cancels, so the selected speed does not depend on the particle's charge."
+        ]
+      },
+      {
+        title: "Example: selected velocity",
+        derivation: true,
+        paragraphs: [
+          "A velocity selector has an electric field of 3.0 × 10⁴ N/C and a magnetic field B₁ of 0.20 T. Find the speed of particles that pass straight through."
+        ],
+        formulaSet: [
+          { label: "Formula", math: String.raw`v=\frac{E}{B_1}` },
+          { label: "Substitute", math: String.raw`v=\frac{3.0\times10^4}{0.20}` },
+          { label: "Answer", math: String.raw`\boxed{v=1.5\times10^5\ \mathrm{m/s}}` }
+        ]
+      },
+      {
+        title: "What is a mass spectrometer?",
+        paragraphs: [
+          "A mass spectrometer separates particles by mass. The particles are first given a charge and sent through a velocity selector.",
+          "The velocity selector makes sure the particles entering the next region have the same speed. They then enter a second magnetic field, B₂, and follow circular paths.",
+          "The radius of each path is measured. A larger mass produces a larger radius when charge, speed, and field strength stay the same."
+        ],
+        points: [
+          "Stage 1: particles are ionized, so they have charge q.",
+          "Stage 2: crossed E and B₁ fields select one speed.",
+          "Stage 3: field B₂ bends the particles into circles.",
+          "Stage 4: the measured radius R is used to calculate mass."
+        ]
+      },
+      {
+        title: "Finding mass from the circular path",
+        derivation: true,
+        paragraphs: [
+          "Inside the analyzing field B₂, magnetic force supplies the centripetal force. Start by setting the two force expressions equal.",
+          "Cancel one factor of v and rearrange to isolate mass. Use the magnitude of the charge in the calculation."
+        ],
+        formulaSet: [
+          { label: "Set the forces equal", math: String.raw`|q|vB_2=\frac{mv^2}{R}` },
+          { label: "Mass using known speed", math: String.raw`m=\frac{|q|B_2R}{v}` },
+          { label: "Velocity selector", math: String.raw`v=\frac{E}{B_1}` },
+          { label: "Combined mass formula", math: String.raw`\boxed{m=\frac{B_1B_2|q|R}{E}}` }
+        ]
+      },
+      {
+        title: "Example: mass measured by a spectrometer",
+        derivation: true,
+        paragraphs: [
+          "A singly charged positive ion passes through fields E = 3.0 × 10⁴ N/C and B₁ = 0.20 T. It then curves with radius R = 0.10 m in B₂ = 0.50 T. Its charge is 1.60 × 10⁻¹⁹ C.",
+          "The question gives both magnetic fields, the electric field, charge, and radius, so use the combined formula."
+        ],
+        formulaSet: [
+          { label: "Formula", math: String.raw`m=\frac{B_1B_2|q|R}{E}` },
+          { label: "Substitute", math: String.raw`m=\frac{(0.20)(0.50)(1.60\times10^{-19})(0.10)}{3.0\times10^4}` },
+          { label: "Answer", math: String.raw`\boxed{m=5.3\times10^{-26}\ \mathrm{kg}}` }
+        ]
+      },
+      {
+        title: "Charge-to-mass ratio",
+        paragraphs: [
+          "Sometimes the goal is to find charge divided by mass instead of mass alone. Start with magnetic force equal to centripetal force and rearrange.",
+          "For an electron, use e for the magnitude of its charge. The result e/m is positive because e means the positive magnitude 1.60 × 10⁻¹⁹ C."
+        ],
+        formulaSet: [
+          { label: "General charge-to-mass ratio", math: String.raw`\frac{|q|}{m}=\frac{v}{BR}` },
+          { label: "For an electron", math: String.raw`\boxed{\frac{e}{m}=\frac{v}{BR}}` },
+          { label: "Electron charge magnitude", math: String.raw`e=1.60\times10^{-19}\ \mathrm{C}` }
+        ]
+      },
+      {
+        title: "Which formula should you use?",
+        paragraphs: [
+          "Read what the question asks for and identify which part of the device is being described. B₁ belongs to the velocity selector. B₂ belongs to the region where the particle curves.",
+          "Keep all values in SI units: E in N/C, B in T, charge in C, radius in m, speed in m/s, and mass in kg."
+        ],
+        points: [
+          "Find the selected speed: v = E/B₁.",
+          "Find mass when speed is known: m = |q|B₂R/v.",
+          "Find mass using the complete spectrometer: m = B₁B₂|q|R/E.",
+          "Find charge-to-mass ratio: |q|/m = v/(BR).",
+          "Find electron charge-to-mass ratio: e/m = v/(BR)."
+        ]
+      }
+    ]
+  },
+  "right-hand-rules": {
+    number: "04",
+    unit: "07",
+    title: "The right-hand rules",
+    introduction: "Choose the correct right-hand rule for magnetic fields, solenoids, and magnetic force.",
+    sections: [
+      {
+        title: "The three right-hand rules",
+        paragraphs: [
+          "The three right-hand rules answer different questions. First identify whether you need a magnetic field direction, a solenoid pole, or a magnetic force direction.",
+          "Conventional current is the direction a positive charge would move. Electrons move in the opposite direction. If a question gives electron motion, reverse it once to get conventional current before using the rule. If current is already given, use it directly."
+        ],
+        ruleGroups: [
+          { title: "Ampère rule", mapping: "Current → magnetic field", href: "/simulators/unit-7#ampere-rule", linkText: "Open the Ampère-rule simulator", text: "Use this for the field around a straight wire. Point your right thumb with conventional current. Your curled fingers show the circular magnetic-field direction." },
+          { title: "Solenoid rule", mapping: "Coil current → north pole and internal magnetic field", href: "/simulators/unit-7#solenoid-rule", linkText: "Open the solenoid-rule simulator", text: "Curl your right-hand fingers with conventional current around the coils. Your thumb points toward the north pole and in the direction of the magnetic field inside the solenoid." },
+          { title: "Motor rule", mapping: "Current or moving charge + magnetic field → magnetic force", href: "/simulators/unit-7#motor-rule", linkText: "Open the motor-rule simulator", text: "Point your right thumb with conventional current, or with the motion of a positive charge. Point your fingers with the magnetic field. Your palm shows the magnetic-force direction." }
+        ],
+        points: [
+          "Electron motion and conventional current always point in opposite directions.",
+          "If electrons move out of the page, conventional current goes into the page.",
+          "If electrons move left, conventional current goes right.",
+          "Do not reverse a direction twice. Convert electron motion once, then use the rule normally.",
+          "A stationary charge has no magnetic force.",
+          "Magnetic force is perpendicular to both motion and magnetic field, so it often bends a particle's path.",
+          "Reversing current while keeping B unchanged reverses the magnetic force."
+        ]
+      }
+    ]
   }
 };
 
@@ -500,17 +1019,10 @@ export default async function LessonDetail({ params }) {
             <div>
               <h2>{section.title}</h2>
               {section.paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}
+              {section.ruleGroups && <div className="right-hand-rule-groups">{section.ruleGroups.map((rule,index)=><article key={rule.title}><span>RULE {String(index+1).padStart(2,"0")}</span><h3>{rule.title}</h3><strong>{rule.mapping}</strong><p>{rule.text}</p><Link className="rule-simulator-link" href={rule.href}>{rule.linkText} →</Link></article>)}</div>}
+              {section.points && <div className="lesson-point-list">{section.pointLead && <strong>{section.pointLead}</strong>}<ul>{section.points.map(point=><li key={point}>{point}</li>)}</ul></div>}
               {section.formula && <Formula>{section.formula}</Formula>}
-              {section.formulaSet && (
-                <div className="field-formula-grid">
-                  {section.formulaSet.map(item => (
-                    <div key={item.label}>
-                      <span>{item.label}</span>
-                      <Formula>{item.math}</Formula>
-                    </div>
-                  ))}
-                </div>
-              )}
+              {section.formulaSet && (section.derivation ? <div className="lesson-derivation">{section.formulaSet.map((item,index)=><div className="derivation-step" key={item.label}><div><span>{item.label}</span><Formula>{item.math}</Formula></div>{index<section.formulaSet.length-1&&<span className="derivation-arrow" aria-hidden="true">↓</span>}</div>)}</div> : <div className="field-formula-grid">{section.formulaSet.map(item=><div key={item.label}><span>{item.label}</span><Formula>{item.math}</Formula></div>)}</div>)}
               {section.variables && (
                 <div className="variable-grid">
                   {section.variables.map(variable => (
@@ -550,6 +1062,8 @@ export default async function LessonDetail({ params }) {
             </Link>
           </section>
         )}
+        {slug === "introduction-to-magnets" && <section className="lesson-resource-link"><span>Interactive review</span><h2>Magnetic field simulators</h2><p>Use the bar magnet, solenoid, straight-wire, and current-loop simulators to see these field directions.</p><Link href="/simulators/unit-7">Open Unit 7 simulators <ArrowIcon /></Link></section>}
+        {slug === "magnetic-field-strength" && <section className="lesson-resource-link"><span>Practice and review</span><h2>Magnetic field resources</h2><p>Open the resource page for magnetic force and field-strength worksheets.</p><Link href="/lessons/magnetic-field-strength/resources">Open resources <ArrowIcon /></Link></section>}
         {slug === "electric-field-strength" && (
           <section className="lesson-resource-link">
             <span>Practice and review</span>
