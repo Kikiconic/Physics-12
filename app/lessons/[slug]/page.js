@@ -703,6 +703,15 @@ const lessons = {
         ]
       },
       {
+        title: "Electron-beam deflection on a CRT screen",
+        paragraphs: [
+          "Without a magnetic field, the electron beam would normally hit the centre of the CRT screen.",
+          "When a magnetic field is applied, it pushes the moving electrons sideways. In this example, the beam bends upward and hits the screen above the centre.",
+          "The distance from the centre of the screen to the new spot is called the deflection, δ. A larger δ means the electron beam bends more."
+        ],
+        formula: String.raw`\delta=\text{distance from the centre to the new beam spot}`
+      },
+      {
         title: "The velocity selector",
         derivation: true,
         paragraphs: [
