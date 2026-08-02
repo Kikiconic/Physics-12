@@ -707,9 +707,24 @@ const lessons = {
         paragraphs: [
           "Without a magnetic field, the electron beam would normally hit the centre of the CRT screen.",
           "When a magnetic field is applied, it pushes the moving electrons sideways. In this example, the beam bends upward and hits the screen above the centre.",
-          "The distance from the centre of the screen to the new spot is called the deflection, δ. A larger δ means the electron beam bends more."
+          "The distance from the centre of the screen to the new spot is called the deflection, δ. A larger δ means the electron beam bends more.",
+          "For the same CRT shape and a small deflection, δ is directly proportional to the magnetic field strength and the magnitude of the charge. It is inversely proportional to the particle's mass and speed."
         ],
-        formula: String.raw`\delta=\text{distance from the centre to the new beam spot}`
+        formulaSet: [
+          { label: "Meaning of deflection", math: String.raw`\delta=\text{distance from the centre to the new beam spot}` },
+          { label: "Magnetic field strength", math: String.raw`\delta\propto B` },
+          { label: "Electron speed", math: String.raw`\delta\propto\frac{1}{v}` },
+          { label: "Charge magnitude", math: String.raw`\delta\propto |q|` },
+          { label: "Particle mass", math: String.raw`\delta\propto\frac{1}{m}` }
+        ],
+        points: [
+          "Stronger magnetic field, B → larger δ. The beam bends more.",
+          "Higher electron speed, v → smaller δ. The fast electron is harder to turn and spends less time in the field.",
+          "Larger charge magnitude, |q| → larger δ. The magnetic force is larger.",
+          "Larger particle mass, m → smaller δ. A heavier particle is harder to turn.",
+          "Longer magnetic-field region → larger δ. The force acts on the beam for more time.",
+          "Greater distance from the field region to the screen → larger δ. The angled beam has more distance to move sideways."
+        ]
       },
       {
         title: "The velocity selector",
