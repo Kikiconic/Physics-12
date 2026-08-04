@@ -12,8 +12,8 @@ export default function LessonsPage() {
       <UnitCatalogue section="Lessons" />
       <section className="unit-selection-note">
         <span>AVAILABLE UNITS</span>
-        <h2>Select Unit 06 or Unit 07</h2>
-        <p>Electrostatics contains completed learning materials. Magnetic Force currently contains section placeholders.</p>
+        <h2>Select Unit 06, Unit 07, or Unit 08</h2>
+        <p>Electrostatics and magnetic force contain learning materials. Electromagnetic induction is ready for future lesson content.</p>
       </section>
       <SiteFooter />
     </main>

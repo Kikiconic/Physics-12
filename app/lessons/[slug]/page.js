@@ -854,6 +854,488 @@ const lessons = {
         ]
       }
     ]
+  },
+  "induced-electromotive-force": {
+    number: "01",
+    unit: "08",
+    title: "Induced electromotive force (EMF)",
+    introduction: "Learn how moving conductors and changing magnetic conditions produce voltage, current, and electrical energy.",
+    sections: [
+      {
+        title: "The main idea",
+        paragraphs: [
+          "Electricity can create magnetism, and movement through magnetism can create electricity.",
+          "You already learned that electric current creates a magnetic field. In this lesson, you will study the reverse idea: a magnetic field can push charges in a moving wire and produce a voltage.",
+          "To induce EMF means to produce a voltage by using magnetism. A magnet can move near a wire or coil, the wire can move through a magnetic field, or the magnetic field itself can change.",
+          "In each case, the changing magnetic situation pushes charges in the conductor. Positive and negative charges separate, so the two ends of the wire develop different electric potentials. This is the induced EMF.",
+          "You might observe a voltmeter needle move or see a voltage reading appear. If the wire is part of a complete circuit, the induced voltage can make current flow. If the circuit is open, a voltage can still exist, but there is no continuous current."
+        ],
+        formulaSet: [
+          {label:"Simple meaning",math:String.raw`\boxed{\text{magnet moves or field changes}\rightarrow\text{charges are pushed}\rightarrow\text{voltage is produced}}`},
+          {label:"In a closed circuit",math:String.raw`\boxed{\text{induced EMF}\rightarrow\text{current can flow}}`}
+        ]
+      },
+      {
+        title: "What is induced EMF?",
+        paragraphs: [
+          "EMF stands for electromotive force. Despite its name, EMF is not a force. It is a voltage, or potential difference, produced by electromagnetic induction.",
+          "EMF is basically voltage created by a source. In this chapter, EMF usually means the voltage created when a wire moves through a magnetic field or when magnetic flux changes.",
+          "EMF is measured in volts, V. If the conductor is part of a complete circuit, the induced EMF can produce an electric current.",
+          "A wire that is sitting still in a steady magnetic field does not normally have an induced EMF. The conductor must move across the field, or the magnetic conditions through a circuit must change."
+        ],
+        formulaSet: [
+          {label:"Simple definition",math:String.raw`\boxed{\text{EMF}=\text{created voltage}}`},
+          {label:"Unit",math:String.raw`\varepsilon=\text{induced EMF in volts (V)}`},
+          {label:"Complete circuit",math:String.raw`\boxed{\text{induced EMF}\rightarrow\text{possible current}}`}
+        ]
+      },
+      {
+        title: "EMF compared with induced EMF",
+        paragraphs: [
+          "EMF is the general idea of a source giving charges an electrical push. This push is a voltage, not a mechanical force.",
+          "Induced EMF is a specific type of EMF. It is produced when a conductor moves through a magnetic field or when the magnetic flux through a circuit changes.",
+          "Induced EMF pushes charges in the wire. If the wire forms a complete circuit, this voltage can produce an electric current."
+        ],
+        termChart: [
+          {term:"EMF",source:"Any voltage source",example:"A battery uses chemical reactions"},
+          {term:"Induced EMF",source:"Changing magnetic situation",example:"A generator moves wire through a magnetic field"}
+        ],
+        formulaSet: [
+          {label:"General idea",math:String.raw`\boxed{\text{EMF}=\text{electrical push}}`},
+          {label:"Specific type",math:String.raw`\boxed{\text{induced EMF}=\text{electrical push created by changing magnetism}}`},
+          {label:"What it can do",math:String.raw`\boxed{\text{induced EMF}\rightarrow\text{pushes charges}\rightarrow\text{current in a closed circuit}}`}
+        ],
+        points: [
+          "A battery provides EMF through chemical reactions.",
+          "A generator provides induced EMF through electromagnetic induction.",
+          "Every induced EMF is an EMF, but not every EMF is produced by magnetism."
+        ]
+      },
+      {
+        title: "Why a moving wire produces EMF",
+        paragraphs: [
+          "When the whole wire moves, the charges inside it move with the wire. A magnetic field then exerts a magnetic force on those moving charges.",
+          "Positive and negative charges are pushed toward opposite ends of the conductor. This charge separation creates a potential difference between the two ends.",
+          "For example, suppose the wire moves down while the magnetic field points right. The right-hand motor rule gives an outward force for a positive charge. Electrons are negative, so they are pushed into the page."
+        ],
+        formulaSet: [
+          {label:"Magnetic force",math:String.raw`F_B=|q|vB\sin\theta`},
+          {label:"The induction chain",math:String.raw`\boxed{\text{motion}\rightarrow\text{force on charges}\rightarrow\text{charge separation}\rightarrow\text{EMF}}`}
+        ],
+        points: [
+          "Use the right-hand rule to find the force on a positive charge.",
+          "Reverse that force direction for an electron.",
+          "The separated charges create the induced voltage."
+        ]
+      },
+      {
+        title: "The conductor must cut across the field",
+        paragraphs: [
+          "A conductor does not produce EMF only because it is inside a magnetic field. Its motion must have a component across the magnetic-field lines.",
+          "Perpendicular motion gives the greatest EMF. Parallel motion gives no EMF because the magnetic force on the charges is zero."
+        ],
+        formulaSet: [
+          {label:"Maximum effect",math:String.raw`v\perp B\Rightarrow\varepsilon=\varepsilon_{\max}`},
+          {label:"No induction",math:String.raw`v\parallel B\Rightarrow\varepsilon=0`},
+          {label:"Why parallel motion gives zero",math:String.raw`F_B=|q|vB\sin0^\circ=0`}
+        ]
+      },
+      {
+        title: "EMF in a straight wire",
+        paragraphs: [
+          "Use ε = Blv when the wire, its motion, and the magnetic field are perpendicular in the required directions.",
+          "Use the sine form when the velocity makes an angle θ with the magnetic field."
+        ],
+        formulaSet: [
+          {label:"Perpendicular case",math:String.raw`\boxed{\varepsilon=Blv}`},
+          {label:"At an angle",math:String.raw`\boxed{\varepsilon=Blv\sin\theta}`}
+        ],
+        variables: [
+          {symbol:String.raw`\varepsilon`,name:"Induced EMF",meaning:"The induced voltage, measured in volts (V)."},
+          {symbol:String.raw`B`,name:"Magnetic field strength",meaning:"Measured in teslas (T)."},
+          {symbol:String.raw`l`,name:"Wire length",meaning:"The length of wire inside the magnetic field, measured in metres (m)."},
+          {symbol:String.raw`v`,name:"Wire speed",meaning:"The speed of the conductor, measured in metres per second (m/s)."},
+          {symbol:String.raw`\theta`,name:"Angle",meaning:"The angle between the wire's velocity and the magnetic field."}
+        ],
+        points: [
+          "Stronger B produces more EMF: ε ∝ B.",
+          "A longer wire produces more EMF: ε ∝ l.",
+          "Faster motion produces more EMF: ε ∝ v.",
+          "Stronger field + longer wire + faster movement = more EMF."
+        ]
+      },
+      {
+        title: "Example 1: find the wire's speed",
+        derivation: true,
+        paragraphs: [
+          "A 0.25 m wire moves perpendicularly through a 0.50 T magnetic field and produces an EMF of 1.0 V. Find its speed."
+        ],
+        formulaSet: [
+          {label:"Start with the formula",math:String.raw`\varepsilon=Blv`},
+          {label:"Rearrange for speed",math:String.raw`v=\frac{\varepsilon}{Bl}`},
+          {label:"Substitute",math:String.raw`v=\frac{1.0}{(0.50)(0.25)}`},
+          {label:"Answer",math:String.raw`\boxed{v=8.0\ \mathrm{m/s}}`}
+        ]
+      },
+      {
+        title: "Example 2: voltage across airplane wings",
+        derivation: true,
+        paragraphs: [
+          "An airplane travels at 250 m/s through Earth's 5.0 × 10⁻⁵ T magnetic field. Its wingspan is 30.0 m, and the motion is perpendicular to the field. Find the EMF between its wing tips."
+        ],
+        formulaSet: [
+          {label:"Formula",math:String.raw`\varepsilon=Blv`},
+          {label:"Substitute",math:String.raw`\varepsilon=(5.0\times10^{-5})(30.0)(250)`},
+          {label:"Answer",math:String.raw`\boxed{\varepsilon=0.375\ \mathrm V\approx0.38\ \mathrm V}`}
+        ]
+      },
+      {
+        title: "Example 3: a short moving wire",
+        derivation: true,
+        paragraphs: [
+          "A 15 cm wire moves at 5.0 m/s through a 0.040 T field. The motion is perpendicular to the field. First convert 15 cm to 0.15 m."
+        ],
+        formulaSet: [
+          {label:"Convert the length",math:String.raw`l=15\ \mathrm{cm}=0.15\ \mathrm m`},
+          {label:"Substitute",math:String.raw`\varepsilon=(0.040)(0.15)(5.0)`},
+          {label:"Answer",math:String.raw`\boxed{\varepsilon=0.030\ \mathrm V}`}
+        ]
+      },
+      {
+        title: "From a moving wire to a generator",
+        paragraphs: [
+          "A simple generator places a loop of wire between north and south magnetic poles. The magnetic field outside the magnets points from north to south.",
+          "When the loop rotates, its sides move through the magnetic field and an EMF is induced. The generator changes mechanical energy into electrical energy."
+        ],
+        formulaSet: [
+          {label:"Energy change",math:String.raw`\boxed{\text{mechanical rotation}\rightarrow\text{electrical energy}}`}
+        ]
+      },
+      {
+        title: "Why a generator's EMF changes",
+        paragraphs: [
+          "As the loop rotates, the wire does not cut across the field equally well at every position. The induced EMF therefore changes continuously.",
+          "A positive or negative sign shows the direction of the EMF. A negative EMF means the direction has reversed; it does not mean there is less EMF.",
+          "Because the direction reverses every half-turn, a simple rotating generator produces alternating current, AC."
+        ],
+        formulaSet: [
+          {label:"Rotation pattern",math:String.raw`0\rightarrow+\varepsilon_{\max}\rightarrow0\rightarrow-\varepsilon_{\max}\rightarrow0`},
+          {label:"Angle relationship",math:String.raw`\boxed{\varepsilon=\varepsilon_{\max}\sin\theta}`}
+        ],
+        points: [
+          "0°: ε = 0",
+          "90°: ε = +εmax",
+          "180°: ε = 0",
+          "270°: ε = −εmax",
+          "360°: ε = 0"
+        ]
+      },
+      {
+        title: "Generator formulas",
+        paragraphs: [
+          "For one straight segment moving at an angle, use ε = Blv sin θ.",
+          "In the simple rectangular-loop model used here, two sides cut through the field. If the coil has N turns, all the induced voltages add together."
+        ],
+        formulaSet: [
+          {label:"One segment",math:String.raw`\varepsilon=Blv\sin\theta`},
+          {label:"One loop with two active sides",math:String.raw`\varepsilon=2Blv\sin\theta`},
+          {label:"Coil with N turns",math:String.raw`\boxed{\varepsilon=2NBlv\sin\theta}`},
+          {label:"Maximum magnitude",math:String.raw`\boxed{|\varepsilon_{\max}|=2NBlv}`}
+        ],
+        points: [
+          "More turns, N → more EMF.",
+          "Stronger field, B → more EMF.",
+          "Longer active wire, l → more EMF.",
+          "Faster wire speed, v → more EMF."
+        ]
+      },
+      {
+        title: "Lenz's law",
+        paragraphs: [
+          "Lenz's law states that an induced electric current flows in a direction that opposes the change in magnetic flux which produced it.",
+          "If the magnetic flux through a coil increases, the induced current creates a field that fights the increase. If the flux decreases, the induced current creates a field that tries to replace the lost flux.",
+          "A simple way to think about it is that the coil tries to keep the magnetic situation from changing.",
+          "Lenz's law also follows conservation of energy. You must do work to move the magnet against the coil's magnetic response. That work becomes electrical energy. Without this opposition, the system could produce energy without any input, which is impossible."
+        ],
+        formulaSet: [
+          {label:"Main rule",math:String.raw`\boxed{\text{induced current opposes the change that produced it}}`},
+          {label:"Approaching magnet",math:String.raw`\boxed{\text{approaching}\rightarrow\text{repel}}`},
+          {label:"Leaving magnet",math:String.raw`\boxed{\text{leaving}\rightarrow\text{attract}}`}
+        ],
+        points: [
+          "Flux increasing → the induced field fights the increase.",
+          "Flux decreasing → the induced field tries to replace the decrease.",
+          "The opposition prevents free energy and follows conservation of energy."
+        ]
+      },
+      {
+        title: "Magnet and coil cases",
+        paragraphs: [
+          "When a pole approaches a coil, the near end of the coil becomes the same pole so that it repels the magnet.",
+          "For example, pushing a magnet's north pole toward a loop makes the near side of the loop become north. The two north poles repel, so the loop fights the approaching motion.",
+          "When a pole moves away, the near end becomes the opposite pole so that it attracts the magnet back.",
+          "For example, pulling a north pole away makes the near side of the loop become south. The south side attracts the north pole and tries to keep it close."
+        ],
+        points: [
+          "North approaching → coil's near end becomes north.",
+          "North leaving → coil's near end becomes south.",
+          "South approaching → coil's near end becomes south.",
+          "South leaving → coil's near end becomes north."
+        ]
+      },
+      {
+        title: "Find the induced current direction",
+        paragraphs: [
+          "After Lenz's law tells you whether the near end of the coil is north or south, use the solenoid right-hand rule to find the current.",
+          "When you look directly at one end of the coil, counterclockwise current makes that end north. Clockwise current makes that end south."
+        ],
+        formulaSet: [
+          {label:"North end",math:String.raw`\boxed{\text{counterclockwise current}\Rightarrow N}`},
+          {label:"South end",math:String.raw`\boxed{\text{clockwise current}\Rightarrow S}`}
+        ]
+      },
+      {
+        title: "EMF proportionalities",
+        paragraphs: [
+          "These proportionalities show how changing one variable changes the induced EMF while the other variables stay constant.",
+          "The relationships with B, l, v, and N are direct. Doubling one of them doubles the EMF. The angle relationship depends on sin θ."
+        ],
+        formulaSet: [
+          {label:"Magnetic field strength",math:String.raw`\varepsilon\propto B`},
+          {label:"Active wire length",math:String.raw`\varepsilon\propto l`},
+          {label:"Wire speed",math:String.raw`\varepsilon\propto v`},
+          {label:"Number of coil turns",math:String.raw`\varepsilon\propto N`},
+          {label:"Angle",math:String.raw`\varepsilon\propto\sin\theta`}
+        ],
+        points: [
+          "Stronger magnetic field → larger EMF.",
+          "Longer wire inside the field → larger EMF.",
+          "Faster movement → larger EMF.",
+          "More coil turns → larger total EMF.",
+          "Perpendicular motion gives maximum EMF; parallel motion gives zero EMF."
+        ]
+      },
+      {
+        title: "Keep the direction rules separate",
+        paragraphs: [
+          "For a moving straight wire, use the magnetic-force right-hand rule with velocity and magnetic field. It gives the force on positive charge; electrons move in the opposite direction.",
+          "For a magnet moving near a coil, use Lenz's law first to find the coil's pole. Then use the solenoid right-hand rule to find the current.",
+          "Do not use the magnetic-force rule by itself to decide the pole in a Lenz's-law question."
+        ],
+        points: [
+          "Moving wire: v and B → magnetic force on charges → charge separation → EMF.",
+          "Magnet and coil: Lenz's law → induced north or south pole → solenoid right-hand rule → current direction.",
+          "Generator: rotating coil → changing direction and size of EMF → alternating current."
+        ]
+      }
+    ]
+  },
+  "magnetic-flux-and-faradays-law": {
+    number: "02",
+    unit: "08",
+    title: "Magnetic flux and Faraday's law of induction",
+    introduction: "Learn what magnetic flux is and why a change in magnetic flux produces an induced EMF.",
+    sections: [
+      {
+        title: "What is magnetic flux?",
+        paragraphs: [
+          "Magnetic flux describes how much magnetic field passes through a surface, such as the area inside a wire loop.",
+          "You can imagine magnetic-field lines passing through the loop. More field passing through the loop means more magnetic flux.",
+          "Magnetic flux uses the symbol Φ, the Greek letter phi. Its unit is the weber, Wb."
+        ],
+        formulaSet: [
+          {label:"Symbol and unit",math:String.raw`\Phi=\text{magnetic flux, measured in webers (Wb)}`},
+          {label:"Magnetic flux",math:String.raw`\boxed{\Phi=BA\cos\theta}`}
+        ],
+        variables: [
+          {symbol:String.raw`\Phi`,name:"Magnetic flux",meaning:"The amount of magnetic field passing through the surface, measured in webers (Wb)."},
+          {symbol:String.raw`B`,name:"Magnetic field strength",meaning:"The magnetic field strength, measured in teslas (T)."},
+          {symbol:String.raw`A`,name:"Area",meaning:"The area inside the loop, measured in square metres (m²)."},
+          {symbol:String.raw`\theta`,name:"Angle",meaning:"The angle between the magnetic field and the line perpendicular to the loop."}
+        ]
+      },
+      {
+        title: "How the angle changes magnetic flux",
+        paragraphs: [
+          "The angle θ is measured between the magnetic field and an imaginary line that points straight out from the loop. This line is called the normal.",
+          "Flux is maximum when the magnetic field points through the face of the loop. Flux is zero when the field runs along the surface of the loop."
+        ],
+        formulaSet: [
+          {label:"Field through the loop",math:String.raw`\theta=0^\circ\Rightarrow\Phi=BA`},
+          {label:"Field along the loop",math:String.raw`\theta=90^\circ\Rightarrow\Phi=0`}
+        ]
+      },
+      {
+        title: "What can change magnetic flux?",
+        paragraphs: [
+          "Magnetic flux changes when the field strength, loop area, or angle changes. It can also change when a magnet or coil moves so that a different amount of field passes through the loop.",
+          "An induced EMF appears only while the magnetic flux is changing."
+        ],
+        points: [
+          "Change the current in a source coil → B changes → flux changes → EMF is induced.",
+          "Move a magnet toward or away from a coil → flux changes → EMF is induced.",
+          "Move or rotate the coil → its position or angle changes → flux changes → EMF is induced.",
+          "Change the loop area inside the field → flux changes → EMF is induced."
+        ],
+        formulaSet: [
+          {label:"No flux change",math:String.raw`\boxed{\Delta\Phi=0\Rightarrow\varepsilon=0}`},
+          {label:"Flux changes",math:String.raw`\boxed{\Delta\Phi\ne0\Rightarrow\text{induced EMF}}`}
+        ]
+      },
+      {
+        title: "Steady current and no current",
+        paragraphs: [
+          "A steady current produces a steady magnetic field. If both coils and everything around them stay still, the magnetic flux remains constant and no EMF is induced.",
+          "If there is no current in the source coil, that coil produces no magnetic field. There is then no changing flux from the source coil and no induced EMF.",
+          "The most important question is not simply whether current exists. Ask whether the magnetic flux through the second coil is changing."
+        ],
+        formulaSet: [
+          {label:"Steady stationary system",math:String.raw`\boxed{\text{steady current}\rightarrow\text{steady }B\rightarrow\text{constant flux}\rightarrow\text{no induced EMF}}`},
+          {label:"Safest rule",math:String.raw`\boxed{\text{no change in magnetic flux}\Rightarrow\text{no induced EMF}}`},
+          {label:"Induction condition",math:String.raw`\boxed{\text{change in magnetic flux}\Rightarrow\text{induced EMF}}`}
+        ]
+      },
+      {
+        title: "Faraday's law of induction",
+        paragraphs: [
+          "Faraday's law calculates the induced EMF from the rate of change of magnetic flux.",
+          "A larger flux change produces more EMF. Making the same flux change in less time also produces more EMF. A coil with more turns produces more total EMF because the effect occurs in every turn.",
+          "The negative sign represents Lenz's law. It shows that the induced EMF acts in a direction that opposes the change in flux."
+        ],
+        formulaSet: [
+          {label:"One loop",math:String.raw`\varepsilon=-\frac{\Delta\Phi}{\Delta t}`},
+          {label:"Coil with N turns",math:String.raw`\boxed{\varepsilon=-N\frac{\Delta\Phi}{\Delta t}}`},
+          {label:"Time proportionality",math:String.raw`\boxed{|\varepsilon|\propto\frac{1}{\Delta t}}`}
+        ],
+        points: [
+          "Larger |ΔΦ| → larger EMF.",
+          "EMF is inversely proportional to the time taken for the flux change.",
+          "Shorter change time, Δt → larger EMF. Longer change time → smaller EMF.",
+          "More turns, N → larger EMF.",
+          "Constant flux → ΔΦ = 0 → no induced EMF."
+        ]
+      },
+      {
+        title: "The whole idea",
+        paragraphs: [
+          "A magnetic field by itself does not guarantee induction. The magnetic flux through the circuit must change.",
+          "Always identify what changes B, A, or θ. Then decide how quickly the flux changes and use Faraday's law."
+        ],
+        formulaSet: [
+          {label:"Magnetic flux",math:String.raw`\Phi=BA\cos\theta`},
+          {label:"Faraday's law",math:String.raw`\varepsilon=-N\frac{\Delta\Phi}{\Delta t}`},
+          {label:"Main chain",math:String.raw`\boxed{\text{flux changes}\rightarrow\text{EMF is induced}\rightarrow\text{current may flow in a closed circuit}}`}
+        ]
+      }
+    ]
+  },
+  "parallel-and-perpendicular-induction": {
+    number: "03",
+    unit: "08",
+    title: "Parallel and perpendicular relationships",
+    introduction: "Compare the coil axis and wire motion with the magnetic field to identify magnetic flux and induced EMF quickly.",
+    sections: [
+      {
+        title: "Coil axis and wire direction chart",
+        paragraphs: [
+          "The coil axis is an imaginary line perpendicular to the face of the coil. Use the axis when discussing magnetic flux.",
+          "Use the wire's velocity when discussing motional EMF. For the rotating-coil rows, the EMF values describe that instant during rotation."
+        ],
+        orientationChart: [
+          {case:"Coil axis ∥ B",flux:"Maximum",emf:"Zero at that instant"},
+          {case:"Coil axis ⟂ B",flux:"Zero",emf:"Maximum while rotating"},
+          {case:"Wire velocity ∥ B",flux:"—",emf:"Zero"},
+          {case:"Wire velocity ⟂ B",flux:"—",emf:"Maximum"}
+        ],
+        formulaSet: [
+          {label:"Maximum flux",math:String.raw`\boxed{\Phi_{\max}\Rightarrow\varepsilon=0}`},
+          {label:"Maximum EMF",math:String.raw`\boxed{|\varepsilon|_{\max}\Rightarrow\Phi=0}`}
+        ]
+      }
+    ]
+  },
+  "emf-generators-and-motors": {
+    number: "04",
+    unit: "08",
+    title: "EMF with generators and electric motors",
+    introduction: "Learn how an armature and magnetic field allow generators and motors to change energy from one form to another.",
+    sections: [
+      {
+        title: "What is an armature?",
+        paragraphs: [
+          "The armature is the loop or coil of wire that rotates inside a magnetic field.",
+          "The armature is an important moving part in simple generators and electric motors. What makes it move, and what happens because of that motion, depends on the device."
+        ]
+      },
+      {
+        title: "The difference between voltage and induced EMF",
+        paragraphs: [
+          "They can both act like the electrical “push,” but the difference is where that push comes from.",
+          "Voltage is the general name for an electrical difference between two points. A battery can create voltage, a power supply can create voltage, and a generator can create voltage.",
+          "Induced EMF is specifically a voltage that is created because a wire or loop is moving through a magnetic field, or because the magnetic field through it is changing.",
+          "So you can think of it like this:"
+        ],
+        formulaSet: [
+          {label:"Voltage",math:String.raw`\boxed{\text{Voltage}=\text{general electrical push}}`},
+          {label:"Induced EMF",math:String.raw`\boxed{\text{Induced EMF}=\text{electrical push made by magnetism}}`}
+        ]
+      },
+      {
+        title: "How a generator works",
+        paragraphs: [
+          "In a generator, an outside energy source spins the armature. A turbine, engine, wind, or moving water can provide this motion.",
+          "As the wire moves through the magnetic field, magnetic force pushes charges in the wire. This produces an induced EMF. If the circuit is complete, the induced voltage makes current flow.",
+          "The magnetic field does not supply the energy by itself. The energy comes from whatever turns the armature. The magnetic field allows the armature's motion to push charges."
+        ],
+        formulaSet: [
+          {label:"Generator energy change",math:String.raw`\boxed{\text{mechanical energy}\rightarrow\text{electrical energy}}`}
+        ]
+      },
+      {
+        title: "How an electric motor works",
+        paragraphs: [
+          "An electric motor works in the opposite direction. Electric current is sent through the armature while it is inside a magnetic field.",
+          "The field pushes on the current-carrying wires. One side of the loop is pushed one way, and the other side is pushed the opposite way. These forces create a turning effect, so the armature rotates."
+        ],
+        formulaSet: [
+          {label:"Motor energy change",math:String.raw`\boxed{\text{electrical energy}\rightarrow\text{mechanical energy}}`}
+        ]
+      },
+      {
+        title: "Back EMF in a motor",
+        paragraphs: [
+          "Back EMF, also called counter EMF, is the voltage induced in a spinning motor. It acts in the opposite direction to the source voltage that drives the motor.",
+          "The source voltage sends current through the armature and makes it rotate. Once the armature is moving through the magnetic field, it also behaves like a generator and produces its own induced voltage.",
+          "By Lenz's law, this induced voltage opposes the change that produced it. It therefore pushes against the source voltage and reduces the voltage that drives current through the motor.",
+          "When the motor first starts, it is not yet spinning, so there is almost no back EMF. The motor can draw a large starting current. As it speeds up, back EMF increases and the current becomes smaller."
+        ],
+        formulaSet: [
+          {label:"Meaning",math:String.raw`\boxed{\text{back EMF}=\text{induced voltage that opposes the source voltage}}`},
+          {label:"First",math:String.raw`\text{source voltage}\rightarrow\text{motor spins}`},
+          {label:"Then",math:String.raw`\text{spinning motor}\rightarrow\text{back EMF}`}
+        ],
+        points: [
+          "Motor stopped or just starting → little back EMF → larger current.",
+          "Motor spinning faster → larger back EMF → smaller current.",
+          "Back EMF does not stop the motor; it reduces the effective voltage across it."
+        ]
+      },
+      {
+        title: "Generator and motor comparison",
+        paragraphs: [
+          "The magnetic field acts as the connection between motion and electric current. The direction of the energy change tells you whether the device is a generator or a motor."
+        ],
+        deviceChart: [
+          {device:"Generator",armature:"You spin the armature → electricity is produced",energy:"Mechanical → Electrical"},
+          {device:"Electric motor",armature:"You supply current → the armature spins",energy:"Electrical → Mechanical"}
+        ],
+        points: [
+          "Generator: motion through a magnetic field pushes charges.",
+          "Motor: current inside a magnetic field experiences a force and moves the wire.",
+          "The magnetic field is the middle connection in both devices."
+        ]
+      }
+    ]
   }
 };
 
@@ -1044,6 +1526,9 @@ export default async function LessonDetail({ params }) {
               <h2>{section.title}</h2>
               {section.paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}
               {section.ruleGroups && <div className="right-hand-rule-groups">{section.ruleGroups.map((rule,index)=><article key={rule.title}><span>RULE {String(index+1).padStart(2,"0")}</span><h3>{rule.title}</h3><strong>{rule.mapping}</strong><p>{rule.text}</p><Link className="rule-simulator-link" href={rule.href}>{rule.linkText} →</Link></article>)}</div>}
+              {section.orientationChart && <div className="orientation-chart-wrap"><table className="orientation-chart"><thead><tr><th>Direction</th><th>Magnetic flux</th><th>Induced EMF</th></tr></thead><tbody>{section.orientationChart.map(row=><tr key={row.case}><th>{row.case}</th><td>{row.flux}</td><td>{row.emf}</td></tr>)}</tbody></table></div>}
+              {section.deviceChart && <div className="orientation-chart-wrap"><table className="orientation-chart device-chart"><thead><tr><th>Device</th><th>What happens to the armature?</th><th>Energy change</th></tr></thead><tbody>{section.deviceChart.map(row=><tr key={row.device}><th>{row.device}</th><td>{row.armature}</td><td>{row.energy}</td></tr>)}</tbody></table></div>}
+              {section.termChart && <div className="orientation-chart-wrap"><table className="orientation-chart term-chart"><thead><tr><th>Term</th><th>Where it comes from</th><th>Example</th></tr></thead><tbody>{section.termChart.map(row=><tr key={row.term}><th>{row.term}</th><td>{row.source}</td><td>{row.example}</td></tr>)}</tbody></table></div>}
               {section.points && <div className="lesson-point-list">{section.pointLead && <strong>{section.pointLead}</strong>}<ul>{section.points.map(point=><li key={point}>{point}</li>)}</ul></div>}
               {section.formula && <Formula>{section.formula}</Formula>}
               {section.formulaSet && (section.derivation ? <div className="lesson-derivation">{section.formulaSet.map((item,index)=><div className="derivation-step" key={item.label}><div><span>{item.label}</span><Formula>{item.math}</Formula></div>{index<section.formulaSet.length-1&&<span className="derivation-arrow" aria-hidden="true">↓</span>}</div>)}</div> : <div className="field-formula-grid">{section.formulaSet.map(item=><div key={item.label}><span>{item.label}</span><Formula>{item.math}</Formula></div>)}</div>)}
