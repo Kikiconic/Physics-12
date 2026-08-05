@@ -1,3 +1,3 @@
 :HL["/Physics-12/_next/static/chunks/1r65vft5vsz4u.css","style"]
 :HC["/",""]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"lessons","param":null,"prefetchHints":0,"slots":{"children":{"name":"magnetic-field-strength","param":null,"prefetchHints":0,"slots":{"children":{"name":"resources","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}}}},"staleTime":300,"buildId":"pxHkFv07DkjNroffYndSu"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"lessons","param":null,"prefetchHints":0,"slots":{"children":{"name":"magnetic-field-strength","param":null,"prefetchHints":0,"slots":{"children":{"name":"resources","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}}}},"staleTime":300,"buildId":"0bO0HYfYiIdh0qQ6l0lPD"}

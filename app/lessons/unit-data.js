@@ -16,7 +16,8 @@ export const inductionLessons = [
   {n:"01",title:"Induced electromotive force (EMF)",text:"Introduction to induced EMF and how it is produced.",symbol:"EMF",slug:"induced-electromotive-force"},
   {n:"02",title:"Magnetic flux and Faraday's law of induction",text:"Introduction to magnetic flux and Faraday's law of induction.",symbol:"Φ",slug:"magnetic-flux-and-faradays-law"},
   {n:"03",title:"Parallel and perpendicular relationships",text:"A quick comparison of coil axis, wire motion, magnetic flux, and induced EMF.",symbol:"∥ ⟂",slug:"parallel-and-perpendicular-induction"},
-  {n:"04",title:"EMF with generators and electric motors",text:"The armature and the opposite energy changes in generators and electric motors.",symbol:"G M",slug:"emf-generators-and-motors"}
+  {n:"04",title:"EMF with generators and electric motors",text:"The armature and the opposite energy changes in generators and electric motors.",symbol:"G M",slug:"emf-generators-and-motors"},
+  {n:"05",title:"The transformer",text:"Introduction to transformers and electromagnetic induction between coils.",symbol:"T",slug:"the-transformer"}
 ];
 
 export const electrostaticsFormulas = [

@@ -1216,6 +1216,49 @@ const lessons = {
         ]
       },
       {
+        title: "Back EMF in a motor",
+        paragraphs: [
+          "Back EMF, also called counter EMF, is the voltage induced in a spinning motor. It acts in the opposite direction to the source voltage that drives the motor.",
+          "The source voltage sends current through the armature and makes it rotate. Once the armature is moving through the magnetic field, it also behaves like a generator and produces its own induced voltage.",
+          "By Lenz's law, this induced voltage opposes the change that produced it. It therefore pushes against the source voltage and reduces the voltage that drives current through the motor.",
+          "When the motor first starts, it is not yet spinning, so there is almost no back EMF. The motor can draw a large starting current. As it speeds up, back EMF increases and the current becomes smaller."
+        ],
+        formulaSet: [
+          {label:"Meaning",math:String.raw`\boxed{\text{back EMF}=\text{induced voltage that opposes the source voltage}}`},
+          {label:"First",math:String.raw`\text{source voltage}\rightarrow\text{motor spins}`},
+          {label:"Then",math:String.raw`\text{spinning motor}\rightarrow\text{back EMF}`}
+        ],
+        points: [
+          "Motor stopped or just starting → little back EMF → larger current.",
+          "Motor spinning faster → larger back EMF → smaller current.",
+          "Back EMF does not stop the motor; it reduces the effective voltage across it."
+        ]
+      },
+      {
+        title: "Calculating back EMF",
+        derivation: true,
+        paragraphs: [
+          "The back EMF is the part of the source voltage left after the voltage used to push current through the motor's resistance is taken away.",
+          "The source voltage is split into two parts. One part is opposed by the back EMF, and the other part pushes current through the resistance of the armature wire.",
+          "We subtract because the back EMF acts in the opposite direction to the source voltage."
+        ],
+        formulaSet: [
+          {label:"Voltage relationship",math:String.raw`V=E_b+IR`},
+          {label:"Rearrange for back EMF",math:String.raw`\boxed{E_b=V-IR}`},
+          {label:"Example values",math:String.raw`V=6.0\ \mathrm V,\qquad IR=3.6\ \mathrm V`},
+          {label:"Substitute",math:String.raw`E_b=6.0-3.6`},
+          {label:"Answer",math:String.raw`\boxed{E_b=2.4\ \mathrm V}`}
+        ],
+        variables: [
+          {symbol:String.raw`V`,name:"Source voltage",meaning:"The voltage supplied by the battery or power source."},
+          {symbol:String.raw`IR`,name:"Resistance voltage",meaning:"The voltage used to push current through the armature resistance."},
+          {symbol:String.raw`E_b`,name:"Back EMF",meaning:"The counter voltage produced by the spinning motor."}
+        ],
+        points: [
+          "Source voltage − voltage across resistance = back EMF."
+        ]
+      },
+      {
         title: "The whole idea",
         paragraphs: [
           "A magnetic field by itself does not guarantee induction. The magnetic flux through the circuit must change.",
@@ -1263,8 +1306,29 @@ const lessons = {
       {
         title: "What is an armature?",
         paragraphs: [
+          "The primary function of an armature in an electric motor or generator is to handle energy conversion through electromagnetic interaction with a magnetic field.",
           "The armature is the loop or coil of wire that rotates inside a magnetic field.",
+          "In an electric motor, the armature helps change electrical energy into mechanical energy. In a generator, it does the reverse and helps change mechanical energy into electrical energy.",
           "The armature is an important moving part in simple generators and electric motors. What makes it move, and what happens because of that motion, depends on the device."
+        ]
+      },
+      {
+        title: "What is a coil, and how is it different from an armature?",
+        paragraphs: [
+          "A coil is a wire wrapped into one or more loops. Using many loops makes the magnetic effect stronger because the effect from each turn adds together.",
+          "When current flows through a coil, it creates a magnetic field. When the magnetic flux through a coil changes, an EMF can be induced in the coil.",
+          "A coil may stay still or rotate. It can be used in a solenoid, electromagnet, transformer, motor, or generator.",
+          "An armature is the working part of a motor or generator where electromagnetic energy conversion takes place. In the simple machines studied in this course, the armature is usually the rotating coil or loop.",
+          "The simplest difference is that coil describes the wire's looped shape, while armature describes the job that a part performs. An armature can contain a coil, but not every coil is an armature."
+        ],
+        partChart: [
+          {part:"Coil",meaning:"Wire wound into one or more loops",job:"Creates a magnetic field or receives induced EMF"},
+          {part:"Armature",meaning:"The active working part of a motor or generator",job:"Takes part in electrical and mechanical energy conversion"}
+        ],
+        points: [
+          "Coil = the form of the wire.",
+          "Armature = the energy-conversion role of the machine part.",
+          "In a simple motor or generator, the rotating coil acts as the armature."
         ]
       },
       {
@@ -1302,25 +1366,6 @@ const lessons = {
         ]
       },
       {
-        title: "Back EMF in a motor",
-        paragraphs: [
-          "Back EMF, also called counter EMF, is the voltage induced in a spinning motor. It acts in the opposite direction to the source voltage that drives the motor.",
-          "The source voltage sends current through the armature and makes it rotate. Once the armature is moving through the magnetic field, it also behaves like a generator and produces its own induced voltage.",
-          "By Lenz's law, this induced voltage opposes the change that produced it. It therefore pushes against the source voltage and reduces the voltage that drives current through the motor.",
-          "When the motor first starts, it is not yet spinning, so there is almost no back EMF. The motor can draw a large starting current. As it speeds up, back EMF increases and the current becomes smaller."
-        ],
-        formulaSet: [
-          {label:"Meaning",math:String.raw`\boxed{\text{back EMF}=\text{induced voltage that opposes the source voltage}}`},
-          {label:"First",math:String.raw`\text{source voltage}\rightarrow\text{motor spins}`},
-          {label:"Then",math:String.raw`\text{spinning motor}\rightarrow\text{back EMF}`}
-        ],
-        points: [
-          "Motor stopped or just starting → little back EMF → larger current.",
-          "Motor spinning faster → larger back EMF → smaller current.",
-          "Back EMF does not stop the motor; it reduces the effective voltage across it."
-        ]
-      },
-      {
         title: "Generator and motor comparison",
         paragraphs: [
           "The magnetic field acts as the connection between motion and electric current. The direction of the energy change tells you whether the device is a generator or a motor."
@@ -1333,6 +1378,145 @@ const lessons = {
           "Generator: motion through a magnetic field pushes charges.",
           "Motor: current inside a magnetic field experiences a force and moves the wire.",
           "The magnetic field is the middle connection in both devices."
+        ]
+      }
+    ]
+  },
+  "the-transformer": {
+    number: "05",
+    unit: "08",
+    title: "The transformer",
+    introduction: "Learn how a transformer uses alternating current and electromagnetic induction to change voltage.",
+    sections: [
+      {
+        title: "What is a transformer?",
+        paragraphs: [
+          "A transformer is an electrical device that changes the voltage of alternating current, AC, to a higher or lower level without changing its frequency.",
+          "A transformer transfers electrical energy between two coils by using a changing magnetic field. The coils do not need to touch each other electrically.",
+          "A transformer that increases voltage is called a step-up transformer. A transformer that decreases voltage is called a step-down transformer."
+        ],
+        formulaSet: [
+          {label:"Main function",math:String.raw`\boxed{\text{AC input voltage}\rightarrow\text{higher or lower AC output voltage}}`},
+          {label:"Frequency",math:String.raw`\boxed{f_{\text{output}}=f_{\text{input}}}`}
+        ]
+      },
+      {
+        title: "What is alternating current?",
+        paragraphs: [
+          "Alternating current, AC, is an electric current that repeatedly reverses direction and changes size over time.",
+          "Direct current, DC, flows in only one direction. A battery is a common source of DC.",
+          "AC power moves back and forth and is the standard electricity supplied to homes and businesses through wall sockets.",
+          "A transformer needs a changing current because a changing current creates the changing magnetic field required for induction. A steady DC current does not continuously operate an ordinary transformer."
+        ],
+        points: [
+          "AC → direction and size change with time.",
+          "DC → current normally flows in one direction.",
+          "Changing AC → changing magnetic field → changing magnetic flux → induced output EMF."
+        ]
+      },
+      {
+        title: "Why a transformer does not work with DC",
+        paragraphs: [
+          "A transformer relies on Faraday's law. Transformers do not work with direct current (DC) because DC provides a steady, unchanging flow of electricity.",
+          "A steady DC signal creates a fixed magnetic field and constant magnetic flux. Because the magnetic flux does not change, the induced EMF and voltage in the secondary coil are zero.",
+          "Therefore, the secondary coil does not deliver electrical energy to the connected device."
+        ]
+      },
+      {
+        title: "The primary and secondary coils",
+        paragraphs: [
+          "The primary coil and secondary coil are the two main electrical parts of a transformer.",
+          "The primary coil is the input coil. It connects to the AC power source and uses the alternating current to create a changing magnetic field in the transformer's core.",
+          "The secondary coil is the output coil. It is not electrically connected to the primary coil. The changing magnetic flux from the primary passes through it and induces a new voltage.",
+          "The secondary coil sends the output electrical energy to a load, such as an appliance, electronic device, or power grid."
+        ],
+        formulaSet: [
+          {label:"Energy-transfer chain",math:String.raw`\boxed{\text{primary AC}\rightarrow\text{changing magnetic field}\rightarrow\text{secondary EMF}}`}
+        ]
+      },
+      {
+        title: "How the two coils work together",
+        paragraphs: [
+          "the primary coil receives the electricity; the core mainly helps carry the changing magnetic field from the primary side to the secondary side.",
+          "The process is: the source sends AC current through the primary coil. That current creates a changing magnetic field in the core. The changing magnetic field reaches the secondary coil. Because the magnetic field through the secondary is changing, it creates an induced voltage there. If the secondary is connected to a complete circuit, that voltage pushes charges and current flows.",
+          "The primary coil changes electricity into magnetism because electric current creates a magnetic field. Since AC keeps changing, the magnetic field made by the primary also keeps changing.",
+          "The secondary coil does the opposite because the changing magnetic flux through it induces a voltage according to Faraday's law. In a closed secondary circuit, this induced voltage produces current.",
+          "The primary and secondary coils are not connected directly by a wire. They are magnetically linked by the changing magnetic field carried through the core."
+        ],
+        points: [
+          "Primary coil: electricity → changing magnetism.",
+          "Core: guides the changing magnetic field.",
+          "Secondary coil: changing magnetism → induced electricity.",
+          "No direct wire connection: energy crosses through the changing magnetic field."
+        ]
+      },
+      {
+        title: "Key Differences",
+        paragraphs: [],
+        transformerChart: [
+          {feature:"Role",primary:"Input side (receives power)",secondary:"Output side (delivers power)"},
+          {feature:"Connection",primary:"Plugs into the power source",secondary:"Connects to the device or load"},
+          {feature:"Function",primary:"Turns electricity into magnetism",secondary:"Turns magnetism back into electricity"}
+        ]
+      },
+      {
+        title: "Conclusion",
+        paragraphs: [
+          "A transformer has two separate coils called the primary coil and the secondary coil. The primary coil is connected to an AC power source, so the current in that coil keeps changing direction. Because the current keeps changing, the magnetic field around the primary coil also keeps changing.",
+          "That changing magnetic field travels through the transformer core and reaches the secondary coil. When the magnetic field through the secondary coil keeps changing, it creates an induced voltage in the secondary coil. That induced voltage then pushes charges through the secondary circuit, so current can flow to the device connected to it.",
+          "The electricity from the primary coil does not directly flow into the secondary coil. The energy is transferred from the primary coil to the secondary coil through the changing magnetic field.",
+          "A transformer does not work properly with steady DC because steady DC creates a steady magnetic field. A steady magnetic field means the magnetic flux is not changing, so the secondary coil does not get a continuous induced voltage. Without that induced voltage, there is no continuous current supplied to the device.",
+          "So the whole idea is that AC creates a changing magnetic field, the changing magnetic field creates an induced voltage in the secondary coil, and that induced voltage makes current flow in the secondary circuit."
+        ]
+      },
+      {
+        title: "Ideal transformer formulas",
+        paragraphs: [
+          "For an ideal transformer, the voltage ratio equals the turns ratio. The current ratio is reversed."
+        ],
+        formulaSet: [
+          {label:"Voltage and turns",math:String.raw`\boxed{\frac{E_s}{E_p}=\frac{N_s}{N_p}}`},
+          {label:"Voltage and current",math:String.raw`\boxed{\frac{E_s}{E_p}=\frac{I_p}{I_s}}`},
+          {label:"Combined relationship",math:String.raw`\boxed{\frac{E_s}{E_p}=\frac{N_s}{N_p}=\frac{I_p}{I_s}}`}
+        ]
+      },
+      {
+        title: "Example: twice as many secondary turns",
+        derivation: true,
+        paragraphs: [
+          "Suppose the secondary coil has twice as many turns as the primary coil."
+        ],
+        formulaSet: [
+          {label:"Turns ratio",math:String.raw`\frac{N_s}{N_p}=2`},
+          {label:"Use the transformer ratio",math:String.raw`\frac{E_s}{E_p}=\frac{N_s}{N_p}`},
+          {label:"Voltage ratio",math:String.raw`\frac{E_s}{E_p}=2`},
+          {label:"Meaning",math:String.raw`\boxed{E_s=2E_p}`}
+        ]
+      },
+      {
+        title: "Why the current ratio is reversed",
+        derivation: true,
+        paragraphs: [
+          "In an ideal transformer, input power equals output power."
+        ],
+        formulaSet: [
+          {label:"Ideal power",math:String.raw`P_{\mathrm{in}}=P_{\mathrm{out}}`},
+          {label:"Using E for voltage",math:String.raw`E_pI_p=E_sI_s`},
+          {label:"Using V for voltage",math:String.raw`V_pI_p=V_sI_s`},
+          {label:"Current ratio",math:String.raw`\boxed{\frac{E_s}{E_p}=\frac{I_p}{I_s}}`}
+        ]
+      },
+      {
+        title: "Transformer power, heat, and efficiency formulas",
+        paragraphs: [],
+        formulaSet: [
+          {label:"Input power using E",math:String.raw`P_{\mathrm{in}}=E_pI_p`},
+          {label:"Input power using V",math:String.raw`P_{\mathrm{in}}=V_pI_p`},
+          {label:"Output power using E",math:String.raw`P_{\mathrm{out}}=E_sI_s`},
+          {label:"Output power using V",math:String.raw`P_{\mathrm{out}}=V_sI_s`},
+          {label:"Power lost as heat",math:String.raw`P_{\mathrm{heat}}=P_{\mathrm{in}}-P_{\mathrm{out}}`},
+          {label:"Efficiency using power",math:String.raw`\boxed{\eta=\frac{P_{\mathrm{out}}}{P_{\mathrm{in}}}\times100\%}`},
+          {label:"Motor efficiency using back EMF",math:String.raw`\boxed{\eta=\frac{E_{\mathrm{back}}}{V}\times100\%}`}
         ]
       }
     ]
@@ -1529,6 +1713,8 @@ export default async function LessonDetail({ params }) {
               {section.orientationChart && <div className="orientation-chart-wrap"><table className="orientation-chart"><thead><tr><th>Direction</th><th>Magnetic flux</th><th>Induced EMF</th></tr></thead><tbody>{section.orientationChart.map(row=><tr key={row.case}><th>{row.case}</th><td>{row.flux}</td><td>{row.emf}</td></tr>)}</tbody></table></div>}
               {section.deviceChart && <div className="orientation-chart-wrap"><table className="orientation-chart device-chart"><thead><tr><th>Device</th><th>What happens to the armature?</th><th>Energy change</th></tr></thead><tbody>{section.deviceChart.map(row=><tr key={row.device}><th>{row.device}</th><td>{row.armature}</td><td>{row.energy}</td></tr>)}</tbody></table></div>}
               {section.termChart && <div className="orientation-chart-wrap"><table className="orientation-chart term-chart"><thead><tr><th>Term</th><th>Where it comes from</th><th>Example</th></tr></thead><tbody>{section.termChart.map(row=><tr key={row.term}><th>{row.term}</th><td>{row.source}</td><td>{row.example}</td></tr>)}</tbody></table></div>}
+              {section.partChart && <div className="orientation-chart-wrap"><table className="orientation-chart part-chart"><thead><tr><th>Part</th><th>What it is</th><th>What it does</th></tr></thead><tbody>{section.partChart.map(row=><tr key={row.part}><th>{row.part}</th><td>{row.meaning}</td><td>{row.job}</td></tr>)}</tbody></table></div>}
+              {section.transformerChart && <div className="orientation-chart-wrap"><table className="orientation-chart transformer-chart"><thead><tr><th>Feature</th><th>Primary coil</th><th>Secondary coil</th></tr></thead><tbody>{section.transformerChart.map(row=><tr key={row.feature}><th>{row.feature}</th><td>{row.primary}</td><td>{row.secondary}</td></tr>)}</tbody></table></div>}
               {section.points && <div className="lesson-point-list">{section.pointLead && <strong>{section.pointLead}</strong>}<ul>{section.points.map(point=><li key={point}>{point}</li>)}</ul></div>}
               {section.formula && <Formula>{section.formula}</Formula>}
               {section.formulaSet && (section.derivation ? <div className="lesson-derivation">{section.formulaSet.map((item,index)=><div className="derivation-step" key={item.label}><div><span>{item.label}</span><Formula>{item.math}</Formula></div>{index<section.formulaSet.length-1&&<span className="derivation-arrow" aria-hidden="true">↓</span>}</div>)}</div> : <div className="field-formula-grid">{section.formulaSet.map(item=><div key={item.label}><span>{item.label}</span><Formula>{item.math}</Formula></div>)}</div>)}
@@ -1574,6 +1760,8 @@ export default async function LessonDetail({ params }) {
         {slug === "introduction-to-magnets" && <section className="lesson-resource-link"><span>Interactive review</span><h2>Magnetic field simulators</h2><p>Use the bar magnet, solenoid, straight-wire, and current-loop simulators to see these field directions.</p><Link href="/simulators/unit-7">Open Unit 7 simulators <ArrowIcon /></Link></section>}
         {slug === "magnetic-field-strength" && <section className="lesson-resource-link"><span>Practice and review</span><h2>Magnetic field resources</h2><p>Open the resource page for magnetic force and field-strength worksheets.</p><Link href="/lessons/magnetic-field-strength/resources">Open resources <ArrowIcon /></Link></section>}
         {slug === "magnetic-field-and-the-electron" && <section className="lesson-resource-link"><span>Practice and review</span><h2>Magnetic field and electron resources</h2><p>Open the resource page for electron motion, CRT, and mass-spectrometer worksheets.</p><Link href="/lessons/magnetic-field-and-the-electron/resources">Open resources <ArrowIcon /></Link></section>}
+        {slug === "induced-electromotive-force" && <section className="lesson-resource-link"><span>Practice and review</span><h2>Induced EMF resources</h2><p>Open the resource page for electromagnetic induction worksheets.</p><Link href="/lessons/induced-electromotive-force/resources">Open resources <ArrowIcon /></Link></section>}
+        {slug === "magnetic-flux-and-faradays-law" && <section className="lesson-resource-link"><span>Practice and review</span><h2>Magnetic flux and EMF resources</h2><p>Open the resource page for magnetic flux and Faraday&apos;s-law worksheets.</p><Link href="/lessons/magnetic-flux-and-faradays-law/resources">Open resources <ArrowIcon /></Link></section>}
         {slug === "electric-field-strength" && (
           <section className="lesson-resource-link">
             <span>Practice and review</span>
