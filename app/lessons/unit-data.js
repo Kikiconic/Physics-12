@@ -1,3 +1,8 @@
+export const vectorsAndEquilibriumLessons = [
+  {n:"01",title:"Vectors in two dimensions",text:"Two-dimensional vectors and their components.",symbol:"→",slug:"vectors-in-two-dimensions"},
+  {n:"02",title:"Statics: forces in equilibrium",text:"Forces acting on objects in static equilibrium.",symbol:"ΣF",slug:"statics-forces-in-equilibrium"}
+];
+
 export const electrostaticsLessons = [
   {n:"01",title:"Static electric charges",text:"Introduction to the electrostatics chapter and what electrostatic force is.",symbol:"+ −",slug:"static-electric-charges"},
   {n:"02",title:"The electric force",text:"Introduction to Coulomb’s law and how to use it.",symbol:"F",slug:"electric-force"},

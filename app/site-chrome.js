@@ -28,7 +28,7 @@ export function SiteNav() {
 export function UnitCatalogue({ section, currentUnit }) {
   const units = [1,2,3,4,5,6,7,8];
   const unitRoutes = section === "Lessons"
-    ? { 6: "/lessons/unit-6", 7: "/lessons/unit-7", 8: "/lessons/unit-8" }
+    ? { 1: "/lessons/unit-1", 6: "/lessons/unit-6", 7: "/lessons/unit-7", 8: "/lessons/unit-8" }
     : section === "Simulators"
       ? { 6: "/simulators/unit-6", 7: "/simulators/unit-7", 8: "/simulators/unit-8" }
       : section === "Formula sheets"
@@ -45,6 +45,14 @@ export function UnitCatalogue({ section, currentUnit }) {
       </div>
       <div className="unit-slots">
         {units.map(unit => {
+          if (unit === 1 && unitRoutes[1]) {
+            return (
+              <Link className={`unit-slot active-unit${currentUnit === 1 ? " selected-unit" : ""}`} href={unitRoutes[1]} key={unit}>
+                <span>Unit 01</span><b>Vectors and static equilibrium</b><small>Sections added</small>
+              </Link>
+            );
+          }
+
           if (unit === 6) {
             const content = (
               <>

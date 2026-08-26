@@ -5,6 +5,168 @@ import { ArrowIcon, SiteFooter, SiteNav } from "../../site-chrome";
 import ElectricFieldStrengthSimulator from "../electric-field-strength-simulator";
 
 const lessons = {
+  "vectors-in-two-dimensions": {
+    number: "01",
+    unit: "01",
+    title: "Vectors in two dimensions",
+    introduction: "Introduction to vectors and how their size and direction are represented.",
+    sections: [
+      {
+        title: "What is a vector?",
+        paragraphs: [
+          "A vector is a quantity that has both a size and a direction. The size of a vector is also called its magnitude.",
+          "You can picture a vector as an arrow. The length of the arrow represents the size of the vector, and the direction in which the arrow points represents the vector's direction."
+        ],
+        pointLead: "Examples of vectors:",
+        points: [
+          "Velocity: 20 m/s east",
+          "Force: 20 N upward",
+          "Displacement: 10 m to the left",
+          "Acceleration: 9.8 m/s² downward"
+        ]
+      },
+      {
+        title: "Vectors in the same direction",
+        paragraphs: [
+          "To add or subtract vectors, you must pay attention to both their size and direction.",
+          "If two vectors point in the same direction, add their magnitudes. For example, 5 N right and 3 N right give a resultant of 8 N right."
+        ],
+        formulaSet: [
+          {label:"Same-direction example",math:String.raw`5\ \mathrm{N\ right}+3\ \mathrm{N\ right}=8\ \mathrm{N\ right}`}
+        ]
+      },
+      {
+        title: "Vectors in opposite directions",
+        paragraphs: [
+          "If two vectors point in opposite directions, subtract the smaller magnitude from the larger magnitude.",
+          "For example, 8 N right and 3 N left give a resultant of 5 N right. The resultant points in the direction of the larger vector."
+        ],
+        formulaSet: [
+          {label:"Opposite-direction example",math:String.raw`R=8\ \mathrm{N}-3\ \mathrm{N}=5\ \mathrm{N\ right}`}
+        ]
+      },
+      {
+        title: "Subtracting a vector",
+        paragraphs: [
+          "Subtracting a vector means reversing its direction and then adding it.",
+          "For example, begin with 5 N right minus 3 N right. Reverse the second vector so that it becomes 3 N left. You now have 5 N right and 3 N left, giving a resultant of 2 N right."
+        ],
+        formulaSet: [
+          {label:"Original expression",math:String.raw`5\ \mathrm{N\ right}-3\ \mathrm{N\ right}`},
+          {label:"Reverse the vector being subtracted",math:String.raw`-3\ \mathrm{N\ right}=3\ \mathrm{N\ left}`},
+          {label:"Resultant",math:String.raw`R=5\ \mathrm{N}-3\ \mathrm{N}=2\ \mathrm{N\ right}`}
+        ],
+        derivation: true
+      },
+      {
+        title: "Vectors at an angle",
+        paragraphs: [
+          "If two vectors are not on the same straight line, break them into horizontal x-components and vertical y-components.",
+          "For example, combine a 3 N vector pointing right with a 4 N vector pointing upward. The two vectors form the sides of a right triangle, and the diagonal is the resultant vector.",
+          "Use the Pythagorean theorem to find the magnitude of the resultant."
+        ],
+        formulaSet: [
+          {label:"Pythagorean theorem",math:String.raw`R=\sqrt{3^2+4^2}`},
+          {label:"Resultant magnitude",math:String.raw`R=5\ \mathrm{N}`}
+        ],
+        derivation: true,
+        vectorTriangle: true
+      },
+      {
+        title: "Using sine and cosine to find components",
+        paragraphs: [
+          "For vector questions, break each vector into a horizontal x-component and a vertical y-component. The main rule is: cosine gives the adjacent side, and sine gives the opposite side.",
+          "If the angle θ is measured from the horizontal x-axis, the horizontal component touches the angle, so use cosine. The vertical component is across from the angle, so use sine.",
+          "For example, consider a 10 N force acting at 30° above the horizontal."
+        ],
+        formulaSet: [
+          {label:"Horizontal component",math:String.raw`F_x=F\cos\theta`},
+          {label:"Vertical component",math:String.raw`F_y=F\sin\theta`},
+          {label:"Substitute for the horizontal component",math:String.raw`F_x=10\cos30^\circ=8.66\ \mathrm{N\ right}`},
+          {label:"Substitute for the vertical component",math:String.raw`F_y=10\sin30^\circ=5.00\ \mathrm{N\ up}`}
+        ],
+        derivation: true,
+        componentTriangle: true
+      },
+      {
+        title: "Finding the resultant from components",
+        paragraphs: [
+          "When a question contains more than one vector, first find the x- and y-components of every vector. Add all horizontal components to find the total x-component, and add all vertical components to find the total y-component.",
+          "Treat right and up as positive directions. Treat left and down as negative directions.",
+          "Use the Pythagorean theorem to find the magnitude of the resultant. Then use inverse tangent to find its direction. Always measure the angle from the horizontal axis unless the question says otherwise.",
+          "Using the components 8.66 N right and 5.00 N up gives the original resultant of 10.0 N at 30° above the horizontal."
+        ],
+        formulaSet: [
+          {label:"Add the horizontal components",math:String.raw`R_x=\sum V_x`},
+          {label:"Add the vertical components",math:String.raw`R_y=\sum V_y`},
+          {label:"Find the resultant magnitude",math:String.raw`R=\sqrt{R_x^2+R_y^2}`},
+          {label:"Find the resultant direction",math:String.raw`\theta=\tan^{-1}\!\left(\frac{R_y}{R_x}\right)`},
+          {label:"Example magnitude",math:String.raw`R=\sqrt{8.66^2+5.00^2}=10.0\ \mathrm{N}`},
+          {label:"Example direction",math:String.raw`\theta=\tan^{-1}\!\left(\frac{5.00}{8.66}\right)=30^\circ`}
+        ],
+        derivation: true
+      }
+    ]
+  },
+  "statics-forces-in-equilibrium": {
+    number: "02",
+    unit: "01",
+    title: "Statics: forces in equilibrium",
+    introduction: "Introduction to static equilibrium and the conditions that keep an object from moving or rotating.",
+    sections: [
+      {
+        title: "What is static equilibrium?",
+        paragraphs: [
+          "Static equilibrium means an object is not moving and not rotating because all the forces and torques acting on it are balanced.",
+          "Static equilibrium has two conditions. The total force must equal zero, so the object does not move. The total torque must also equal zero, so the object does not rotate."
+        ],
+        formulaSet: [
+          {label:"No translational motion",math:String.raw`\sum F=0`},
+          {label:"No rotational motion",math:String.raw`\sum \tau=0`}
+        ]
+      },
+      {
+        title: "Simple example: a book on a table",
+        paragraphs: [
+          "Imagine a book sitting still on a table. Its weight, mg, pulls downward. The normal force from the table, F_N, pushes upward.",
+          "If the normal force and weight are equal, the total vertical force is zero. The book does not move upward or downward, so it is in static equilibrium."
+        ],
+        points: [
+          "Weight (mg) pulls downward.",
+          "Normal force (F_N) pushes upward."
+        ],
+        formula: String.raw`F_N-mg=0`
+      },
+      {
+        title: "Another example: a ladder",
+        paragraphs: [
+          "A ladder leaning against a wall is in static equilibrium when it stays still and does not rotate."
+        ],
+        points: [
+          "The horizontal forces must balance.",
+          "The vertical forces must balance.",
+          "Clockwise torque must balance counterclockwise torque."
+        ]
+      },
+      {
+        title: "Translational equilibrium",
+        paragraphs: [
+          "For a body to be in static equilibrium, the vector sum of all the forces acting on it must be zero. This means the forces are balanced, so the body has no translational acceleration.",
+          "The sum of the horizontal force components must be zero, and the sum of the vertical force components must also be zero."
+        ],
+        formulaSet: [
+          {label:"Vector sum of all forces",math:String.raw`\sum \vec{F}=0`},
+          {label:"Horizontal and vertical forces",math:String.raw`\sum F_x=0\qquad\text{and}\qquad\sum F_y=0`}
+        ]
+      },
+      {
+        title: "Rotational equilibrium",
+        paragraphs: [
+          "Rotational equilibrium"
+        ]
+      }
+    ]
+  },
   "static-electric-charges": {
     number: "01",
     unit: "06",
@@ -1671,6 +1833,34 @@ function Formula({ children, inline = false }) {
   );
 }
 
+function VectorTriangleDiagram(){
+  return <figure className="vector-triangle-diagram">
+    <svg viewBox="0 0 620 330" role="img" aria-label="A three newton horizontal vector and four newton vertical vector forming a five newton resultant">
+      <defs><marker id="vector-arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z"/></marker></defs>
+      <line x1="105" y1="260" x2="410" y2="260" className="vector-x" markerEnd="url(#vector-arrow)"/>
+      <line x1="410" y1="260" x2="410" y2="65" className="vector-y" markerEnd="url(#vector-arrow)"/>
+      <line x1="105" y1="260" x2="410" y2="65" className="vector-resultant" markerEnd="url(#vector-arrow)"/>
+      <path d="M380 260 L380 230 L410 230" className="vector-right-angle"/>
+      <text x="255" y="295">3 N right</text><text x="455" y="165">4 N up</text><text x="230" y="145">Resultant = 5 N</text>
+    </svg>
+    <figcaption>The horizontal and vertical vectors form a right triangle. The diagonal represents the resultant.</figcaption>
+  </figure>;
+}
+
+function ComponentTriangleDiagram(){
+  return <figure className="vector-triangle-diagram component-triangle-diagram">
+    <svg viewBox="0 0 620 330" role="img" aria-label="A ten newton vector at thirty degrees divided into horizontal and vertical components">
+      <defs><marker id="component-arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z"/></marker></defs>
+      <line x1="105" y1="260" x2="455" y2="260" className="vector-x" markerEnd="url(#component-arrow)"/>
+      <line x1="455" y1="260" x2="455" y2="60" className="vector-y" markerEnd="url(#component-arrow)"/>
+      <line x1="105" y1="260" x2="455" y2="60" className="vector-resultant" markerEnd="url(#component-arrow)"/>
+      <path d="M165 260 A60 60 0 0 0 157 230" className="component-angle"/>
+      <text x="270" y="295">Fₓ = 8.66 N</text><text x="505" y="165">Fᵧ = 5.00 N</text><text x="255" y="135">F = 10 N</text><text x="170" y="235">30°</text>
+    </svg>
+    <figcaption>Because the angle is measured from the horizontal, Fₓ is adjacent and uses cosine. Fᵧ is opposite and uses sine.</figcaption>
+  </figure>;
+}
+
 export function generateStaticParams() {
   return Object.keys(lessons).map(slug => ({ slug }));
 }
@@ -1735,6 +1925,8 @@ export default async function LessonDetail({ params }) {
               {section.diagram && <ParallelPlateDiagram />}
               {section.fieldDiagram && <ElectricFieldDiagram />}
               {section.energyHillDiagram && <PotentialEnergyHillDiagram />}
+              {section.vectorTriangle && <VectorTriangleDiagram />}
+              {section.componentTriangle && <ComponentTriangleDiagram />}
               {section.fieldSimulator && <ElectricFieldStrengthSimulator />}
             </div>
           </section>
