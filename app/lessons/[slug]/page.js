@@ -162,8 +162,37 @@ const lessons = {
       {
         title: "Rotational equilibrium",
         paragraphs: [
-          "Rotational equilibrium"
+          "Rotational static equilibrium means an object is not rotating because its clockwise and counterclockwise turning effects are balanced. This turning effect is called torque.",
+          "Force tells you how hard you push. Torque tells you how strongly that force tries to rotate an object around a pivot.",
+          "The farther a force acts from the pivot, the more torque it produces. A force also produces more torque when it acts more perpendicular to the lever."
+        ],
+        formula: String.raw`\tau=rF\sin\theta`,
+        variables: [
+          {symbol:String.raw`\tau`,name:"Torque",meaning:"The turning effect of a force, measured in newton-metres (N·m)."},
+          {symbol:String.raw`r`,name:"Distance from the pivot",meaning:"The distance from the pivot to the point where the force acts, measured in metres."},
+          {symbol:String.raw`F`,name:"Force",meaning:"The force acting on the lever, measured in newtons."},
+          {symbol:String.raw`\theta`,name:"Angle",meaning:"The angle between the force and the lever."}
+        ],
+        formulaSet: [
+          {label:"Rotational-equilibrium condition",math:String.raw`\sum\tau=0`},
+          {label:"Balanced turning effects",math:String.raw`\text{clockwise torque}=\text{counterclockwise torque}`}
         ]
+      },
+      {
+        title: "Simple example: a seesaw",
+        paragraphs: [
+          "A 40 N downward force acts 2 m to the left of the pivot. A 20 N downward force acts 4 m to the right of the pivot.",
+          "The force on the left creates counterclockwise torque. The force on the right creates clockwise torque. Both torques have the same magnitude, so they balance.",
+          "The seesaw does not rotate, so it is in rotational static equilibrium."
+        ],
+        formulaSet: [
+          {label:"Left-side counterclockwise torque",math:String.raw`\tau_L=40(2)=80\ \mathrm{N\cdot m}`},
+          {label:"Right-side clockwise torque",math:String.raw`\tau_R=20(4)=80\ \mathrm{N\cdot m}`},
+          {label:"The torques balance",math:String.raw`80\ \mathrm{N\cdot m\ counterclockwise}=80\ \mathrm{N\cdot m\ clockwise}`},
+          {label:"Rotational equilibrium",math:String.raw`\sum\tau=0`}
+        ],
+        derivation: true,
+        seesawDiagram: true
       }
     ]
   },
@@ -1861,6 +1890,22 @@ function ComponentTriangleDiagram(){
   </figure>;
 }
 
+function SeesawDiagram(){
+  return <figure className="seesaw-diagram">
+    <svg viewBox="0 0 760 310" role="img" aria-label="Balanced seesaw with forty newtons two metres left of the pivot and twenty newtons four metres right of the pivot">
+      <defs><marker id="force-arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z"/></marker></defs>
+      <line x1="70" y1="190" x2="690" y2="190" className="seesaw-board"/>
+      <path d="M380 190 L330 265 L430 265 Z" className="seesaw-pivot"/>
+      <line x1="225" y1="65" x2="225" y2="175" className="seesaw-force left-force" markerEnd="url(#force-arrow)"/>
+      <line x1="650" y1="65" x2="650" y2="175" className="seesaw-force right-force" markerEnd="url(#force-arrow)"/>
+      <line x1="225" y1="220" x2="380" y2="220" className="seesaw-distance"/><line x1="380" y1="220" x2="650" y2="220" className="seesaw-distance"/>
+      <text x="225" y="45">40 N</text><text x="650" y="45">20 N</text><text x="302" y="250">2 m</text><text x="515" y="250">4 m</text><text x="380" y="292">PIVOT</text>
+      <text x="175" y="125" className="torque-label">COUNTERCLOCKWISE</text><text x="585" y="125" className="torque-label">CLOCKWISE</text>
+    </svg>
+    <figcaption>Equal counterclockwise and clockwise torques keep the seesaw from rotating.</figcaption>
+  </figure>;
+}
+
 export function generateStaticParams() {
   return Object.keys(lessons).map(slug => ({ slug }));
 }
@@ -1927,6 +1972,7 @@ export default async function LessonDetail({ params }) {
               {section.energyHillDiagram && <PotentialEnergyHillDiagram />}
               {section.vectorTriangle && <VectorTriangleDiagram />}
               {section.componentTriangle && <ComponentTriangleDiagram />}
+              {section.seesawDiagram && <SeesawDiagram />}
               {section.fieldSimulator && <ElectricFieldStrengthSimulator />}
             </div>
           </section>
@@ -1954,6 +2000,7 @@ export default async function LessonDetail({ params }) {
         {slug === "magnetic-field-and-the-electron" && <section className="lesson-resource-link"><span>Practice and review</span><h2>Magnetic field and electron resources</h2><p>Open the resource page for electron motion, CRT, and mass-spectrometer worksheets.</p><Link href="/lessons/magnetic-field-and-the-electron/resources">Open resources <ArrowIcon /></Link></section>}
         {slug === "induced-electromotive-force" && <section className="lesson-resource-link"><span>Practice and review</span><h2>Induced EMF resources</h2><p>Open the resource page for electromagnetic induction worksheets.</p><Link href="/lessons/induced-electromotive-force/resources">Open resources <ArrowIcon /></Link></section>}
         {slug === "magnetic-flux-and-faradays-law" && <section className="lesson-resource-link"><span>Practice and review</span><h2>Magnetic flux and EMF resources</h2><p>Open the resource page for magnetic flux and Faraday&apos;s-law worksheets.</p><Link href="/lessons/magnetic-flux-and-faradays-law/resources">Open resources <ArrowIcon /></Link></section>}
+        {slug === "statics-forces-in-equilibrium" && <section className="lesson-resource-link"><span>Practice and review</span><h2>Translational equilibrium resources</h2><p>Open the numbered translational-equilibrium worksheets. Difficulty increases with worksheet number.</p><Link href="/lessons/statics-forces-in-equilibrium/resources">Open resources <ArrowIcon /></Link></section>}
         {slug === "electric-field-strength" && (
           <section className="lesson-resource-link">
             <span>Practice and review</span>

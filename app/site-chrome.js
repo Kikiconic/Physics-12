@@ -34,7 +34,7 @@ export function UnitCatalogue({ section, currentUnit }) {
       : section === "Formula sheets"
         ? { 6: "/formulas/unit-6", 7: "/formulas/unit-7", 8: "/formulas/unit-8" }
         : section === "Worksheets"
-          ? { 6: "/resources/unit-6", 7: "/resources/unit-7", 8: "/resources/unit-8" }
+          ? { 1: "/resources/unit-1", 6: "/resources/unit-6", 7: "/resources/unit-7", 8: "/resources/unit-8" }
       : {};
 
   return (
@@ -48,7 +48,7 @@ export function UnitCatalogue({ section, currentUnit }) {
           if (unit === 1 && unitRoutes[1]) {
             return (
               <Link className={`unit-slot active-unit${currentUnit === 1 ? " selected-unit" : ""}`} href={unitRoutes[1]} key={unit}>
-                <span>Unit 01</span><b>Vectors and static equilibrium</b><small>Sections added</small>
+                <span>Unit 01</span><b>Vectors and static equilibrium</b><small>{section === "Worksheets" ? "Worksheet sections ready" : "Sections added"}</small>
               </Link>
             );
           }
